@@ -270,6 +270,11 @@ ${moduleItems}
     })
     .join("\n");
 
+  const summaryCells = modules.map((m) => {
+    const count = scored.filter(({ data }) => data[m.number]?.status === "Done").length;
+    return `<td class="summary-cell">${count || ""}</td>`;
+  }).join("\n              ");
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
