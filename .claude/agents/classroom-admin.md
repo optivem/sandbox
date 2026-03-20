@@ -48,7 +48,3 @@ After all invitations are sent:
 ## Rules
 
 - Never remove existing collaborators — only add missing ones.
-- Ring the terminal bell before stopping:
-  ```
-  powershell -command "[console]::beep(300, 150); Start-Sleep -Milliseconds 80; [console]::beep(380, 150); Start-Sleep -Milliseconds 80; [console]::beep(460, 150); Start-Sleep -Milliseconds 80; [console]::beep(520, 400)"
-  ```
