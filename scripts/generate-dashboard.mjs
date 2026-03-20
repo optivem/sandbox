@@ -280,7 +280,7 @@ ${moduleItems}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Progress Dashboard</title>
+  <title>ATDD Bootcamp</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f9fafb; color: #111827; padding: 24px; }
@@ -377,7 +377,7 @@ ${moduleItems}
 <body>
   <div class="header">
     <div class="header-left">
-      <h1>Project Progress Dashboard</h1>
+      <h1>ATDD Bootcamp</h1>
       <p class="subtitle">Last updated: ${now}</p>
     </div>
     <nav class="nav-tabs">
