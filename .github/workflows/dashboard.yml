@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
   issues:
-    types: [opened, closed, reopened, labeled, unlabeled]
+    types: [opened, closed, reopened, edited, labeled, unlabeled]
+  issue_comment:
+    types: [created]
   schedule:
     - cron: '*/15 * * * *'  # every 15 minutes
   workflow_dispatch:
