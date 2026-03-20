@@ -19,11 +19,15 @@ runs:
           const labels = '${{ inputs.labels }}'.split(',').map(l => l.trim().toLowerCase());
 
           for (const label of labels) {
+            const color = label.startsWith('module-') ? '0075ca'
+                        : label.startsWith('project-') ? '7057ff'
+                        : 'ededed';
             try {
               await github.rest.issues.createLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                name: label
+                name: label,
+                color
               });
             } catch (e) {
               // Label already exists — ignore
