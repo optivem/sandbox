@@ -26,7 +26,7 @@ runs:
         script: |
           const fs = require('fs');
           const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
-          const { id: projectId, statusFieldId } = config.classroom;
+          const { id: projectId, statusFieldId } = config.board;
 
           const validNames = config.statuses.map(s => s.name);
           const status = config.statuses.find(s => s.name === process.env.TARGET_STATUS);

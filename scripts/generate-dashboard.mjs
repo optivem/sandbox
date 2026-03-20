@@ -17,24 +17,19 @@ if (!GITHUB_TOKEN || !GITHUB_OWNER || !GITHUB_REPO) {
 }
 
 const config = JSON.parse(readFileSync(join(ROOT, "config.json"), "utf-8"));
-const projectId = config.classroom.id;
-const projects = config.projects;
-const modules = config.modules;
-const students = config.students;
+const boardId = config.board.id;
 
 // Map GitHub username (lowercase) → display name
 const nameMap = {};
 for (const r of config.reviewers) {
   nameMap[r.github.toLowerCase()] = r.name;
 }
-for (const s of students) {
+for (const s of config.students) {
   nameMap[s.github.toLowerCase()] = s.name;
 }
 function displayName(github) {
   return nameMap[github.toLowerCase()] || github;
 }
-
-const MODULE_COUNT = modules.length;
 
 // --- GraphQL helpers ---
 
@@ -55,7 +50,7 @@ async function graphql(query, variables = {}) {
   return json.data;
 }
 
-async function fetchAllIssues() {
+async function fetchAllIssues(owner, repo) {
   const issues = [];
   let cursor = null;
 
@@ -88,7 +83,7 @@ async function fetchAllIssues() {
         }
       }
       `,
-      { owner: GITHUB_OWNER, repo: GITHUB_REPO, after: cursor }
+      { owner, repo, after: cursor }
     );
 
     const page = data.repository.issues;
@@ -101,9 +96,12 @@ async function fetchAllIssues() {
   return issues;
 }
 
-// --- Build matrix ---
+// --- Build matrix for a single bootcamp ---
 
-function buildMatrix(issues) {
+function buildMatrix(issues, bootcamp) {
+  const projects = bootcamp.projects;
+  const modules = bootcamp.modules;
+
   // matrix[projectKey][moduleNum] = { status, url }
   const matrix = {};
   for (const proj of projects) {
@@ -112,12 +110,16 @@ function buildMatrix(issues) {
 
   for (const issue of issues) {
     const labels = issue.labels.nodes.map((l) => l.name);
+    const bootcampLabel = labels.find((l) => /^bootcamp-/.test(l));
     const moduleLabel = labels.find((l) => /^module-\d{2}$/.test(l));
     const projectLabel = labels.find((l) => /^project-/.test(l));
 
+    // Skip issues that don't belong to this bootcamp
+    if (bootcampLabel && bootcampLabel !== `bootcamp-${bootcamp.id}`) continue;
+
     if (moduleLabel && !projectLabel) {
       console.warn(
-        `Warning: Issue #${issue.number} has ${moduleLabel} but no project- label — skipping`
+        `Warning: [${bootcamp.name}] Issue #${issue.number} has ${moduleLabel} but no project- label — skipping`
       );
       continue;
     }
@@ -128,14 +130,14 @@ function buildMatrix(issues) {
 
     if (!matrix[projKey]) {
       console.warn(
-        `Warning: Issue #${issue.number} has label ${projectLabel} but no matching project in config.json — skipping`
+        `Warning: [${bootcamp.name}] Issue #${issue.number} has label ${projectLabel} but no matching project in config — skipping`
       );
       continue;
     }
 
     // Get status from project board
     const projectItem = issue.projectItems.nodes.find(
-      (n) => n.project.id === projectId
+      (n) => n.project.id === boardId
     );
     const status = projectItem?.fieldValueByName?.name || "In Review";
 
@@ -145,10 +147,28 @@ function buildMatrix(issues) {
   return matrix;
 }
 
-// --- Generate HTML ---
+// --- Generate HTML section for a single bootcamp ---
 
-function generateHtml(matrix) {
-  const now = new Date().toUTCString();
+function generateBootcampSection(bootcamp, matrix, owner, repo) {
+  const modules = bootcamp.modules;
+  const projects = bootcamp.projects;
+  const moduleCount = modules.length;
+  const bootcampId = bootcamp.id;
+
+  if (projects.length === 0) {
+    return {
+      section: `
+  <div class="bootcamp-section" id="bootcamp-${escapeHtml(bootcampId)}">
+    <h2 class="bootcamp-title">${escapeHtml(bootcamp.name)}</h2>
+    <p class="bootcamp-empty">No projects enrolled yet.</p>
+  </div>`,
+      cards: `
+  <div class="bootcamp-section" id="bootcamp-${escapeHtml(bootcampId)}-mobile">
+    <h2 class="bootcamp-title">${escapeHtml(bootcamp.name)}</h2>
+    <p class="bootcamp-empty">No projects enrolled yet.</p>
+  </div>`
+    };
+  }
 
   const moduleHeaders = modules.map((m) => {
     const label = escapeHtml(m.number);
@@ -165,7 +185,6 @@ function generateHtml(matrix) {
     return 0;
   }
 
-  // Compute scores and sort projects by leaderboard ranking
   const scored = projects.map((proj) => {
     const key = proj.key.toLowerCase();
     const data = matrix[key] || {};
@@ -183,7 +202,7 @@ function generateHtml(matrix) {
   scored.sort((a, b) => b.points - a.points);
 
   const rows = scored
-    .map(({ proj, key, data, points, doneCount }, rank) => {
+    .map(({ proj, key, data, points, doneCount }) => {
       const cells = modules.map((m) => {
         const num = m.number;
         const entry = data[num];
@@ -192,8 +211,8 @@ function generateHtml(matrix) {
           const moduleName = `${m.number} - ${m.name}`;
           const notice = `> **⚠️ This ticket is auto-generated. Please do not change the title or contents below. Just click the "Create" button below. After a few minutes, the ticket will be automatically assigned to a reviewer — no further action needed. You can add comments after the ticket is created.**`;
           const issueBody = `${notice}\n\n### Project\n\n${proj.name}\n\n### Module\n\n${moduleName}\n\n${notice}`;
-          const labels = `project-${key},module-${m.number}`;
-          const newIssueUrl = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(moduleName)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent(labels)}`;
+          const labels = `project-${key},bootcamp-${bootcampId},module-${m.number}`;
+          const newIssueUrl = `https://github.com/${owner}/${repo}/issues/new?title=${encodeURIComponent(moduleName)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent(labels)}`;
           return `<td class="cell cell-missing"><a href="${newIssueUrl}" target="_blank" rel="noopener" title="Create ticket for ${escapeHtml(moduleName)}">+</a></td>`;
         }
 
@@ -204,7 +223,7 @@ function generateHtml(matrix) {
         return `<td class="cell cell-${statusClass}"><a href="${entry.url}" target="_blank" rel="noopener" title="${status}">${displayText}</a></td>`;
       }).join("\n              ");
 
-      const pct = Math.round((doneCount / MODULE_COUNT) * 100);
+      const pct = Math.round((doneCount / moduleCount) * 100);
       const progressClass = pct > 0 ? "progress-active" : "progress-none";
 
       const nameCell = proj.repo
@@ -217,16 +236,45 @@ function generateHtml(matrix) {
             <td class="project-code">${escapeHtml(proj.key)}</td>
             <td class="project-name">${nameCell}</td>
             <td class="project-lead" title="${escapeHtml(proj.members.map(m => displayName(m)).join(', '))}"><a href="https://github.com/${encodeURIComponent(proj.lead)}" target="_blank" rel="noopener">${escapeHtml(displayName(proj.lead))}</a></td>
-            <td class="cell progress-cell ${progressClass}" title="Score: ${points}/${MODULE_COUNT}"><div class="progress-bar" style="width:${pct}%"></div><div class="progress-label">${pct}%</div></td>
+            <td class="cell progress-cell ${progressClass}" title="Score: ${points}/${moduleCount}"><div class="progress-bar" style="width:${pct}%"></div><div class="progress-label">${pct}%</div></td>
               ${cells}
           </tr>`;
     })
     .join("\n");
 
+  const moduleLegend = modules.map((m) => `      <div class="module-legend-item"><span>${escapeHtml(m.number)}</span> ${escapeHtml(m.name)}</div>`).join("\n");
+
+  const section = `
+  <div class="bootcamp-section" id="bootcamp-${escapeHtml(bootcampId)}">
+    <h2 class="bootcamp-title">${escapeHtml(bootcamp.name)}</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th class="project-code">Code</th>
+            <th class="project-name">Project</th>
+            <th class="project-lead">Lead</th>
+            <th>Progress</th>
+            ${moduleHeaders}
+          </tr>
+        </thead>
+        <tbody>
+${rows}
+        </tbody>
+      </table>
+    </div>
+    <div class="module-legend">
+      <h3>Modules</h3>
+      <div class="module-legend-list">
+${moduleLegend}
+      </div>
+    </div>
+  </div>`;
+
   // Mobile cards
-  const cards = scored
+  const cardItems = scored
     .map(({ proj, key, data, points, doneCount }) => {
-      const pct = Math.round((doneCount / MODULE_COUNT) * 100);
+      const pct = Math.round((doneCount / moduleCount) * 100);
       const fillClass = pct > 0 ? "fill-active" : "";
 
       const nameHtml = proj.repo
@@ -239,8 +287,8 @@ function generateHtml(matrix) {
           const moduleName = `${m.number} - ${m.name}`;
           const notice = `> **⚠️ This ticket is auto-generated. Please do not change the title or contents below. Just click the "Create" button below. After a few minutes, the ticket will be automatically assigned to a reviewer — no further action needed. You can add comments after the ticket is created.**`;
           const issueBody = `${notice}\n\n### Project\n\n${proj.name}\n\n### Module\n\n${moduleName}\n\n${notice}`;
-          const labels = `project-${key},module-${m.number}`;
-          const newIssueUrl = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(moduleName)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent(labels)}`;
+          const labels = `project-${key},bootcamp-${bootcampId},module-${m.number}`;
+          const newIssueUrl = `https://github.com/${owner}/${repo}/issues/new?title=${encodeURIComponent(moduleName)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent(labels)}`;
           return `<li><span class="card-module-name">${escapeHtml(m.number)} - ${escapeHtml(m.name)}</span><span class="card-module-status card-status-missing"><a href="${newIssueUrl}" target="_blank" rel="noopener">+</a></span></li>`;
         }
         const statusClass = "card-status-" + entry.status.toLowerCase().replace(/\s+/g, "-");
@@ -255,7 +303,7 @@ function generateHtml(matrix) {
         <span class="card-code">${escapeHtml(proj.key)}</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/${encodeURIComponent(proj.lead)}" target="_blank" rel="noopener">${escapeHtml(displayName(proj.lead))}</a></div>
-      <div class="card-progress" title="Score: ${points}/${MODULE_COUNT}">
+      <div class="card-progress" title="Score: ${points}/${moduleCount}">
         <div class="card-progress-fill ${fillClass}" style="width:${pct}%"></div>
         <div class="card-progress-text">${pct}%</div>
       </div>
@@ -266,21 +314,13 @@ ${moduleItems}
     })
     .join("\n");
 
+  const cardSection = `
+  <div class="bootcamp-section-mobile" id="bootcamp-${escapeHtml(bootcampId)}-mobile">
+    <h2 class="bootcamp-title">${escapeHtml(bootcamp.name)}</h2>
+${cardItems}
+  </div>`;
 
-  const moduleLegend = modules.map((m) => `      <div class="module-legend-item"><span>${escapeHtml(m.number)}</span> ${escapeHtml(m.name)}</div>`).join("\n");
-
-  const template = readFileSync(join(__dirname, "dashboard-template.html"), "utf-8");
-
-  return template
-    .replace("{{LAST_UPDATED}}", now)
-    .replace("{{MODULE_HEADERS}}", moduleHeaders)
-    .replace("{{TABLE_ROWS}}", rows)
-    .replace("{{CARDS}}", cards)
-    .replace("{{MODULE_LEGEND}}", moduleLegend)
-    .replace("{{CLASSROOM_URL}}", escapeHtml(config.classroom.url))
-    .replaceAll("{{BOOTCAMP_NAME}}", escapeHtml(config.name))
-    .replaceAll("{{GITHUB_OWNER}}", GITHUB_OWNER)
-    .replaceAll("{{GITHUB_REPO}}", GITHUB_REPO);
+  return { section, cards: cardSection };
 }
 
 function escapeHtml(str) {
@@ -289,16 +329,44 @@ function escapeHtml(str) {
 
 // --- Main ---
 
-console.log("Fetching issues...");
-const issues = await fetchAllIssues();
-console.log(`Fetched ${issues.length} issues.`);
+async function main() {
+  const bootcamps = config.bootcamps;
+  const owner = GITHUB_OWNER;
+  const repo = GITHUB_REPO;
 
-const matrix = buildMatrix(issues);
+  // Fetch issues once (all bootcamps share the same repo)
+  console.log("Fetching issues...");
+  const issues = await fetchAllIssues(owner, repo);
+  console.log(`Fetched ${issues.length} issues.`);
 
-console.log("Generating dashboard...");
-const html = generateHtml(matrix);
+  const allSections = [];
+  const allCards = [];
 
-const docsDir = join(ROOT, "docs");
-mkdirSync(docsDir, { recursive: true });
-writeFileSync(join(docsDir, "index.html"), html, "utf-8");
-console.log("Dashboard written to docs/index.html");
+  for (const bootcamp of bootcamps) {
+    console.log(`Processing ${bootcamp.name}...`);
+    const matrix = buildMatrix(issues, bootcamp);
+    const { section, cards } = generateBootcampSection(bootcamp, matrix, owner, repo);
+    allSections.push(section);
+    allCards.push(cards);
+  }
+
+  const now = new Date().toUTCString();
+
+  const template = readFileSync(join(__dirname, "dashboard-template.html"), "utf-8");
+
+  const html = template
+    .replace("{{LAST_UPDATED}}", now)
+    .replace("{{BOOTCAMP_SECTIONS}}", allSections.join("\n"))
+    .replace("{{BOOTCAMP_CARDS}}", allCards.join("\n"))
+    .replaceAll("{{CLASSROOM_TITLE}}", escapeHtml(config.title))
+    .replace("{{BOARD_URL}}", escapeHtml(config.board.url))
+    .replaceAll("{{GITHUB_OWNER}}", owner)
+    .replaceAll("{{GITHUB_REPO}}", repo);
+
+  const docsDir = join(ROOT, "docs");
+  mkdirSync(docsDir, { recursive: true });
+  writeFileSync(join(docsDir, "index.html"), html, "utf-8");
+  console.log("Dashboard written to docs/index.html");
+}
+
+main();

@@ -11,6 +11,9 @@ inputs:
   module-num:
     description: The module number (e.g. "13").
     required: true
+  bootcamp-id:
+    description: The bootcamp id (e.g. "atdd", "pipeline").
+    required: true
 
 outputs:
   is-duplicate:
@@ -33,12 +36,13 @@ runs:
         script: |
           const currentNumber = ${{ inputs.issue-number }};
           const projectLabel = 'project-${{ inputs.project-key }}';
+          const bootcampLabel = 'bootcamp-${{ inputs.bootcamp-id }}';
           const moduleLabel = 'module-${{ inputs.module-num }}';
 
           const issues = await github.rest.issues.listForRepo({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            labels: `${projectLabel},${moduleLabel}`,
+            labels: `${projectLabel},${bootcampLabel},${moduleLabel}`,
             state: 'all',
             per_page: 100
           });

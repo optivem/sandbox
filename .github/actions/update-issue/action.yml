@@ -17,6 +17,9 @@ inputs:
   module:
     description: The selected module string (e.g. "02 - Smoke Tests").
     required: true
+  bootcamp-id:
+    description: The bootcamp id (e.g. "atdd", "pipeline").
+    required: true
 
 runs:
   using: composite
@@ -39,7 +42,8 @@ runs:
           body += `**Project Repository:** ${repoUrl}\n`;
           body += `**Module:** ${selectedModule}\n`;
 
-          const checklistPath = `checklists/${moduleNum}.md`;
+          const bootcampId = '${{ inputs.bootcamp-id }}';
+          const checklistPath = `checklists/${bootcampId}/${moduleNum}.md`;
           if (fs.existsSync(checklistPath)) {
             const checklist = fs.readFileSync(checklistPath, 'utf8').trim();
             body += `\n## Review Checklist\n\n${checklist}`;

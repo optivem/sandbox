@@ -34,6 +34,9 @@ outputs:
   assignees:
     description: Comma-separated list of team member GitHub usernames.
     value: ${{ steps.validate.outputs.assignees }}
+  bootcamp-id:
+    description: The bootcamp id the project belongs to.
+    value: ${{ steps.validate.outputs.bootcamp_id }}
 
 runs:
   using: composite
@@ -64,7 +67,18 @@ runs:
           }
 
           const isReviewer = data.reviewers.some(r => r.github.toLowerCase() === creator.toLowerCase());
-          const team = data.projects.find(t => t.name === selectedProject);
+
+          // Search across all bootcamps for the project
+          let team = null;
+          let bootcampId = '';
+          for (const bootcamp of data.bootcamps) {
+            const found = (bootcamp.projects || []).find(t => t.name === selectedProject);
+            if (found) {
+              team = found;
+              bootcampId = bootcamp.id;
+              break;
+            }
+          }
 
           if (!team) {
             core.setOutput('is_valid', 'false');
@@ -78,9 +92,10 @@ runs:
           }
 
           core.setOutput('is_valid', 'true');
-          core.setOutput('project_url', data.classroom.url);
+          core.setOutput('project_url', data.board.url);
           core.setOutput('project_name', team.name);
           core.setOutput('project_key', team.key);
           core.setOutput('repo_url', team.repo);
           core.setOutput('module_num', selectedModule.split(' - ')[0]);
           core.setOutput('assignees', team.members.join(','));
+          core.setOutput('bootcamp_id', bootcampId);
