@@ -81,7 +81,7 @@ jobs:
           module: ${{ steps.validate.outputs.module }}
           bootcamp-id: ${{ steps.validate.outputs.bootcamp-id }}
 
-      - name: Add bootcamp, module, and project labels
+      - name: Add project, bootcamp, and module labels
         if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
         uses: ./.github/actions/add-labels
         with:
