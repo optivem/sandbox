@@ -199,7 +199,7 @@ function generateHtml(matrix) {
           const notice = `> **⚠️ This ticket is auto-generated. Please do not change the title or contents below. Just click the "Create" button below. After a few minutes, the ticket will be automatically assigned to a reviewer — no further action needed. You can add comments after the ticket is created.**`;
           const issueBody = `${notice}\n\n### Project\n\n${proj.name}\n\n### Module\n\n${moduleName}\n\n${notice}`;
           const newIssueUrl = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(moduleName)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent('review')}`;
-          return `<td class="cell"><a href="${newIssueUrl}" target="_blank" rel="noopener" title="Create ticket for ${escapeHtml(moduleName)}">⚪</a></td>`;
+          return `<td class="cell"><a href="${newIssueUrl}" target="_blank" rel="noopener" title="Create ticket for ${escapeHtml(moduleName)}">+</a></td>`;
         }
 
         const status = entry.status;
@@ -297,7 +297,7 @@ ${moduleItems}
     .project-lead { text-align: left; font-size: 0.75rem; background: #f9fafb; }
     .project-lead a { color: #6b7280; text-decoration: none; }
     .project-lead a:hover { color: #1d4ed8; text-decoration: underline; }
-    .module-header { min-width: 55px; }
+    .module-header { min-width: 32px; width: 32px; }
     .module-header a { color: #1d4ed8; text-decoration: none; }
     .module-header a:hover { text-decoration: underline; }
     .cell a { text-decoration: none; display: block; width: 100%; }
@@ -397,7 +397,7 @@ ${rows}
 ${cards}
   </div>
   <div class="legend">
-    <div class="legend-item">⚪ No ticket</div>
+    <div class="legend-item">+ No ticket</div>
     <div class="legend-item">🔵 In Review</div>
     <div class="legend-item">🟠 In Progress</div>
     <div class="legend-item">✅ Done</div>
