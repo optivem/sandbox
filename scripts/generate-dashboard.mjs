@@ -209,7 +209,8 @@ function generateBootcampSection(bootcamp, matrix, owner, repo) {
     const nameHtml = proj.repo
       ? `<a href="${escapeHtml(proj.repo)}" target="_blank" rel="noopener" title="${escapeHtml(proj.name)}">${escapeHtml(proj.key)}</a>`
       : `<span title="${escapeHtml(proj.name)}">${escapeHtml(proj.key)}</span>`;
-    return `<th class="project-header" title="${escapeHtml(proj.name)} — ${doneCount} / ${totalTasks} tasks completed (${pct}%)">${nameHtml}</th>`;
+    const leadHtml = `<div class="project-lead">${escapeHtml(displayName(proj.lead))}</div>`;
+    return `<th class="project-header" title="${escapeHtml(proj.name)} — ${doneCount} / ${totalTasks} tasks completed (${pct}%)">${nameHtml}${leadHtml}</th>`;
   }).join("\n            ");
 
   // Rows: module headers + task rows
@@ -393,7 +394,8 @@ function generateSummaryTable(bootcamps, matrices) {
     const nameHtml = proj.repo
       ? `<a href="${escapeHtml(proj.repo)}" target="_blank" rel="noopener" title="${escapeHtml(proj.name)}">${escapeHtml(proj.key)}</a>`
       : `<span title="${escapeHtml(proj.name)}">${escapeHtml(proj.key)}</span>`;
-    return `<th class="project-header" title="${escapeHtml(proj.name)} — ${totalDone} / ${totalTasks} tasks completed (${pct}%)">${nameHtml}</th>`;
+    const leadHtml = `<div class="project-lead">${escapeHtml(displayName(proj.lead))}</div>`;
+    return `<th class="project-header" title="${escapeHtml(proj.name)} — ${totalDone} / ${totalTasks} tasks completed (${pct}%)">${nameHtml}${leadHtml}</th>`;
   }).join("\n            ");
 
   // One row per bootcamp
