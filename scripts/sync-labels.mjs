@@ -18,15 +18,15 @@ const COLORS = {
   task: "c5def5",      // light blue
 };
 
-// Build expected labels from config
+// Build expected labels from config (order: project, bootcamp, module, task)
 const expected = new Map();
-
-for (const b of config.bootcamps) {
-  expected.set(`bootcamp-${b.id}`, COLORS.bootcamp);
-}
 
 for (const p of config.projects) {
   expected.set(`project-${p.key.toLowerCase()}`, COLORS.project);
+}
+
+for (const b of config.bootcamps) {
+  expected.set(`bootcamp-${b.id}`, COLORS.bootcamp);
 }
 
 const moduleNums = new Set();

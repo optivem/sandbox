@@ -14,15 +14,15 @@ inputs:
   repo-url:
     description: The project repository URL.
     required: true
+  bootcamp-id:
+    description: The bootcamp id (e.g. "atdd", "pipeline").
+    required: true
   module:
     description: The selected module string (e.g. "02 - Smoke Tests").
     required: true
   task:
     description: The selected task string (e.g. "01 - API Smoke Tests").
     required: false
-  bootcamp-id:
-    description: The bootcamp id (e.g. "atdd", "pipeline").
-    required: true
 
 runs:
   using: composite

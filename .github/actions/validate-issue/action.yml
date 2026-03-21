@@ -25,6 +25,9 @@ outputs:
   repo-url:
     description: The project repository URL.
     value: ${{ steps.validate.outputs.repo_url }}
+  bootcamp-id:
+    description: The bootcamp id the project belongs to.
+    value: ${{ steps.validate.outputs.bootcamp_id }}
   module:
     description: The selected module string.
     value: ${{ steps.validate.outputs.module }}
@@ -40,9 +43,6 @@ outputs:
   assignees:
     description: Comma-separated list of team member GitHub usernames.
     value: ${{ steps.validate.outputs.assignees }}
-  bootcamp-id:
-    description: The bootcamp id the project belongs to.
-    value: ${{ steps.validate.outputs.bootcamp_id }}
 
 runs:
   using: composite

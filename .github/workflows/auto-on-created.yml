@@ -36,9 +36,9 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           project-key: ${{ steps.validate.outputs.project-key }}
+          bootcamp-id: ${{ steps.validate.outputs.bootcamp-id }}
           module-num: ${{ steps.validate.outputs.module-num }}
           task-num: ${{ steps.validate.outputs.task-num }}
-          bootcamp-id: ${{ steps.validate.outputs.bootcamp-id }}
 
       - name: Close duplicate issue
         if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate == 'true'
@@ -80,9 +80,9 @@ jobs:
           project-key: ${{ steps.validate.outputs.project-key }}
           project-name: ${{ steps.validate.outputs.project-name }}
           repo-url: ${{ steps.validate.outputs.repo-url }}
+          bootcamp-id: ${{ steps.validate.outputs.bootcamp-id }}
           module: ${{ steps.validate.outputs.module }}
           task: ${{ steps.validate.outputs.task }}
-          bootcamp-id: ${{ steps.validate.outputs.bootcamp-id }}
 
       - name: Add project, bootcamp, module, and task labels
         if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'

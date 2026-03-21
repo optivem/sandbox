@@ -8,14 +8,14 @@ inputs:
   project-key:
     description: The project key (e.g. "eshp").
     required: true
+  bootcamp-id:
+    description: The bootcamp id (e.g. "atdd", "pipeline").
+    required: true
   module-num:
     description: The module number (e.g. "13").
     required: true
   task-num:
     description: The task number within the module (e.g. "02").
-    required: true
-  bootcamp-id:
-    description: The bootcamp id (e.g. "atdd", "pipeline").
     required: true
 
 outputs:
