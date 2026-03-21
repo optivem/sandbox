@@ -48,12 +48,9 @@
     .cell-in-review { background: #dbeafe; } .cell-in-review a { color: #1e40af; }
     .cell-in-progress { background: #fef9c3; } .cell-in-progress a { color: #92400e; }
     .cell-done { background: #dcfce7; } .cell-done a { color: #166534; }
-    .progress-cell { position: relative; min-width: 70px; padding: 0; overflow: hidden; }
-    .progress-bar { position: absolute; top: 0; left: 0; height: 100%; z-index: 0; transition: width 0.3s; }
-    .progress-label { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 100%; padding: 6px 8px; font-weight: 600; font-size: 0.8rem; }
-    .progress-active .progress-bar { background: #bbf7d0; }
-    .progress-active .progress-label { color: #166534; }
-    .progress-none .progress-label { color: #9ca3af; }
+    .progress-cell { min-width: 100px; font-weight: 600; font-size: 0.75rem; }
+    .progress-active { color: #166534; }
+    .progress-none { color: #9ca3af; }
     .legend { margin-top: 16px; margin-bottom: 24px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.8rem; }
     .legend-item { display: flex; align-items: center; gap: 6px; }
     .legend-swatch { width: 16px; height: 16px; border-radius: 3px; border: 1px solid #d1d5db; }
@@ -84,10 +81,7 @@
     .card-name a { color: #1d4ed8; text-decoration: none; }
     .card-lead { font-size: 0.8rem; color: #6b7280; margin-bottom: 8px; }
     .card-lead a { color: #6b7280; text-decoration: none; }
-    .card-progress { position: relative; height: 24px; background: #f3f4f6; border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
-    .card-progress-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 12px; }
-    .card-progress-fill.fill-active { background: #bbf7d0; }
-    .card-progress-text { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 100%; font-size: 0.75rem; font-weight: 600; color: #374151; }
+    .card-progress-label { font-size: 0.8rem; font-weight: 600; color: #374151; margin-bottom: 8px; }
     .card-modules { list-style: none; font-size: 0.8rem; }
     .card-modules li { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #f3f4f6; }
     .card-modules li:last-child { border-bottom: none; }
@@ -115,7 +109,7 @@
   <div class="header">
     <div class="header-left">
       <h1>Optivem Classroom</h1>
-      <p class="subtitle">Last updated: Sat, 21 Mar 2026 20:53:15 GMT</p>
+      <p class="subtitle">Last updated: Sat, 21 Mar 2026 20:56:22 GMT</p>
     </div>
     <nav class="nav-tabs">
       <span class="nav-tab active">Dashboard</span>
@@ -155,39 +149,39 @@
         <tbody>
           <tr>
             <td class="summary-label"><a href="#bootcamp-pipeline">Pipeline Bootcamp</a></td>
-              <td class="cell progress-cell progress-active" title="5 / 20 tasks completed"><div class="progress-bar" style="width:25%"></div><div class="progress-label">25%</div></td>
-              <td class="cell progress-cell progress-active" title="1 / 20 tasks completed"><div class="progress-bar" style="width:5%"></div><div class="progress-label">5%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
+              <td class="cell progress-cell progress-active">5 / 20 (25%)</td>
+              <td class="cell progress-cell progress-active">1 / 20 (5%)</td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
           </tr>
           <tr>
             <td class="summary-label"><a href="#bootcamp-atdd">ATDD Bootcamp</a></td>
-              <td class="cell progress-cell progress-active" title="1 / 54 tasks completed"><div class="progress-bar" style="width:2%"></div><div class="progress-label">2%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
+              <td class="cell progress-cell progress-active">1 / 54 (2%)</td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
           </tr>
           <tr class="progress-row">
             <td class="summary-label"><strong>Total</strong></td>
-              <td class="cell progress-cell progress-active" title="6 / 74 tasks completed"><div class="progress-bar" style="width:8%"></div><div class="progress-label">8%</div></td>
-              <td class="cell progress-cell progress-active" title="1 / 74 tasks completed"><div class="progress-bar" style="width:1%"></div><div class="progress-label">1%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 74 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 74 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 74 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 74 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 74 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 74 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 74 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
+              <td class="cell progress-cell progress-active">6 / 74 (8%)</td>
+              <td class="cell progress-cell progress-active">1 / 74 (1%)</td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
           </tr>
         </tbody>
       </table>
@@ -213,15 +207,15 @@
           </tr>
           <tr class="progress-row">
             <td class="module-name"><strong>Progress</strong></td>
-              <td class="cell progress-cell progress-active" title="5 / 20 tasks completed"><div class="progress-bar" style="width:25%"></div><div class="progress-label">25%</div></td>
-              <td class="cell progress-cell progress-active" title="1 / 20 tasks completed"><div class="progress-bar" style="width:5%"></div><div class="progress-label">5%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
+              <td class="cell progress-cell progress-active">5 / 20 (25%)</td>
+              <td class="cell progress-cell progress-active">1 / 20 (5%)</td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
           </tr>
         </thead>
         <tbody>
@@ -494,15 +488,15 @@
           </tr>
           <tr class="progress-row">
             <td class="module-name"><strong>Progress</strong></td>
-              <td class="cell progress-cell progress-active" title="5 / 20 tasks completed"><div class="progress-bar" style="width:25%"></div><div class="progress-label">25%</div></td>
-              <td class="cell progress-cell progress-active" title="1 / 20 tasks completed"><div class="progress-bar" style="width:5%"></div><div class="progress-label">5%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 20 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
+              <td class="cell progress-cell progress-active">5 / 20 (25%)</td>
+              <td class="cell progress-cell progress-active">1 / 20 (5%)</td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
           </tr>
         </tbody>
       </table>
@@ -528,15 +522,15 @@
           </tr>
           <tr class="progress-row">
             <td class="module-name"><strong>Progress</strong></td>
-              <td class="cell progress-cell progress-active" title="1 / 54 tasks completed"><div class="progress-bar" style="width:2%"></div><div class="progress-label">2%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
+              <td class="cell progress-cell progress-active">1 / 54 (2%)</td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
           </tr>
         </thead>
         <tbody>
@@ -1235,15 +1229,15 @@
           </tr>
           <tr class="progress-row">
             <td class="module-name"><strong>Progress</strong></td>
-              <td class="cell progress-cell progress-active" title="1 / 54 tasks completed"><div class="progress-bar" style="width:2%"></div><div class="progress-label">2%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
-              <td class="cell progress-cell progress-none" title="0 / 54 tasks completed"><div class="progress-bar" style="width:0%"></div><div class="progress-label">0%</div></td>
+              <td class="cell progress-cell progress-active">1 / 54 (2%)</td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
+              <td class="cell progress-cell progress-none"></td>
           </tr>
         </tbody>
       </table>
@@ -1260,10 +1254,7 @@
         <span class="card-code">ESHP</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/valentinajemuovic" target="_blank" rel="noopener">Valentina Jemuovic</a></div>
-      <div class="card-progress" title="5 / 20 tasks completed">
-        <div class="card-progress-fill fill-active" style="width:25%"></div>
-        <div class="card-progress-text">25%</div>
-      </div>
+      <div class="card-progress-label">5 / 20 (25%)</div>
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-done"><a href="https://github.com/optivem/classroom/issues/65" target="_blank" rel="noopener">Done</a></span></li>
@@ -1302,10 +1293,7 @@
         <span class="card-code">CCRS</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/longhibeck" target="_blank" rel="noopener">Germanno Longhi Beck</a></div>
-      <div class="card-progress" title="1 / 20 tasks completed">
-        <div class="card-progress-fill fill-active" style="width:5%"></div>
-        <div class="card-progress-text">5%</div>
-      </div>
+      <div class="card-progress-label">1 / 20 (5%)</div>
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0ACar%20Charging%20Reservation%20System%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1344,10 +1332,7 @@
         <span class="card-code">BDOK</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/ognjenkl" target="_blank" rel="noopener">Ognjen Klincov</a></div>
-      <div class="card-progress" title="0 / 20 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0ABudget%20OK%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1386,10 +1371,7 @@
         <span class="card-code">CTF</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/CurlyFire" target="_blank" rel="noopener">Stephane Denomme</a></div>
-      <div class="card-progress" title="0 / 20 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0ACTF%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1428,10 +1410,7 @@
         <span class="card-code">GHBL</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/RomainChamb" target="_blank" rel="noopener">Romain Chambonnier</a></div>
-      <div class="card-progress" title="0 / 20 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AGhibli%20Encyclopedia%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1470,10 +1449,7 @@
         <span class="card-code">VGFN</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/jasonribble" target="_blank" rel="noopener">Jason Ribble</a></div>
-      <div class="card-progress" title="0 / 20 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AVeg%20Finder%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1512,10 +1488,7 @@
         <span class="card-code">FRS</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/anilvv1" target="_blank" rel="noopener">Anil Valevate</a></div>
-      <div class="card-progress" title="0 / 20 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AFlight%20Reservation%20System%20(FRS)%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1554,10 +1527,7 @@
         <span class="card-code">ESLA</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/david-oc-miller" target="_blank" rel="noopener">David Miller</a></div>
-      <div class="card-progress" title="0 / 20 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AEvent%20Sourcing%20Learning%20Application%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1596,10 +1566,7 @@
         <span class="card-code">PWRH</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/vilosia-ai" target="_blank" rel="noopener">Florian Aurich</a></div>
-      <div class="card-progress" title="0 / 20 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Project Repository</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Project%20Repository&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0APipeline%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AProject%20Powerhouse%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Project%20Repository%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1642,10 +1609,7 @@
         <span class="card-code">ESHP</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/valentinajemuovic" target="_blank" rel="noopener">Valentina Jemuovic</a></div>
-      <div class="card-progress" title="1 / 54 tasks completed">
-        <div class="card-progress-fill fill-active" style="width:2%"></div>
-        <div class="card-progress-text">2%</div>
-      </div>
+      <div class="card-progress-label">1 / 54 (2%)</div>
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-in-review"><a href="https://github.com/optivem/classroom/issues/53" target="_blank" rel="noopener">In Review</a></span></li>
@@ -1724,10 +1688,7 @@
         <span class="card-code">CCRS</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/longhibeck" target="_blank" rel="noopener">Germanno Longhi Beck</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0ACar%20Charging%20Reservation%20System%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1806,10 +1767,7 @@
         <span class="card-code">BDOK</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/ognjenkl" target="_blank" rel="noopener">Ognjen Klincov</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0ABudget%20OK%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1888,10 +1846,7 @@
         <span class="card-code">CTF</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/CurlyFire" target="_blank" rel="noopener">Stephane Denomme</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0ACTF%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -1970,10 +1925,7 @@
         <span class="card-code">GHBL</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/RomainChamb" target="_blank" rel="noopener">Romain Chambonnier</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AGhibli%20Encyclopedia%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -2052,10 +2004,7 @@
         <span class="card-code">VGFN</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/jasonribble" target="_blank" rel="noopener">Jason Ribble</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AVeg%20Finder%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -2134,10 +2083,7 @@
         <span class="card-code">FRS</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/anilvv1" target="_blank" rel="noopener">Anil Valevate</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AFlight%20Reservation%20System%20(FRS)%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -2216,10 +2162,7 @@
         <span class="card-code">ESLA</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/david-oc-miller" target="_blank" rel="noopener">David Miller</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AEvent%20Sourcing%20Learning%20Application%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
@@ -2298,10 +2241,7 @@
         <span class="card-code">PWRH</span>
       </div>
       <div class="card-lead">Lead: <a href="https://github.com/vilosia-ai" target="_blank" rel="noopener">Florian Aurich</a></div>
-      <div class="card-progress" title="0 / 54 tasks completed">
-        <div class="card-progress-fill " style="width:0%"></div>
-        <div class="card-progress-text">0%</div>
-      </div>
+      
       <ul class="card-modules">
 <li class="card-module-header"><span class="week-badge">W1</span>1 - Introduction</li>
 <li class="card-task-item"><span class="card-task-name">1 - Repository Setup</span><span class="card-module-status card-status-missing"><a href="https://github.com/optivem/classroom/issues/new?title=1%20-%20Introduction%20%2F%201%20-%20Repository%20Setup&body=%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**%0A%0A%23%23%23%20Bootcamp%0A%0AATDD%20Bootcamp%0A%0A%23%23%23%20Project%0A%0AProject%20Powerhouse%0A%0A%23%23%23%20Module%0A%0A1%20-%20Introduction%0A%0A%23%23%23%20Task%0A%0A1%20-%20Repository%20Setup%0A%0A%3E%20**%E2%9A%A0%EF%B8%8F%20This%20ticket%20is%20auto-generated.%20Please%20do%20not%20change%20the%20title%20or%20contents%20below.%20Just%20click%20the%20%22Create%22%20button%20below.%20After%20a%20few%20minutes%2C%20the%20ticket%20will%20be%20automatically%20assigned%20to%20a%20reviewer%20%E2%80%94%20no%20further%20action%20needed.%20You%20can%20add%20comments%20after%20the%20ticket%20is%20created.**" target="_blank" rel="noopener">+</a></span></li>
