@@ -49,15 +49,33 @@ jobs:
           body: "Duplicate of #${{ steps.duplicate.outputs.original-number }}\n\n> [!CAUTION]\n> ## ❌ Duplicate Issue\n> A ticket for this project and module already exists: #${{ steps.duplicate.outputs.original-number }}\n>\n> **This issue has been closed automatically as a duplicate.**"
           state-reason: "duplicate"
 
-      - name: Add to project board
+      - name: Check module prerequisites
+        id: prereqs
         if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
+        uses: ./.github/actions/check-prerequisites
+        with:
+          project-key: ${{ steps.validate.outputs.project-key }}
+          bootcamp-id: ${{ steps.validate.outputs.bootcamp-id }}
+          module-num: ${{ steps.validate.outputs.module-num }}
+          github-token: ${{ secrets.PROJECT_TOKEN }}
+
+      - name: Close issue if prerequisites not met
+        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true' && steps.prereqs.outputs.allowed == 'false'
+        uses: ./.github/actions/close-issue
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          title: "BLOCKED | ${{ github.event.issue.title }}"
+          body: "> [!CAUTION]\n> ## ❌ Prerequisites Not Met\n> You must complete all tasks in the previous module before starting this one.\n>\n> **Incomplete tasks:** ${{ steps.prereqs.outputs.missing-tasks }}\n>\n> Please complete those tasks first, then re-create this ticket.\n>\n> **This issue has been closed automatically.**"
+
+      - name: Add to project board
+        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true' && steps.prereqs.outputs.allowed != 'false'
         uses: actions/add-to-project@v1.0.2
         with:
           project-url: ${{ steps.validate.outputs.project-url }}
           github-token: ${{ secrets.PROJECT_TOKEN }}
 
       - name: Set status to In Review
-        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
+        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true' && steps.prereqs.outputs.allowed != 'false'
         uses: ./.github/actions/set-project-status
         with:
           issue-node-id: ${{ github.event.issue.node_id }}
@@ -73,7 +91,7 @@ jobs:
       #     assignees: ${{ steps.validate.outputs.assignees }}
 
       - name: Update title and description
-        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
+        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true' && steps.prereqs.outputs.allowed != 'false'
         uses: ./.github/actions/update-issue
         with:
           issue-number: ${{ github.event.issue.number }}
@@ -85,14 +103,14 @@ jobs:
           task: ${{ steps.validate.outputs.task }}
 
       - name: Add project, bootcamp, module, and task labels
-        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
+        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true' && steps.prereqs.outputs.allowed != 'false'
         uses: ./.github/actions/add-labels
         with:
           issue-number: ${{ github.event.issue.number }}
           labels: "project-${{ steps.validate.outputs.project-key }}, bootcamp-${{ steps.validate.outputs.bootcamp-id }}, module-${{ steps.validate.outputs.module-num }}, task-${{ steps.validate.outputs.task-num }}"
 
       - name: Set issue type to Task
-        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
+        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true' && steps.prereqs.outputs.allowed != 'false'
         uses: ./.github/actions/set-issue-type
         with:
           issue-node-id: ${{ github.event.issue.node_id }}

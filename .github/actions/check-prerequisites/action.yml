@@ -1,0 +1,133 @@
+name: Check Module Prerequisites
+description: Verifies that all tasks in the previous module are "Done" before allowing a new ticket.
+
+inputs:
+  project-key:
+    description: The project key (e.g. "eshp").
+    required: true
+  bootcamp-id:
+    description: The bootcamp id (e.g. "atdd", "pipeline").
+    required: true
+  module-num:
+    description: The module number (e.g. "2").
+    required: true
+  github-token:
+    description: Token with project read access.
+    required: true
+
+outputs:
+  allowed:
+    description: "'true' if the previous module is complete or this is module 1."
+    value: ${{ steps.check.outputs.allowed }}
+  missing-tasks:
+    description: "Comma-separated list of incomplete tasks from the previous module."
+    value: ${{ steps.check.outputs.missing_tasks }}
+
+runs:
+  using: composite
+  steps:
+    - name: Check prerequisites
+      id: check
+      uses: actions/github-script@v8
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+      with:
+        github-token: ${{ inputs.github-token }}
+        script: |
+          const fs = require('fs');
+          const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+          const projectKey = '${{ inputs.project-key }}'.toLowerCase();
+          const bootcampId = '${{ inputs.bootcamp-id }}';
+          const moduleNum = '${{ inputs.module-num }}';
+          const projectId = config.board.id;
+
+          const bootcamp = config.bootcamps.find(b => b.id === bootcampId);
+          if (!bootcamp) {
+            core.setOutput('allowed', 'true');
+            core.setOutput('missing_tasks', '');
+            return;
+          }
+
+          // Find current module index
+          const moduleIndex = bootcamp.modules.findIndex(m => m.number === moduleNum);
+          if (moduleIndex <= 0) {
+            // First module or not found — no prerequisites
+            core.setOutput('allowed', 'true');
+            core.setOutput('missing_tasks', '');
+            return;
+          }
+
+          const prevModule = bootcamp.modules[moduleIndex - 1];
+          const prevTasks = prevModule.tasks || [];
+          if (prevTasks.length === 0) {
+            core.setOutput('allowed', 'true');
+            core.setOutput('missing_tasks', '');
+            return;
+          }
+
+          // Find all issues for the previous module + this project
+          const projectLabel = `project-${projectKey}`;
+          const bootcampLabel = `bootcamp-${bootcampId}`;
+          const moduleLabel = `module-${prevModule.number}`;
+
+          const issues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: `${projectLabel},${bootcampLabel},${moduleLabel}`,
+            state: 'all',
+            per_page: 100
+          });
+
+          // Build a map of task number → issue node ID
+          const taskIssueMap = {};
+          for (const issue of issues.data) {
+            const taskLabel = issue.labels.find(l => /^task-\d+$/.test(l.name));
+            if (taskLabel) {
+              const taskNum = taskLabel.name.replace('task-', '');
+              taskIssueMap[taskNum] = issue.node_id;
+            }
+          }
+
+          // Check each task in the previous module
+          const incompleteTasks = [];
+          for (const task of prevTasks) {
+            const nodeId = taskIssueMap[task.number];
+            if (!nodeId) {
+              incompleteTasks.push(`${prevModule.number}.${task.number} - ${task.name}`);
+              continue;
+            }
+
+            // Query project board status
+            const result = await github.graphql(`
+              query($issueId: ID!) {
+                node(id: $issueId) {
+                  ... on Issue {
+                    projectItems(first: 10) {
+                      nodes {
+                        project { id }
+                        fieldValueByName(name: "Status") {
+                          ... on ProjectV2ItemFieldSingleSelectValue {
+                            name
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `, { issueId: nodeId });
+
+            const item = result.node.projectItems.nodes.find(n => n.project.id === projectId);
+            const status = item?.fieldValueByName?.name || '';
+            if (status !== 'Done') {
+              incompleteTasks.push(`${prevModule.number}.${task.number} - ${task.name}`);
+            }
+          }
+
+          if (incompleteTasks.length === 0) {
+            core.setOutput('allowed', 'true');
+            core.setOutput('missing_tasks', '');
+          } else {
+            core.setOutput('allowed', 'false');
+            core.setOutput('missing_tasks', incompleteTasks.join(', '));
+          }
