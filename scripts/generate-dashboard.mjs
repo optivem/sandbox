@@ -495,7 +495,9 @@ async function main() {
   }
 
   const template = readFileSync(join(__dirname, "dashboard-template.html"), "utf-8");
+  const css = readFileSync(join(__dirname, "dashboard.css"), "utf-8");
   const html = template
+    .replace("{{DASHBOARD_CSS}}", css)
     .replace("{{LAST_UPDATED}}", new Date().toUTCString())
     .replace("{{SUMMARY_TABLE}}", generateSummaryTable(bootcamps, matrices, sortedProjects))
     .replace("{{BOOTCAMP_SECTIONS}}", sections.join("\n"))
