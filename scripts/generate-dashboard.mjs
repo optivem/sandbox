@@ -271,6 +271,10 @@ function generateBootcampSection(bootcamp, matrix, owner, repo) {
             <th class="module-name">Module / Task</th>
             ${projectHeaders}
           </tr>
+          <tr class="progress-row">
+            <td class="module-name"><strong>Progress</strong></td>
+              ${progressCells}
+          </tr>
         </thead>
         <tbody>
 ${rows}
@@ -346,6 +350,107 @@ function escapeHtml(str) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// --- Summary table ---
+
+function generateSummaryTable(bootcamps, matrices) {
+  const projects = config.projects;
+
+  function statusPoints(status) {
+    if (status === "Done") return 1;
+    if (status === "In Review" || status === "In Progress") return 0.5;
+    return 0;
+  }
+
+  // Compute per-project scores for sorting (sum across all bootcamps)
+  const projectTotals = projects.map((proj) => {
+    const key = proj.key.toLowerCase();
+    let totalDone = 0;
+    let totalTasks = 0;
+    let totalPoints = 0;
+    for (let i = 0; i < bootcamps.length; i++) {
+      const bc = bootcamps[i];
+      const matrix = matrices[i];
+      const data = matrix[key] || {};
+      const bcTasks = countTotalTasks(bc.modules);
+      totalTasks += bcTasks;
+      for (const m of bc.modules) {
+        for (const t of (m.tasks || [])) {
+          const entry = data[`${m.number}-${t.number}`];
+          if (entry) {
+            totalPoints += statusPoints(entry.status);
+            if (entry.status === "Done") totalDone++;
+          }
+        }
+      }
+    }
+    return { proj, key, totalDone, totalTasks, totalPoints };
+  });
+  projectTotals.sort((a, b) => b.totalPoints - a.totalPoints);
+
+  // Column headers
+  const projectHeaders = projectTotals.map(({ proj, totalDone, totalTasks }) => {
+    const pct = totalTasks > 0 ? Math.round((totalDone / totalTasks) * 100) : 0;
+    const nameHtml = proj.repo
+      ? `<a href="${escapeHtml(proj.repo)}" target="_blank" rel="noopener" title="${escapeHtml(proj.name)}">${escapeHtml(proj.key)}</a>`
+      : `<span title="${escapeHtml(proj.name)}">${escapeHtml(proj.key)}</span>`;
+    return `<th class="project-header" title="${escapeHtml(proj.name)} — ${totalDone} / ${totalTasks} tasks completed (${pct}%)">${nameHtml}</th>`;
+  }).join("\n            ");
+
+  // One row per bootcamp
+  const rows = bootcamps.map((bc, i) => {
+    const matrix = matrices[i];
+    const bcTasks = countTotalTasks(bc.modules);
+
+    const cells = projectTotals.map(({ key }) => {
+      const data = matrix[key] || {};
+      let done = 0;
+      for (const m of bc.modules) {
+        for (const t of (m.tasks || [])) {
+          const entry = data[`${m.number}-${t.number}`];
+          if (entry && entry.status === "Done") done++;
+        }
+      }
+      const pct = bcTasks > 0 ? Math.round((done / bcTasks) * 100) : 0;
+      const progressClass = pct > 0 ? "progress-active" : "progress-none";
+      return `<td class="cell progress-cell ${progressClass}" title="${done} / ${bcTasks} tasks completed"><div class="progress-bar" style="width:${pct}%"></div><div class="progress-label">${pct}%</div></td>`;
+    }).join("\n              ");
+
+    return `          <tr>
+            <td class="summary-label"><a href="#bootcamp-${escapeHtml(bc.id)}">${escapeHtml(bc.name)}</a></td>
+              ${cells}
+          </tr>`;
+  }).join("\n");
+
+  // Total row
+  const totalCells = projectTotals.map(({ totalDone, totalTasks }) => {
+    const pct = totalTasks > 0 ? Math.round((totalDone / totalTasks) * 100) : 0;
+    const progressClass = pct > 0 ? "progress-active" : "progress-none";
+    return `<td class="cell progress-cell ${progressClass}" title="${totalDone} / ${totalTasks} tasks completed"><div class="progress-bar" style="width:${pct}%"></div><div class="progress-label">${pct}%</div></td>`;
+  }).join("\n              ");
+
+  return `
+  <div class="summary-section">
+    <h2 class="bootcamp-title">Summary</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th class="summary-label">Bootcamp</th>
+            ${projectHeaders}
+          </tr>
+        </thead>
+        <tbody>
+${rows}
+          <tr class="progress-row">
+            <td class="summary-label"><strong>Total</strong></td>
+              ${totalCells}
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
 // --- Main ---
 
 async function main() {
@@ -359,14 +464,18 @@ async function main() {
 
   const allSections = [];
   const allCards = [];
+  const allMatrices = [];
 
   for (const bootcamp of bootcamps) {
     console.log(`Processing ${bootcamp.name}...`);
     const matrix = buildMatrix(issues, bootcamp);
+    allMatrices.push(matrix);
     const { section, cards } = generateBootcampSection(bootcamp, matrix, owner, repo);
     allSections.push(section);
     allCards.push(cards);
   }
+
+  const summaryTable = generateSummaryTable(bootcamps, allMatrices);
 
   const now = new Date().toUTCString();
 
@@ -374,6 +483,7 @@ async function main() {
 
   const html = template
     .replace("{{LAST_UPDATED}}", now)
+    .replace("{{SUMMARY_TABLE}}", summaryTable)
     .replace("{{BOOTCAMP_SECTIONS}}", allSections.join("\n"))
     .replace("{{BOOTCAMP_CARDS}}", allCards.join("\n"))
     .replaceAll("{{CLASSROOM_TITLE}}", escapeHtml(config.title))
