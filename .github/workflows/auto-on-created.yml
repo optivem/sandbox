@@ -63,12 +63,13 @@ jobs:
           status: In Review
           github-token: ${{ secrets.PROJECT_TOKEN }}
 
-      - name: Assign team members
-        if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
-        uses: ./.github/actions/assign-issue
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          assignees: ${{ steps.validate.outputs.assignees }}
+      # TODO: Re-enable assignee assignment
+      # - name: Assign team members
+      #   if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
+      #   uses: ./.github/actions/assign-issue
+      #   with:
+      #     issue-number: ${{ github.event.issue.number }}
+      #     assignees: ${{ steps.validate.outputs.assignees }}
 
       - name: Update title and description
         if: steps.validate.outputs.is-valid == 'true' && steps.duplicate.outputs.is-duplicate != 'true'
