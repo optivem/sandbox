@@ -1,7 +1,10 @@
 {
   "title": "Optivem Classroom",
   "reviewers": [
-    { "github": "valentinajemuovic", "name": "Valentina Jemuovic" }
+    {
+      "github": "valentinajemuovic",
+      "name": "Valentina Jemuovic"
+    }
   ],
   "board": {
     "id": "PVT_kwDOAMwK8c4BSMdA",
@@ -9,37 +12,174 @@
     "statusFieldId": "PVTSSF_lADOAMwK8c4BSMdAzg_zO2I"
   },
   "statuses": [
-    { "key": "IN_REVIEW", "name": "In Review", "optionId": "a2132c0f" },
-    { "key": "IN_PROGRESS", "name": "In Progress", "optionId": "6b6a9601" },
-    { "key": "DONE", "name": "Done", "optionId": "d5e37461" }
+    {
+      "key": "IN_REVIEW",
+      "name": "In Review",
+      "optionId": "a2132c0f"
+    },
+    {
+      "key": "IN_PROGRESS",
+      "name": "In Progress",
+      "optionId": "6b6a9601"
+    },
+    {
+      "key": "DONE",
+      "name": "Done",
+      "optionId": "d5e37461"
+    }
   ],
   "students": [
-    { "github": "jcupac", "name": "Jelena Cupac" },
-    { "github": "longhibeck", "name": "Germanno Longhi Beck" },
-    { "github": "ognjenkl", "name": "Ognjen Klincov" },
-    { "github": "CurlyFire", "name": "Stephane Denomme" },
-    { "github": "RomainChamb", "name": "Romain Chambonnier" },
-    { "github": "jasonribble", "name": "Jason Ribble" },
-    { "github": "anilvv1", "name": "Anil Valevate" },
-    { "github": "david-oc-miller", "name": "David Miller" },
-    { "github": "ndeleva-armedia", "name": "Nadica Deleva" },
-    { "github": "sowmiya-thoguluva", "name": "Sowmiya Thoguluva" },
-    { "github": "Andrijana-N", "name": "Andrijana Narashanova" },
-    { "github": "astevanovski", "name": "Aleksandar Stevanovski" },
-    { "github": "gerasovskiboris", "name": "Boris Gerasovski" },
-    { "github": "anatrajkovskaarmedia", "name": "Ana-Marija Trajkovska" },
-    { "github": "vilosia-ai", "name": "Florian Aurich" }
+    {
+      "github": "jcupac",
+      "name": "Jelena Cupac"
+    },
+    {
+      "github": "longhibeck",
+      "name": "Germanno Longhi Beck"
+    },
+    {
+      "github": "ognjenkl",
+      "name": "Ognjen Klincov"
+    },
+    {
+      "github": "CurlyFire",
+      "name": "Stephane Denomme"
+    },
+    {
+      "github": "RomainChamb",
+      "name": "Romain Chambonnier"
+    },
+    {
+      "github": "jasonribble",
+      "name": "Jason Ribble"
+    },
+    {
+      "github": "anilvv1",
+      "name": "Anil Valevate"
+    },
+    {
+      "github": "david-oc-miller",
+      "name": "David Miller"
+    },
+    {
+      "github": "ndeleva-armedia",
+      "name": "Nadica Deleva"
+    },
+    {
+      "github": "sowmiya-thoguluva",
+      "name": "Sowmiya Thoguluva"
+    },
+    {
+      "github": "Andrijana-N",
+      "name": "Andrijana Narashanova"
+    },
+    {
+      "github": "astevanovski",
+      "name": "Aleksandar Stevanovski"
+    },
+    {
+      "github": "gerasovskiboris",
+      "name": "Boris Gerasovski"
+    },
+    {
+      "github": "anatrajkovskaarmedia",
+      "name": "Ana-Marija Trajkovska"
+    },
+    {
+      "github": "vilosia-ai",
+      "name": "Florian Aurich"
+    }
   ],
   "projects": [
-    { "key": "ESHP", "name": "eShop", "repo": "https://github.com/optivem/eshop", "lead": "valentinajemuovic", "members": ["valentinajemuovic", "jcupac"] },
-    { "key": "CCRS", "name": "Car Charging Reservation System", "repo": "https://github.com/longhibeck/car-charging-reservation-system", "lead": "longhibeck", "members": ["longhibeck"] },
-    { "key": "BDOK", "name": "Budget OK", "repo": "https://github.com/ognjenkl/budget-ok", "lead": "ognjenkl", "members": ["ognjenkl"] },
-    { "key": "CTF", "name": "CTF", "repo": "https://github.com/CurlyFire/ctf-sandbox", "lead": "CurlyFire", "members": ["CurlyFire"] },
-    { "key": "GHBL", "name": "Ghibli Encyclopedia", "repo": "https://github.com/RomainChamb/ghibli-encyclopedia", "lead": "RomainChamb", "members": ["RomainChamb"] },
-    { "key": "VGFN", "name": "Veg Finder", "repo": "https://github.com/jasonribble/veg-finder", "lead": "jasonribble", "members": ["jasonribble"] },
-    { "key": "FRS", "name": "Flight Reservation System (FRS)", "repo": "https://github.com/ArkCase/atdd-flight-reserve", "lead": "anilvv1", "members": ["anilvv1", "david-oc-miller", "ndeleva-armedia", "sowmiya-thoguluva", "Andrijana-N", "astevanovski", "gerasovskiboris", "anatrajkovskaarmedia"] },
-    { "key": "ESLA", "name": "Event Sourcing Learning Application", "repo": "https://github.com/david-oc-miller/event-sourcing-demo", "lead": "david-oc-miller", "members": ["david-oc-miller"] },
-    { "key": "PWRH", "name": "Project Powerhouse", "repo": "https://github.com/vilosia-ai/demo-customer-portal", "lead": "vilosia-ai", "members": ["vilosia-ai"] }
+    {
+      "key": "ESHP",
+      "name": "eShop",
+      "repo": "https://github.com/optivem/eshop",
+      "lead": "valentinajemuovic",
+      "members": [
+        "valentinajemuovic",
+        "jcupac"
+      ]
+    },
+    {
+      "key": "CCRS",
+      "name": "Car Charging Reservation System",
+      "repo": "https://github.com/longhibeck/car-charging-reservation-system",
+      "lead": "longhibeck",
+      "members": [
+        "longhibeck"
+      ]
+    },
+    {
+      "key": "BDOK",
+      "name": "Budget OK",
+      "repo": "https://github.com/ognjenkl/budget-ok",
+      "lead": "ognjenkl",
+      "members": [
+        "ognjenkl"
+      ]
+    },
+    {
+      "key": "CTF",
+      "name": "CTF",
+      "repo": "https://github.com/CurlyFire/ctf-sandbox",
+      "lead": "CurlyFire",
+      "members": [
+        "CurlyFire"
+      ]
+    },
+    {
+      "key": "GHBL",
+      "name": "Ghibli Encyclopedia",
+      "repo": "https://github.com/RomainChamb/ghibli-encyclopedia",
+      "lead": "RomainChamb",
+      "members": [
+        "RomainChamb"
+      ]
+    },
+    {
+      "key": "VGFN",
+      "name": "Veg Finder",
+      "repo": "https://github.com/jasonribble/veg-finder",
+      "lead": "jasonribble",
+      "members": [
+        "jasonribble"
+      ]
+    },
+    {
+      "key": "FRS",
+      "name": "Flight Reservation System (FRS)",
+      "repo": "https://github.com/ArkCase/atdd-flight-reserve",
+      "lead": "anilvv1",
+      "members": [
+        "anilvv1",
+        "david-oc-miller",
+        "ndeleva-armedia",
+        "sowmiya-thoguluva",
+        "Andrijana-N",
+        "astevanovski",
+        "gerasovskiboris",
+        "anatrajkovskaarmedia"
+      ]
+    },
+    {
+      "key": "ESLA",
+      "name": "Event Sourcing Learning Application",
+      "repo": "https://github.com/david-oc-miller/event-sourcing-demo",
+      "lead": "david-oc-miller",
+      "members": [
+        "david-oc-miller"
+      ]
+    },
+    {
+      "key": "PWRH",
+      "name": "Project Powerhouse",
+      "repo": "https://github.com/vilosia-ai/demo-customer-portal",
+      "lead": "vilosia-ai",
+      "members": [
+        "vilosia-ai"
+      ]
+    }
   ],
   "courses": [
     {
@@ -48,72 +188,318 @@
       "courseSlug": "pipeline",
       "modules": [
         {
-          "number": "1", "name": "Introduction", "url": "", "week": 1,
+          "number": "01",
+          "name": "Introduction",
+          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800730-overview",
           "tasks": [
-            { "number": "1", "name": "Project Repository" },
-            { "number": "2", "name": "Pipeline Template" },
-            { "number": "3", "name": "Project Documentation" },
-            { "number": "4", "name": "Project Ticket Board" },
-            { "number": "5", "name": "Roadmap" }
+            {
+              "number": "1",
+              "name": "Why a Pipeline"
+            },
+            {
+              "number": "2",
+              "name": "Why System Tests"
+            },
+            {
+              "number": "3",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100627-submission"
+            }
           ]
         },
         {
-          "number": "2", "name": "Commit Stage", "url": "", "week": 1,
+          "number": "02",
+          "name": "Commit Stage",
+          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800764-overview",
           "tasks": [
-            { "number": "1", "name": "Commit Stage" }
+            {
+              "number": "1",
+              "name": "Commit Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100650-commit-stage"
+            },
+            {
+              "number": "2",
+              "name": "Languages",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100673-languages"
+            },
+            {
+              "number": "3",
+              "name": "Namespaces",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100678-namespaces"
+            },
+            {
+              "number": "4",
+              "name": "Pipeline Tool"
+            },
+            {
+              "number": "5",
+              "name": "Artifact Repository"
+            },
+            {
+              "number": "6",
+              "name": "Commit Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100650-commit-stage"
+            },
+            {
+              "number": "7",
+              "name": "Component Versioning"
+            },
+            {
+              "number": "8",
+              "name": "Retention Policy"
+            },
+            {
+              "number": "9",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100797-submission"
+            },
+            {
+              "number": "10",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100797-submission"
+            }
           ]
         },
         {
-          "number": "3", "name": "QA Stage", "url": "", "week": 2,
+          "number": "03",
+          "name": "QA Stage",
+          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800794-overview",
           "tasks": [
-            { "number": "1", "name": "QA Stage" }
+            {
+              "number": "1",
+              "name": "QA Stage"
+            },
+            {
+              "number": "2",
+              "name": "Smoke Tests"
+            },
+            {
+              "number": "3",
+              "name": "System Versioning"
+            },
+            {
+              "number": "4",
+              "name": "System Test Repository"
+            },
+            {
+              "number": "5",
+              "name": "QA Stage"
+            },
+            {
+              "number": "6",
+              "name": "Smoke Tests"
+            },
+            {
+              "number": "7",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100846-submission"
+            }
           ]
         },
         {
-          "number": "4", "name": "Production Stage", "url": "", "week": 2,
+          "number": "04",
+          "name": "Production Stage",
+          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800819-overview",
           "tasks": [
-            { "number": "1", "name": "Production Stage" }
+            {
+              "number": "1",
+              "name": "Production Stage"
+            },
+            {
+              "number": "2",
+              "name": "Production Stage"
+            },
+            {
+              "number": "3",
+              "name": "Shared Deployment Process"
+            },
+            {
+              "number": "4",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100880-submission"
+            }
           ]
         },
         {
-          "number": "5", "name": "Acceptance Stage", "url": "", "week": 2,
+          "number": "05",
+          "name": "Acceptance Stage",
+          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800834-overview",
           "tasks": [
-            { "number": "1", "name": "Acceptance Stage" }
+            {
+              "number": "1",
+              "name": "Acceptance Stage"
+            },
+            {
+              "number": "2",
+              "name": "System Behavior Documentation"
+            },
+            {
+              "number": "3",
+              "name": "E2E Tests"
+            },
+            {
+              "number": "4",
+              "name": "Acceptance Stage"
+            },
+            {
+              "number": "5",
+              "name": "E2E Tests"
+            },
+            {
+              "number": "6",
+              "name": "Stage Run Conditions"
+            },
+            {
+              "number": "7",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100938-submission"
+            }
           ]
         },
         {
-          "number": "6", "name": "Technical Customization", "url": "", "week": 2,
+          "number": "06",
+          "name": "Extensions (Optional)",
+          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800859-overview",
           "tasks": [
-            { "number": "1", "name": "Languages" },
-            { "number": "2", "name": "Namespaces" }
+            {
+              "number": "1",
+              "name": "System Architecture Documentation"
+            },
+            {
+              "number": "2",
+              "name": "Multi Component Implementation"
+            },
+            {
+              "number": "3",
+              "name": "Repository Strategy Documentation"
+            },
+            {
+              "number": "4",
+              "name": "Multi Repository Implementation"
+            },
+            {
+              "number": "5",
+              "name": "Additional Technical Characteristics"
+            },
+            {
+              "number": "6",
+              "name": "Reflective Questions"
+            },
+            {
+              "number": "7",
+              "name": "Go Further"
+            },
+            {
+              "number": "8",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101020-submission"
+            }
           ]
         },
         {
-          "number": "7", "name": "Domain Customization", "url": "", "week": 3,
+          "number": "07",
+          "name": "Adoption Playbook",
+          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800879-overview",
           "tasks": [
-            { "number": "1", "name": "System Behavior Documentation" },
-            { "number": "2", "name": "Smoke Tests" },
-            { "number": "3", "name": "E2E Tests" }
-          ]
-        },
-        {
-          "number": "8", "name": "Architecture Customization", "url": "", "week": 3,
-          "tasks": [
-            { "number": "1", "name": "System Architecture Documentation" },
-            { "number": "2", "name": "Multi-Component Implementation" },
-            { "number": "3", "name": "Repository Strategy Documentation" },
-            { "number": "4", "name": "Multi-Repository Implementation" },
-            { "number": "5", "name": "Additional Technical Characteristics" }
-          ]
-        },
-        {
-          "number": "9", "name": "Extensions", "url": "", "week": 4,
-          "tasks": [
-            { "number": "1", "name": "Go Further" }
+            {
+              "number": "1",
+              "name": "Why Metrics"
+            },
+            {
+              "number": "2",
+              "name": "Introduction",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101108-introduction"
+            },
+            {
+              "number": "3",
+              "name": "Bug Type Tracking"
+            },
+            {
+              "number": "4",
+              "name": "Bug Environment Tracking"
+            },
+            {
+              "number": "5",
+              "name": "Bug Reporting"
+            },
+            {
+              "number": "6",
+              "name": "Time Tracking"
+            },
+            {
+              "number": "7",
+              "name": "Alignment Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+            },
+            {
+              "number": "8",
+              "name": "Alignment Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+            },
+            {
+              "number": "9",
+              "name": "Alignment Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+            },
+            {
+              "number": "10",
+              "name": "Alignment Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+            },
+            {
+              "number": "11",
+              "name": "Alignment Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+            },
+            {
+              "number": "12",
+              "name": "Showcase Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+            },
+            {
+              "number": "13",
+              "name": "Showcase Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+            },
+            {
+              "number": "14",
+              "name": "Showcase Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+            },
+            {
+              "number": "15",
+              "name": "Showcase Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+            },
+            {
+              "number": "16",
+              "name": "Showcase Meeting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+            },
+            {
+              "number": "17",
+              "name": "QA Signoff",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101138-qa-signoff"
+            },
+            {
+              "number": "18",
+              "name": "Submission",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101146-submission"
+            }
           ]
         }
       ],
-      "projectKeys": ["ESHP", "CCRS", "BDOK", "CTF", "GHBL", "VGFN", "FRS", "ESLA", "PWRH"]
+      "projectKeys": [
+        "ESHP",
+        "CCRS",
+        "BDOK",
+        "CTF",
+        "GHBL",
+        "VGFN",
+        "FRS",
+        "ESLA",
+        "PWRH"
+      ]
     },
     {
       "id": "atdd",
@@ -121,136 +507,550 @@
       "courseSlug": "atdd",
       "modules": [
         {
-          "number": "1", "name": "Introduction", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673632-sandbox-project", "week": 1,
+          "number": "01",
+          "name": "Introduction",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73358802-overview",
           "tasks": [
-            { "number": "1", "name": "Repository Setup" },
-            { "number": "2", "name": "API CRUD" },
-            { "number": "3", "name": "UI CRUD" },
-            { "number": "4", "name": "External API Dependency" },
-            { "number": "5", "name": "Clock Dependency" },
-            { "number": "6", "name": "Business Logic" },
-            { "number": "7", "name": "Roadmap" }
+            {
+              "number": "1",
+              "name": "The Problem This Course Solves",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73358439-the-problem-this-course-solves"
+            },
+            {
+              "number": "2",
+              "name": "What is ATDD?",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73358447-what-is-atdd"
+            },
+            {
+              "number": "3",
+              "name": "Destination Architecture",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73359055-destination-architecture"
+            },
+            {
+              "number": "4",
+              "name": "Tech Stack",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673609-tech-stack"
+            },
+            {
+              "number": "5",
+              "name": "The eShop Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673614-the-eshop-project"
+            },
+            {
+              "number": "6",
+              "name": "Summary",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673627-summary"
+            },
+            {
+              "number": "7",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673632-sandbox-project"
+            }
           ]
         },
         {
-          "number": "2", "name": "Smoke Tests", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673638-sandbox-project", "week": 3,
+          "number": "02",
+          "name": "Smoke Tests",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73483348-overview",
           "tasks": [
-            { "number": "1", "name": "API Smoke Tests" },
-            { "number": "2", "name": "UI Smoke Tests" },
-            { "number": "3", "name": "External System Smoke Tests" }
+            {
+              "number": "1",
+              "name": "System API Smoke Test"
+            },
+            {
+              "number": "2",
+              "name": "System UI Smoke Test"
+            },
+            {
+              "number": "3",
+              "name": "External System Smoke Tests",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73485021-external-system-smoke-tests"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673638-sandbox-project"
+            }
           ]
         },
         {
-          "number": "3", "name": "E2E Tests", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673661-sandbox-project", "week": 4,
+          "number": "03",
+          "name": "E2E Tests",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70107114-overview",
           "tasks": [
-            { "number": "1", "name": "Positive API Tests" },
-            { "number": "2", "name": "Negative API Tests" },
-            { "number": "3", "name": "Positive UI Tests" },
-            { "number": "4", "name": "Negative UI Tests" },
-            { "number": "5", "name": "Parameterized Tests" },
-            { "number": "6", "name": "External System Limitations" }
+            {
+              "number": "1",
+              "name": "Positive API Tests"
+            },
+            {
+              "number": "2",
+              "name": "Negative API Tests"
+            },
+            {
+              "number": "3",
+              "name": "Positive UI Tests"
+            },
+            {
+              "number": "4",
+              "name": "Negative UI Tests"
+            },
+            {
+              "number": "5",
+              "name": "Parameterized Tests"
+            },
+            {
+              "number": "6",
+              "name": "External System Limitations"
+            },
+            {
+              "number": "7",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673661-sandbox-project"
+            }
           ]
         },
         {
-          "number": "4", "name": "Architecture - Clients", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70102037-sandbox-project", "week": 6,
+          "number": "04",
+          "name": "Architecture - Clients",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70102035-overview",
           "tasks": [
-            { "number": "1", "name": "System API Client" },
-            { "number": "2", "name": "System UI Client" },
-            { "number": "3", "name": "External System Clients" },
-            { "number": "4", "name": "E2E API Tests" },
-            { "number": "5", "name": "E2E UI Tests" }
+            {
+              "number": "1",
+              "name": "System API Smoke Tests"
+            },
+            {
+              "number": "2",
+              "name": "System UI Smoke Tests"
+            },
+            {
+              "number": "3",
+              "name": "External System Smoke Tests"
+            },
+            {
+              "number": "4",
+              "name": "E2E API Tests"
+            },
+            {
+              "number": "5",
+              "name": "E2E UI Tests"
+            },
+            {
+              "number": "6",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70102037-sandbox-project"
+            }
           ]
         },
         {
-          "number": "5", "name": "Architecture - Drivers", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70114441-sandbox-project", "week": 8,
+          "number": "05",
+          "name": "Architecture - Drivers",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70114420-overview",
           "tasks": [
-            { "number": "1", "name": "Shop API Driver" },
-            { "number": "2", "name": "Shop UI Driver" },
-            { "number": "3", "name": "External System Drivers" },
-            { "number": "4", "name": "E2E API Tests" },
-            { "number": "5", "name": "E2E UI Tests" }
+            {
+              "number": "1",
+              "name": "System Smoke Tests"
+            },
+            {
+              "number": "2",
+              "name": "External System Smoke Tests"
+            },
+            {
+              "number": "3",
+              "name": "E2E Tests"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70114441-sandbox-project"
+            }
           ]
         },
         {
-          "number": "6", "name": "Architecture - Channels", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70114247-sandbox-project", "week": 9,
+          "number": "06",
+          "name": "Architecture - Channels",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70114424-overview",
           "tasks": [
-            { "number": "1", "name": "System Smoke Tests" },
-            { "number": "2", "name": "E2E Tests" }
+            {
+              "number": "1",
+              "name": "System Smoke Tests"
+            },
+            {
+              "number": "2",
+              "name": "E2E Tests"
+            },
+            {
+              "number": "3",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70114247-sandbox-project"
+            }
           ]
         },
         {
-          "number": "7", "name": "Architecture - Use Case DSL", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673684-sandbox-project", "week": 10,
+          "number": "07",
+          "name": "Architecture - Use Case DSL",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/70114427-overview",
           "tasks": [
-            { "number": "1", "name": "DSL Infrastructure" },
-            { "number": "2", "name": "External System DSLs" },
-            { "number": "3", "name": "Shop Use Cases + Primary E2E Test" },
-            { "number": "4", "name": "Remaining E2E Tests" }
+            {
+              "number": "1",
+              "name": "System Smoke Tests",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673676-system-smoke-tests"
+            },
+            {
+              "number": "2",
+              "name": "External System Smoke Tests",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673681-external-system-smoke-tests"
+            },
+            {
+              "number": "3",
+              "name": "E2E Tests",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673682-e2e-tests"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673684-sandbox-project"
+            }
           ]
         },
         {
-          "number": "8", "name": "Architecture - Scenario DSL", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673700-sandbox-project", "week": 12,
+          "number": "08",
+          "name": "Architecture - Scenario DSL",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73252031-overview",
           "tasks": [
-            { "number": "1", "name": "Smoke Tests" },
-            { "number": "2", "name": "Given/When/Then Stages + Primary E2E Test" },
-            { "number": "3", "name": "Remaining E2E Tests" }
+            {
+              "number": "1",
+              "name": "System Smoke Tests"
+            },
+            {
+              "number": "2",
+              "name": "External System Smoke Tests"
+            },
+            {
+              "number": "3",
+              "name": "E2E Tests"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673700-sandbox-project"
+            }
           ]
         },
         {
-          "number": "9", "name": "Architecture - External Stubs", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673730-sandbox-project", "week": 14,
+          "number": "09",
+          "name": "Architecture - External Stubs",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73513385-overview",
           "tasks": [
-            { "number": "1", "name": "WireMock Docker Setup" },
-            { "number": "2", "name": "Stub Clients and Drivers" },
-            { "number": "3", "name": "Smoke Tests in Both Modes" }
+            {
+              "number": "1",
+              "name": "External System Smoke Tests — Real HTTP"
+            },
+            {
+              "number": "2",
+              "name": "External Systems — Real Non-IO"
+            },
+            {
+              "number": "3",
+              "name": "External System Smoke Tests — Real Non-IO"
+            },
+            {
+              "number": "4",
+              "name": "External Systems — Stub"
+            },
+            {
+              "number": "5",
+              "name": "External System Smoke Tests — Stub"
+            },
+            {
+              "number": "6",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673730-sandbox-project"
+            }
           ]
         },
         {
-          "number": "10", "name": "Acceptance Tests", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673737-sandbox-project", "week": 15,
+          "number": "10",
+          "name": "Acceptance Tests",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73297464-overview",
+          "week": 15,
           "tasks": [
-            { "number": "1", "name": "Primary Acceptance Tests" },
-            { "number": "2", "name": "Remaining Acceptance Tests" },
-            { "number": "3", "name": "Stub-Only Scenarios" },
-            { "number": "4", "name": "Suite Separation" }
+            {
+              "number": "1",
+              "name": "Acceptance Tests"
+            },
+            {
+              "number": "2",
+              "name": "Extend with Stub-Only Scenarios"
+            },
+            {
+              "number": "3",
+              "name": "Suite Separation"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673737-sandbox-project"
+            }
           ]
         },
         {
-          "number": "11", "name": "External System Contract Tests", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73620977-sandbox-project", "week": 17,
+          "number": "11",
+          "name": "External System Contract Tests",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73597850-overview",
+          "week": 17,
           "tasks": [
-            { "number": "1", "name": "Real Contract Tests" },
-            { "number": "2", "name": "Stub Contract Tests" },
-            { "number": "3", "name": "E2E Tests Cleanup" }
+            {
+              "number": "1",
+              "name": "Real Contract Tests"
+            },
+            {
+              "number": "2",
+              "name": "Stub Contract Tests"
+            },
+            {
+              "number": "3",
+              "name": "E2E Tests Cleanup"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73620977-sandbox-project"
+            }
           ]
         },
         {
-          "number": "12", "name": "ATDD - Acceptance Criteria", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73543765-sandbox-project", "week": 18,
+          "number": "12",
+          "name": "ATDD - Acceptance Criteria",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73487319-overview",
+          "week": 18,
           "tasks": [
-            { "number": "1", "name": "Three Amigos Session" },
-            { "number": "2", "name": "Acceptance Criteria" }
+            {
+              "number": "1",
+              "name": "Three Amigos Session",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73487343-three-amigos-session"
+            },
+            {
+              "number": "2",
+              "name": "Acceptance Criteria",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73487567-acceptance-criteria"
+            },
+            {
+              "number": "3",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73543765-sandbox-project"
+            }
           ]
         },
         {
-          "number": "13", "name": "ATDD - Acceptance Tests", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673750-sandbox-project", "week": 19,
+          "number": "13",
+          "name": "ATDD - Acceptance Tests",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73653973-overview",
+          "week": 19,
           "tasks": [
-            { "number": "1", "name": "RED Phase" },
-            { "number": "2", "name": "GREEN Phase" },
-            { "number": "3", "name": "Bug Fix" }
+            {
+              "number": "1",
+              "name": "ATDD Workflow — RED Phase"
+            },
+            {
+              "number": "2",
+              "name": "ATDD Workflow — GREEN Phase"
+            },
+            {
+              "number": "3",
+              "name": "Bug Fix (Optional)"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673750-sandbox-project"
+            }
           ]
         },
         {
-          "number": "14", "name": "ATDD - External System Contract Tests", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673764-sandbox-project", "week": 20,
+          "number": "14",
+          "name": "ATDD - External System Contract Tests",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673756-overview",
+          "week": 20,
           "tasks": [
-            { "number": "1", "name": "Contract Test - RED" },
-            { "number": "2", "name": "Contract Test - GREEN" },
-            { "number": "3", "name": "Complete the ATDD Cycle" }
+            {
+              "number": "1",
+              "name": "Contract Test — RED"
+            },
+            {
+              "number": "2",
+              "name": "Contract Test — GREEN"
+            },
+            {
+              "number": "3",
+              "name": "Complete the ATDD Cycle"
+            },
+            {
+              "number": "4",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673764-sandbox-project"
+            }
           ]
         },
         {
-          "number": "15", "name": "Structural Changes", "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673787-sandbox-project", "week": 21,
+          "number": "15",
+          "name": "Structural Changes",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673769-overview",
+          "week": 21,
           "tasks": [
-            { "number": "1", "name": "UX/UI Redesign" }
+            {
+              "number": "1",
+              "name": "UX/UI Redesign",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673777-ux-ui-redesign"
+            },
+            {
+              "number": "2",
+              "name": "Sandbox Project",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673787-sandbox-project"
+            }
+          ]
+        },
+        {
+          "number": "16",
+          "name": "Adoption Playbook",
+          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673792-overview",
+          "tasks": [
+            {
+              "number": "1",
+              "name": "General Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673799-general-alignment-meeting-guide"
+            },
+            {
+              "number": "2",
+              "name": "General Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673802-general-showcase-meeting-guide"
+            },
+            {
+              "number": "3",
+              "name": "Smoke Tests - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673805-smoke-tests-alignment-meeting-guide"
+            },
+            {
+              "number": "4",
+              "name": "Smoke Tests - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673808-smoke-tests-showcase-meeting-guide"
+            },
+            {
+              "number": "5",
+              "name": "E2E Tests - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673812-e2e-tests-alignment-meeting-guide"
+            },
+            {
+              "number": "6",
+              "name": "E2E Tests - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673814-e2e-tests-showcase-meeting-guide"
+            },
+            {
+              "number": "7",
+              "name": "Clients - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673819-clients-alignment-meeting-guide"
+            },
+            {
+              "number": "8",
+              "name": "Clients - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673822-clients-showcase-meeting-guide"
+            },
+            {
+              "number": "9",
+              "name": "Drivers - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673824-drivers-alignment-meeting-guide"
+            },
+            {
+              "number": "10",
+              "name": "Drivers - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673829-drivers-showcase-meeting-guide"
+            },
+            {
+              "number": "11",
+              "name": "Channels - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673834-channels-alignment-meeting-guide"
+            },
+            {
+              "number": "12",
+              "name": "Channels - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673838-channels-showcase-meeting-guide"
+            },
+            {
+              "number": "13",
+              "name": "Use Case DSL - Alignment Meeting Guide"
+            },
+            {
+              "number": "14",
+              "name": "Use Case DSL - Showcase Meeting Guide"
+            },
+            {
+              "number": "15",
+              "name": "Scenario DSL - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673865-scenario-dsl-alignment-meeting-guide"
+            },
+            {
+              "number": "16",
+              "name": "Scenario DSL - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673877-scenario-dsl-showcase-meeting-guide"
+            },
+            {
+              "number": "17",
+              "name": "External Stubs - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673879-external-stubs-alignment-meeting-guide"
+            },
+            {
+              "number": "18",
+              "name": "External Stubs - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673881-external-stubs-showcase-meeting-guide"
+            },
+            {
+              "number": "19",
+              "name": "Acceptance Tests - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673883-acceptance-tests-alignment-meeting-guide"
+            },
+            {
+              "number": "20",
+              "name": "Acceptance Tests - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673887-acceptance-tests-showcase-meeting-guide"
+            },
+            {
+              "number": "21",
+              "name": "Contract Tests - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673889-contract-tests-alignment-meeting-guide"
+            },
+            {
+              "number": "22",
+              "name": "Contract Tests - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673891-contract-tests-showcase-meeting-guide"
+            },
+            {
+              "number": "23",
+              "name": "ATDD - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673924-atdd-alignment-meeting-guide"
+            },
+            {
+              "number": "24",
+              "name": "ATDD - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673926-atdd-showcase-meeting-guide"
+            },
+            {
+              "number": "25",
+              "name": "Summary",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673929-summary"
+            }
           ]
         }
       ],
-      "projectKeys": ["ESHP", "CCRS", "BDOK", "CTF", "GHBL", "VGFN", "FRS", "ESLA", "PWRH"]
+      "projectKeys": [
+        "ESHP",
+        "CCRS",
+        "BDOK",
+        "CTF",
+        "GHBL",
+        "VGFN",
+        "FRS",
+        "ESLA",
+        "PWRH"
+      ]
     }
   ]
 }
