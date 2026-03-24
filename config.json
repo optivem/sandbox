@@ -194,16 +194,8 @@
           "tasks": [
             {
               "number": "1",
-              "name": "Why a Pipeline"
-            },
-            {
-              "number": "2",
-              "name": "Why System Tests"
-            },
-            {
-              "number": "3",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100627-submission"
+              "name": "Pipeline Template",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100627-pipeline-template"
             }
           ]
         },
@@ -219,44 +211,23 @@
             },
             {
               "number": "2",
-              "name": "Languages",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100673-languages"
+              "name": "Multi-Component: Commit Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100688-multi-component-commit-stage"
             },
             {
               "number": "3",
-              "name": "Namespaces",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100678-namespaces"
+              "name": "Multi-Repository: Commit Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800768-multi-repository-commit-stage"
             },
             {
               "number": "4",
-              "name": "Pipeline Tool"
+              "name": "Component Versioning Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100678-component-versioning-guide"
             },
             {
               "number": "5",
-              "name": "Artifact Repository"
-            },
-            {
-              "number": "6",
-              "name": "Commit Stage",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100650-commit-stage"
-            },
-            {
-              "number": "7",
-              "name": "Component Versioning"
-            },
-            {
-              "number": "8",
-              "name": "Retention Policy"
-            },
-            {
-              "number": "9",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100797-submission"
-            },
-            {
-              "number": "10",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100797-submission"
+              "name": "Retention Policy Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100683-retention-policy-guide"
             }
           ]
         },
@@ -267,32 +238,33 @@
           "tasks": [
             {
               "number": "1",
-              "name": "QA Stage"
+              "name": "QA Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100809-qa-stage"
             },
             {
               "number": "2",
-              "name": "Smoke Tests"
+              "name": "QA Signoff",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100814-qa-signoff"
             },
             {
               "number": "3",
-              "name": "System Versioning"
+              "name": "Multi-Component: QA Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100844-multi-component-qa-stage"
             },
             {
               "number": "4",
-              "name": "System Test Repository"
+              "name": "Multi-Repository: QA Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800807-multi-repository-qa-stage"
             },
             {
               "number": "5",
-              "name": "QA Stage"
+              "name": "Smoke Tests Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100827-smoke-tests-guide"
             },
             {
               "number": "6",
-              "name": "Smoke Tests"
-            },
-            {
-              "number": "7",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100846-submission"
+              "name": "System Versioning",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100830-system-versioning"
             }
           ]
         },
@@ -303,20 +275,23 @@
           "tasks": [
             {
               "number": "1",
-              "name": "Production Stage"
+              "name": "Production Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100858-production-stage"
             },
             {
               "number": "2",
-              "name": "Production Stage"
+              "name": "Multi-Component: Production Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100877-multi-component-production-stage"
             },
             {
               "number": "3",
-              "name": "Shared Deployment Process"
+              "name": "Multi-Repository: Production Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800825-multi-repository-production-stage"
             },
             {
               "number": "4",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100880-submission"
+              "name": "Shared Deployment Process",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100861-shared-deployment-process"
             }
           ]
         },
@@ -327,32 +302,28 @@
           "tasks": [
             {
               "number": "1",
-              "name": "Acceptance Stage"
+              "name": "Acceptance Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100917-acceptance-stage"
             },
             {
               "number": "2",
-              "name": "System Behavior Documentation"
+              "name": "Multi-Component: Acceptance Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100936-multi-component-acceptance-stage"
             },
             {
               "number": "3",
-              "name": "E2E Tests"
+              "name": "Multi-Repository: Acceptance Stage",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800840-multi-repository-acceptance-stage"
             },
             {
               "number": "4",
-              "name": "Acceptance Stage"
+              "name": "E2E Tests",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100925-e2e-tests"
             },
             {
               "number": "5",
-              "name": "E2E Tests"
-            },
-            {
-              "number": "6",
-              "name": "Stage Run Conditions"
-            },
-            {
-              "number": "7",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100938-submission"
+              "name": "Stage Run Conditions",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100930-stage-run-conditions"
             }
           ]
         },
@@ -363,36 +334,13 @@
           "tasks": [
             {
               "number": "1",
-              "name": "System Architecture Documentation"
+              "name": "Additional Technical Characteristics",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101018-additional-technical-characteristics"
             },
             {
               "number": "2",
-              "name": "Multi Component Implementation"
-            },
-            {
-              "number": "3",
-              "name": "Repository Strategy Documentation"
-            },
-            {
-              "number": "4",
-              "name": "Multi Repository Implementation"
-            },
-            {
-              "number": "5",
-              "name": "Additional Technical Characteristics"
-            },
-            {
-              "number": "6",
-              "name": "Reflective Questions"
-            },
-            {
-              "number": "7",
-              "name": "Go Further"
-            },
-            {
-              "number": "8",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101020-submission"
+              "name": "Go Further",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800864-go-further"
             }
           ]
         },
@@ -403,7 +351,8 @@
           "tasks": [
             {
               "number": "1",
-              "name": "Why Metrics"
+              "name": "Why Metrics",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808822-why-metrics"
             },
             {
               "number": "2",
@@ -412,69 +361,73 @@
             },
             {
               "number": "3",
-              "name": "Bug Type Tracking"
+              "name": "Bug Type Tracking",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808827-bug-type-tracking"
             },
             {
               "number": "4",
-              "name": "Bug Environment Tracking"
+              "name": "Bug Environment Tracking",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808837-bug-environment-tracking"
             },
             {
               "number": "5",
-              "name": "Bug Reporting"
+              "name": "Bug Reporting",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808839-bug-reporting"
             },
             {
               "number": "6",
-              "name": "Time Tracking"
+              "name": "Time Tracking",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808845-time-tracking"
             },
             {
               "number": "7",
-              "name": "Alignment Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+              "name": "Metrics - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808871-metrics-alignment-meeting-guide"
             },
             {
               "number": "8",
-              "name": "Alignment Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+              "name": "Metrics - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808874-metrics-showcase-meeting-guide"
             },
             {
               "number": "9",
-              "name": "Alignment Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+              "name": "Commit Stage - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800880-commit-stage-alignment-meeting-guide"
             },
             {
               "number": "10",
-              "name": "Alignment Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+              "name": "Commit Stage - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-commit-stage-showcase-meeting-guide"
             },
             {
               "number": "11",
-              "name": "Alignment Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-alignment-meeting"
+              "name": "QA Stage - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101117-qa-stage-alignment-meeting-guide"
             },
             {
               "number": "12",
-              "name": "Showcase Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+              "name": "QA Stage - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101121-qa-stage-showcase-meeting-guide"
             },
             {
               "number": "13",
-              "name": "Showcase Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+              "name": "Production Stage - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101127-production-stage-alignment-meeting-guide"
             },
             {
               "number": "14",
-              "name": "Showcase Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+              "name": "Production Stage - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101133-production-stage-showcase-meeting-guide"
             },
             {
               "number": "15",
-              "name": "Showcase Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+              "name": "Acceptance Stage - Alignment Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-acceptance-stage-alignment-meeting-guide"
             },
             {
               "number": "16",
-              "name": "Showcase Meeting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-showcase-meeting"
+              "name": "Acceptance Stage - Showcase Meeting Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800882-acceptance-stage-showcase-meeting-guide"
             },
             {
               "number": "17",
@@ -513,36 +466,10 @@
           "tasks": [
             {
               "number": "1",
-              "name": "The Problem This Course Solves",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73358439-the-problem-this-course-solves"
+              "name": "Setup"
             },
             {
               "number": "2",
-              "name": "What is ATDD?",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73358447-what-is-atdd"
-            },
-            {
-              "number": "3",
-              "name": "Destination Architecture",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73359055-destination-architecture"
-            },
-            {
-              "number": "4",
-              "name": "Tech Stack",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673609-tech-stack"
-            },
-            {
-              "number": "5",
-              "name": "The eShop Project",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673614-the-eshop-project"
-            },
-            {
-              "number": "6",
-              "name": "Summary",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673627-summary"
-            },
-            {
-              "number": "7",
               "name": "Sandbox Project",
               "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673632-sandbox-project"
             }
@@ -1071,11 +998,6 @@
               "number": "24",
               "name": "ATDD - Showcase Meeting Guide",
               "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673926-atdd-showcase-meeting-guide"
-            },
-            {
-              "number": "25",
-              "name": "Summary",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673929-summary"
             }
           ]
         }
