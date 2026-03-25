@@ -194,8 +194,8 @@
           "tasks": [
             {
               "number": "1",
-              "name": "Pipeline Template",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100627-pipeline-template"
+              "name": "Setup",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100627-setup"
             }
           ]
         },
@@ -263,8 +263,8 @@
             },
             {
               "number": "6",
-              "name": "System Versioning",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100830-system-versioning"
+              "name": "System Versioning Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100846-system-versioning-guide"
             }
           ]
         },
@@ -290,8 +290,8 @@
             },
             {
               "number": "4",
-              "name": "Shared Deployment Process",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100861-shared-deployment-process"
+              "name": "Shared Deployment Process Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100880-shared-deployment-process-guide"
             }
           ]
         },
@@ -317,8 +317,8 @@
             },
             {
               "number": "4",
-              "name": "E2E Tests",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100925-e2e-tests"
+              "name": "E2E Tests Guide",
+              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100938-e2e-tests-guide"
             },
             {
               "number": "5",
@@ -466,7 +466,8 @@
           "tasks": [
             {
               "number": "1",
-              "name": "Setup"
+              "name": "Setup",
+              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673627-setup"
             },
             {
               "number": "2",
