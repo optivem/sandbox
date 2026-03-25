@@ -218,16 +218,6 @@
               "number": "3",
               "name": "Multi-Repository: Commit Stage",
               "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800768-multi-repository-commit-stage"
-            },
-            {
-              "number": "4",
-              "name": "Component Versioning Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100678-component-versioning-guide"
-            },
-            {
-              "number": "5",
-              "name": "Retention Policy Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100683-retention-policy-guide"
             }
           ]
         },
@@ -255,16 +245,6 @@
               "number": "4",
               "name": "Multi-Repository: QA Stage",
               "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800807-multi-repository-qa-stage"
-            },
-            {
-              "number": "5",
-              "name": "Smoke Tests Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100827-smoke-tests-guide"
-            },
-            {
-              "number": "6",
-              "name": "System Versioning Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100846-system-versioning-guide"
             }
           ]
         },
@@ -287,11 +267,6 @@
               "number": "3",
               "name": "Multi-Repository: Production Stage",
               "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800825-multi-repository-production-stage"
-            },
-            {
-              "number": "4",
-              "name": "Shared Deployment Process Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100880-shared-deployment-process-guide"
             }
           ]
         },
@@ -317,11 +292,6 @@
             },
             {
               "number": "4",
-              "name": "E2E Tests Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100938-e2e-tests-guide"
-            },
-            {
-              "number": "5",
               "name": "Stage Run Conditions",
               "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70100930-stage-run-conditions"
             }
@@ -341,103 +311,6 @@
               "number": "2",
               "name": "Go Further",
               "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800864-go-further"
-            }
-          ]
-        },
-        {
-          "number": "07",
-          "name": "Adoption Playbook",
-          "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800879-overview",
-          "tasks": [
-            {
-              "number": "1",
-              "name": "Why Metrics",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808822-why-metrics"
-            },
-            {
-              "number": "2",
-              "name": "Introduction",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101108-introduction"
-            },
-            {
-              "number": "3",
-              "name": "Bug Type Tracking",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808827-bug-type-tracking"
-            },
-            {
-              "number": "4",
-              "name": "Bug Environment Tracking",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808837-bug-environment-tracking"
-            },
-            {
-              "number": "5",
-              "name": "Bug Reporting",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808839-bug-reporting"
-            },
-            {
-              "number": "6",
-              "name": "Time Tracking",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808845-time-tracking"
-            },
-            {
-              "number": "7",
-              "name": "Metrics - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808871-metrics-alignment-meeting-guide"
-            },
-            {
-              "number": "8",
-              "name": "Metrics - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73808874-metrics-showcase-meeting-guide"
-            },
-            {
-              "number": "9",
-              "name": "Commit Stage - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800880-commit-stage-alignment-meeting-guide"
-            },
-            {
-              "number": "10",
-              "name": "Commit Stage - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101115-commit-stage-showcase-meeting-guide"
-            },
-            {
-              "number": "11",
-              "name": "QA Stage - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101117-qa-stage-alignment-meeting-guide"
-            },
-            {
-              "number": "12",
-              "name": "QA Stage - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101121-qa-stage-showcase-meeting-guide"
-            },
-            {
-              "number": "13",
-              "name": "Production Stage - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101127-production-stage-alignment-meeting-guide"
-            },
-            {
-              "number": "14",
-              "name": "Production Stage - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101133-production-stage-showcase-meeting-guide"
-            },
-            {
-              "number": "15",
-              "name": "Acceptance Stage - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101141-acceptance-stage-alignment-meeting-guide"
-            },
-            {
-              "number": "16",
-              "name": "Acceptance Stage - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/73800882-acceptance-stage-showcase-meeting-guide"
-            },
-            {
-              "number": "17",
-              "name": "QA Signoff",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101138-qa-signoff"
-            },
-            {
-              "number": "18",
-              "name": "Submission",
-              "url": "https://optivem.thinkific.com/courses/take/pipeline/texts/70101146-submission"
             }
           ]
         }
@@ -872,133 +745,6 @@
               "number": "2",
               "name": "Sandbox Project",
               "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673787-sandbox-project"
-            }
-          ]
-        },
-        {
-          "number": "16",
-          "name": "Adoption Playbook",
-          "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673792-overview",
-          "tasks": [
-            {
-              "number": "1",
-              "name": "General Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673799-general-alignment-meeting-guide"
-            },
-            {
-              "number": "2",
-              "name": "General Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673802-general-showcase-meeting-guide"
-            },
-            {
-              "number": "3",
-              "name": "Smoke Tests - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673805-smoke-tests-alignment-meeting-guide"
-            },
-            {
-              "number": "4",
-              "name": "Smoke Tests - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673808-smoke-tests-showcase-meeting-guide"
-            },
-            {
-              "number": "5",
-              "name": "E2E Tests - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673812-e2e-tests-alignment-meeting-guide"
-            },
-            {
-              "number": "6",
-              "name": "E2E Tests - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673814-e2e-tests-showcase-meeting-guide"
-            },
-            {
-              "number": "7",
-              "name": "Clients - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673819-clients-alignment-meeting-guide"
-            },
-            {
-              "number": "8",
-              "name": "Clients - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673822-clients-showcase-meeting-guide"
-            },
-            {
-              "number": "9",
-              "name": "Drivers - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673824-drivers-alignment-meeting-guide"
-            },
-            {
-              "number": "10",
-              "name": "Drivers - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673829-drivers-showcase-meeting-guide"
-            },
-            {
-              "number": "11",
-              "name": "Channels - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673834-channels-alignment-meeting-guide"
-            },
-            {
-              "number": "12",
-              "name": "Channels - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673838-channels-showcase-meeting-guide"
-            },
-            {
-              "number": "13",
-              "name": "Use Case DSL - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673841-use-case-dsl-alignment-meeting-guide"
-            },
-            {
-              "number": "14",
-              "name": "Use Case DSL - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673847-use-case-dsl-showcase-meeting-guide"
-            },
-            {
-              "number": "15",
-              "name": "Scenario DSL - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673865-scenario-dsl-alignment-meeting-guide"
-            },
-            {
-              "number": "16",
-              "name": "Scenario DSL - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673877-scenario-dsl-showcase-meeting-guide"
-            },
-            {
-              "number": "17",
-              "name": "External Stubs - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673879-external-stubs-alignment-meeting-guide"
-            },
-            {
-              "number": "18",
-              "name": "External Stubs - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673881-external-stubs-showcase-meeting-guide"
-            },
-            {
-              "number": "19",
-              "name": "Acceptance Tests - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673883-acceptance-tests-alignment-meeting-guide"
-            },
-            {
-              "number": "20",
-              "name": "Acceptance Tests - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673887-acceptance-tests-showcase-meeting-guide"
-            },
-            {
-              "number": "21",
-              "name": "Contract Tests - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673889-contract-tests-alignment-meeting-guide"
-            },
-            {
-              "number": "22",
-              "name": "Contract Tests - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673891-contract-tests-showcase-meeting-guide"
-            },
-            {
-              "number": "23",
-              "name": "ATDD - Alignment Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673924-atdd-alignment-meeting-guide"
-            },
-            {
-              "number": "24",
-              "name": "ATDD - Showcase Meeting Guide",
-              "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673926-atdd-showcase-meeting-guide"
             }
           ]
         }
