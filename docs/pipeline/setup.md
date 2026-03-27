@@ -16,6 +16,7 @@
    - `.github`
    - `monolith`
    - `system-test`
+   - `VERSION`
    - `README.md` (only the top part, that contains the status badges)
 5. Replace `optivem/greeter-{language}` with `<your_repo_owner>/<your_repo_name>` in the whole project:
    - In the README file, so that the status badges point to your workflows (not the template workflows)
