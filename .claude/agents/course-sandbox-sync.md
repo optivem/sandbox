@@ -1,5 +1,5 @@
 ---
-name: course-sandbox-sync-agent
+name: course-sandbox-sync
 description: Syncs sandbox config/courses/ files with course module and milestone structure and Thinkific student view URLs
 tools: Read, Glob, Grep, Bash
 ---
