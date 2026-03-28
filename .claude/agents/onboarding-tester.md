@@ -26,19 +26,9 @@ Same as Onboarding Guide (including: do NOT use anything from memory), plus:
 - **Show report verbatim** — when presenting the final report to the user, show the agent's output exactly as-is. Do NOT summarize, paraphrase, or reinterpret it.
 - **Stop on first error** — steps are sequential and cumulative. If any step fails, stop immediately. Do NOT continue to subsequent steps. Report the failure in the final report and end the run. This includes prerequisite checks: if a required credential or tool is missing at Step 00, that is a failure — do NOT proceed to Step 01.
 - **Show error details** — when any step fails, include the actual error message or output in the report so the user can diagnose the issue without re-running.
-- Use a temp directory — clone repos into a temp dir, not this repo.
+- **Use a temp directory** — clone repos into `$TMPDIR` (or `/tmp` if unset), never into the current working directory. Delete the cloned directory at the end of the run, regardless of success or failure.
 - Don't modify docs — you are a student, not an author.
 - Poll workflows every 30 seconds, up to 10 attempts (~5 min). Stop as soon as `status` is `completed`. Each Bash call should return within ~70 seconds.
-
-## Credentials
-
-The tester needs credentials as environment variables. For each credential type, the tester checks specific env var names (listed below). If any required credential is missing, fail at Step 00.
-
-| Credential | Env var | Required at |
-|---|---|---|
-| Docker Hub username | `DOCKERHUB_USERNAME` | Step 00 |
-| Docker Hub token | `DOCKERHUB_TOKEN` | Step 00 |
-| SonarCloud token | `SONAR_TOKEN` | Step 02a (can defer) |
 
 ## Workflow
 

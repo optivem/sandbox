@@ -29,15 +29,15 @@
    - In the README file, so that the status badges point to your workflows (not the template workflows)
    - In `system-test/docker-compose.yml`, to reference your Docker Image (not the template image)
 4. In the Docker Compose file, ensure that everything is lowercase in the image url.
-5. Commit and push (CLI):
-   ```bash
-   git add -A && git commit -m "Apply pipeline template" && git push
-   ```
-6. Add credentials and variables to your repository (CLI) — skip if already done in [Prerequisites](00-prerequisites.md):
+5. Add credentials and variables to your repository (CLI):
    ```bash
    gh variable set DOCKERHUB_USERNAME --body "<your-dockerhub-username>" --repo <owner>/<repo>
    gh secret set DOCKERHUB_TOKEN --body "<your-dockerhub-token>" --repo <owner>/<repo>
    gh variable set SYSTEM_URL --body "http://localhost:8080" --repo <owner>/<repo>
+   ```
+6. Commit and push (CLI):
+   ```bash
+   git add -A && git commit -m "Apply pipeline template" && git push
    ```
 7. Trigger `commit-stage-monolith` and wait for it to finish (CLI):
    ```bash
