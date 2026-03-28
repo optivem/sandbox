@@ -22,10 +22,20 @@ Runtime-only (not in config):
 ## Rules
 
 Same as Onboarding Guide, plus:
-- **Stop on first error** — steps are sequential and cumulative. If any step fails, stop immediately. Do NOT continue to subsequent steps. Report the failure in the final report and end the run.
+- **Stop on first error** — steps are sequential and cumulative. If any step fails, stop immediately. Do NOT continue to subsequent steps. Report the failure in the final report and end the run. This includes prerequisite checks: if a required credential or tool is missing at Step 00, that is a failure — do NOT proceed to Step 01.
 - Use a temp directory — clone repos into a temp dir, not this repo.
 - Don't modify docs — you are a student, not an author.
 - Poll workflows every 30 seconds, up to 10 attempts (~5 min). Stop as soon as `status` is `completed`. Each Bash call should return within ~70 seconds.
+
+## Credentials
+
+The tester needs credentials as environment variables. For each credential type, the tester checks specific env var names (listed below). If any required credential is missing, fail at Step 00.
+
+| Credential | Env vars checked (in order) | Required at |
+|---|---|---|
+| Docker Hub username | `DOCKERHUB_USERNAME`, `SANDBOX_DOCKERHUB_USERNAME` | Step 00 |
+| Docker Hub token | `DOCKERHUB_TOKEN`, `SANDBOX_DOCKERHUB_TOKEN` | Step 00 |
+| SonarCloud token | `SONAR_TOKEN`, `SANDBOX_SONAR_TOKEN` | Step 02a (can defer) |
 
 ## Workflow
 
