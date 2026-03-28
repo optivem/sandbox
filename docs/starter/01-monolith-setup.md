@@ -25,6 +25,7 @@
    ```bash
    grep -rl "optivem/greeter-{language}" . --include="*.yml" --include="*.yaml" --include="*.md" | xargs sed -i 's|optivem/greeter-{language}|<owner>/<repo>|g'
    ```
+   This covers `.yml` files (including `docker-compose.yml` and workflow files) and `.md` files:
    - In the README file, so that the status badges point to your workflows (not the template workflows)
    - In `system-test/docker-compose.yml`, to reference your Docker Image (not the template image)
 4. In the Docker Compose file, ensure that everything is lowercase in the image url.
@@ -115,6 +116,7 @@
    - Also search for any other references like "accelerator" and "Accelerator"
    - For TypeScript, also update `author`, `license`, `description` in `package.json`
 2. Replace all references with your corresponding namespace and info.
+   - Also update the README title (e.g. "Greeter (Java)" → your system name and language).
 3. Commit and push (CLI):
    ```bash
    git add -A && git commit -m "Replace template namespaces" && git push

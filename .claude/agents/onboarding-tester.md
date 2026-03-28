@@ -22,6 +22,7 @@ Runtime-only (not in config):
 ## Rules
 
 Same as Onboarding Guide, plus:
+- **Stop on first error** — steps are sequential and cumulative. If any step fails, stop immediately. Do NOT continue to subsequent steps. Report the failure in the final report and end the run.
 - Use a temp directory — clone repos into a temp dir, not this repo.
 - Don't modify docs — you are a student, not an author.
 - Poll workflows every 30 seconds, up to 10 attempts (~5 min). Stop as soon as `status` is `completed`. Each Bash call should return within ~70 seconds.

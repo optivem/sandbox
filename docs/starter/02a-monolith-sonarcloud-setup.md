@@ -6,7 +6,7 @@ All steps use the command line except where noted as (UI).
 
 ## Prerequisites
 
-- A public GitHub repository with a working Commit Stage workflow (see [Commit Stage](05-commit-stage.md))
+- A public GitHub repository with a working Commit Stage workflow (see [Commit Stage](02-monolith-commit-stage.md))
 - `gh` CLI installed and authenticated
 - `curl` available
 
@@ -26,7 +26,7 @@ export SONAR_TOKEN="<your-token>"
 ## 2. Import Your GitHub Organization (CLI)
 
 ```bash
-SONAR_ORG="<your-github-org>"  # e.g. optivem
+SONAR_ORG="<your-github-owner>"  # your GitHub username or org name (e.g. optivem)
 
 curl -s -u "${SONAR_TOKEN}:" \
   -X POST "https://sonarcloud.io/api/organizations/create" \

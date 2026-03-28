@@ -29,6 +29,6 @@ The steps are defined in `docs/starter/index.md`. Read that index first, then re
 
 ## Error Handling
 
+- **Stop on first error** — steps are sequential and cumulative. If a step fails, do NOT continue to the next step. Report the failure and stop.
 - If a workflow fails: `gh run view {run-id} --log-failed --repo {owner}/{repo}`
-- Always offer to retry or skip a failed step.
-- Never silently continue past a failure.
+- Always offer to retry or fix the failed step. Never skip it.

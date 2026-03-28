@@ -1,6 +1,6 @@
 # Prerequisites
 
-Before starting the onboarding, gather the following information and set up credentials.
+Before starting the onboarding, gather the following information and prepare credentials.
 
 ## Project Information
 
@@ -26,35 +26,21 @@ Before starting the onboarding, gather the following information and set up cred
 
 ## Credentials
 
+> **Note:** The credentials below will be set on your GitHub repository. You don't need the repository to exist yet — just have the credentials ready. You'll set them on the repository during [Setup](01-monolith-setup.md) after creating it.
+
 ### Docker Hub
 
 1. Create a Docker Hub account at [hub.docker.com](https://hub.docker.com) if you don't have one (browser).
 2. Create an access token at [Docker Hub Security Settings](https://hub.docker.com/settings/security) (browser).
-3. Set credentials on your repository (CLI):
-   ```bash
-   gh variable set DOCKERHUB_USERNAME --body "<your-dockerhub-username>" --repo <owner>/<repo>
-   gh secret set DOCKERHUB_TOKEN --body "<your-dockerhub-token>" --repo <owner>/<repo>
-   ```
+3. Note your Docker Hub username and token — you'll set them on your repository in the Setup step.
 
 ### SonarCloud
 
 1. Create a SonarCloud token — see [SonarCloud Setup](02a-monolith-sonarcloud-setup.md) (browser).
-2. Set the token on your repository (CLI):
-   ```bash
-   gh secret set SONAR_TOKEN --body "<your-sonar-token>" --repo <owner>/<repo>
-   ```
-
-### Verify Credentials (CLI)
-
-```bash
-gh variable list --repo <owner>/<repo> --json name --jq '.[].name' | grep DOCKERHUB_USERNAME
-gh secret list --repo <owner>/<repo> --json name --jq '.[].name' | grep -E 'DOCKERHUB_TOKEN|SONAR_TOKEN'
-```
+2. Note the token — you'll set it on your repository in the SonarCloud Setup step.
 
 ## Checklist
 
 1. Project information is decided
-2. GitHub repository exists and is public
-3. `DOCKERHUB_USERNAME` variable is set
-4. `DOCKERHUB_TOKEN` secret is set
-5. `SONAR_TOKEN` secret is set (can be deferred until SonarCloud Setup step)
+2. Docker Hub account and access token are ready
+3. SonarCloud token is ready (can be deferred until SonarCloud Setup step)
