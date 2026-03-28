@@ -36,13 +36,14 @@ Before doing anything, collect all the information needed upfront. Ask these que
 **Batch 1:**
 1. **GitHub owner** — username or org. After they answer, check with `gh api users/{owner} --jq '.type'` to determine if it's a User or Organization — this affects repo creation flags, collaborator APIs, and package visibility.
 2. **System domain** — e.g. Book Store, Flight Reservation. Remind them NOT to choose eShop (instructor example) and to avoid their company's actual domain (NDA).
-3. **System name** — e.g. ACME Shop, SkyBook. Derive repo name by hyphenating and lowercasing.
-4. **Monolith language** — Java, .NET, TypeScript, or Other.
+3. **System name** — e.g. ACME Shop, SkyBook.
+4. **Repo name** — default: derived from system name by hyphenating and lowercasing (e.g. "ACME Shop" → `acme-shop`). Check if it already exists with `gh repo view {owner}/{repo} 2>&1`. If it exists, append a random suffix (e.g. `acme-shop-7f3a`). Confirm the final name with the user.
+5. **Monolith language** — Java, .NET, TypeScript, or Other.
 
 **Batch 2:**
-5. **System test language** — Same as monolith, or different.
-6. **Architecture** — Monolith or multi-component (if multi-component, ask how many and what they are).
-7. **Repository strategy** — Mono-repo or multi-repo (multi-repo only if multi-component).
+6. **System test language** — Same as monolith, or different.
+7. **Architecture** — Monolith or multi-component (if multi-component, ask how many and what they are).
+8. **Repository strategy** — Mono-repo or multi-repo (multi-repo only if multi-component).
 
 **Batch 3 (credentials — never handle token values directly):**
 
