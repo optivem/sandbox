@@ -32,10 +32,11 @@ These may be passed in the initial prompt. If not provided, ask the user during 
 2. Start with Prerequisites — gather information from the user via AskUserQuestion.
 3. For each subsequent step: read the doc, follow it, verify using the Checklist, report results.
 4. Skip Multi Component docs if user chose monolith. Skip Multi Repo docs if user chose mono-repo.
-5. At the end, print a summary of all steps with ✓/✗ status and the project URL(s).
+5. At the end, print a summary of all steps with ✓/✗ status, the project URL(s), and a **Challenges** section listing any workflow failures encountered and what was done to fix each one.
 
 ## Error Handling
 
 - **Stop on first error** — steps are sequential and cumulative. If a step fails, do NOT continue to the next step. Report the failure and stop.
 - If a workflow fails: `gh run view {run-id} --log-failed --repo {owner}/{repo}`
 - Always offer to retry or fix the failed step. Never skip it.
+- **Track challenges** — keep a running log of every workflow failure and the fix applied. Include these in the final summary under a **Challenges** section (e.g. "CI workflow failed due to missing secret → added `NPM_TOKEN` secret and re-ran").
