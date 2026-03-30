@@ -4,6 +4,8 @@ For a working example, see the [Greeter Multi Component](https://github.com/opti
 
 ## Update Image References
 
+> **Important:** This step only updates image URLs. The rest of `acceptance-stage.yml` (test runner setup, build commands) must match your **system-test language**. If you changed the system-test language in the monolith phase (e.g., from TypeScript to Java), your `acceptance-stage.yml` already has the correct test runner — only update the `image-urls` section below. Do **not** overwrite the entire file from the `greeter-multi-comp` template.
+
 Open the file `acceptance-stage.yml`.
 
 Find the word `monolith` inside `image-urls` — there's one line. Copy-paste that line so you have two lines. In the first line, replace `monolith` with `frontend`. In the second line, replace `monolith` with `backend`.

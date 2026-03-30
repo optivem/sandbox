@@ -11,8 +11,8 @@ Create a README file in the System Repository.
 In the System Repository README file, add the following:
 
 - System Name (this could be the title at the top of your README)
-- Background Context: Write a few sentences to explain that this is an ATDD Sandbox Project, and why you're making it (also, please include a link back to [ATDD Accelerator](https://atdd-accelerator.optivem.com/) and [Valentina Jemuović](https://www.linkedin.com/in/valentinajemuovic/) so that others can learn from here too).
-- Contributors: Add the names of the Project member(s) and links to their GitHub profiles. Feel free to include [Valentina Jemuović](https://www.linkedin.com/in/valentinajemuovic/) as a contributor at the end of the list.
+- Background Context: Write a few sentences to explain what this project is and why you're making it.
+- Contributors: Add the names of the Project member(s) and links to their GitHub profiles.
 - Licence: MIT Licence
 
 ## 2. Create Documentation (GitHub Pages)

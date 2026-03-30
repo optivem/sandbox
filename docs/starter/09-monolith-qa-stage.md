@@ -1,4 +1,4 @@
-# QA Stage
+# Monolith - QA Stage
 
 For a working example, see the [Greeter](https://github.com/optivem/greeter) template.
 

@@ -10,6 +10,12 @@ In the job `resolve-docker-images`, find the input `base-image-urls`. For each c
 
 In the step `Tag Docker Images for Production`, set the value `GITHUB_TOKEN: ${{ secrets.DOCKER_REGISTRY_TOKEN }}`.
 
+Commit and push (CLI):
+
+```bash
+git add -A && git commit -m "Update production stage for multi-repo" && git push
+```
+
 Trigger the PROD Stage (CLI):
 
 ```bash

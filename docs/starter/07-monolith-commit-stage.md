@@ -1,4 +1,4 @@
-# Commit Stage
+# Monolith - Commit Stage
 
 For a working example, see the starter templates:
 

@@ -33,6 +33,8 @@ In `.github/workflows`:
 
 1. Delete `commit-stage-monolith.yml`.
 
+**Java/Gradle projects:** Verify that `backend/gradle/wrapper/gradle-wrapper.jar` is tracked by git (`git ls-files backend/gradle`). If it's missing (e.g., due to a global gitignore excluding `*.jar`), force-add it: `git add -f backend/gradle/wrapper/gradle-wrapper.jar`
+
 **Commit and push (CLI):**
 
 ```bash
@@ -71,8 +73,9 @@ In `system-test/docker-compose.yml`:
 
 1. Replace the single monolith service with separate `frontend` and `backend` services.
 2. Update the image references accordingly.
-3. Run Docker Compose locally and verify the application loads.
-4. Run the system tests locally and verify they pass.
+3. **Port mapping:** Verify the backend's actual listening port (check `.env`, `Dockerfile`, or startup config). The nginx reverse proxy and docker-compose port mapping must match. For example, if the backend listens on port 8080 (common for NestJS via `.env`), the nginx proxy should target `http://backend:8080`, not the default `3000`.
+4. Run Docker Compose locally and verify the application loads.
+5. Run the system tests locally and verify they pass.
 
 ## Frontend + Microservice Backend
 

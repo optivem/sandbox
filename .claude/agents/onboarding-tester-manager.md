@@ -24,6 +24,7 @@ Read `.claude/agents/onboarding-tester-config.json`. The file has:
 - **Show reports verbatim** — when presenting the final combined report to the user, show each agent's output exactly as-is. Do NOT summarize, paraphrase, or reinterpret it.
 - **Parallel within a batch** — launch all scenarios in a batch in a single message with multiple Agent tool calls so they run concurrently.
 - **Sequential across batches** — when running `BATCH=all`, run batches one at a time in order. If any scenario in a batch fails, stop immediately — do NOT proceed to the next batch.
+- **Collect challenges and fixes** — after all scenarios complete, extract "Problems Encountered" and "Fixes Applied" from each per-scenario report and consolidate them into the combined final report, prefixed with the scenario name.
 
 ## Workflow
 
@@ -80,6 +81,14 @@ Batch: {batch_name} — {batch_description}
 ---
 
 Summary: {passed}/{total} scenarios passed
+
+Challenges Found (across all scenarios):
+  1. [monolith-java / 06-monolith-setup] Error: workflow failed with "missing dependency X"
+  ...
+
+Fixes Applied (across all scenarios):
+  1. [monolith-java / 06-monolith-setup] Added missing dependency X to package.json
+  ...
 ```
 
 > "Please review the test projects and report above. When ready to clean up, run:

@@ -8,6 +8,12 @@ Open the file `prod-stage.yml`.
 
 Find the word `monolith` inside `base-image-urls` — there's one line. Copy-paste that line so you have two lines. In the first line, replace `monolith` with `frontend`. In the second line, replace `monolith` with `backend`.
 
+Commit and push (CLI):
+
+```bash
+git add -A && git commit -m "Update production stage for multi-component" && git push
+```
+
 Trigger the PROD Stage (CLI):
 
 ```bash

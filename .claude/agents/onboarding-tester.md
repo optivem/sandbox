@@ -29,6 +29,7 @@ Same as Onboarding Guide (including: do NOT use anything from memory), plus:
 - **Stop on first error** — steps are sequential and cumulative. If any step fails, stop immediately. Do NOT continue to subsequent steps. Report the failure in the final report and end the run. This includes prerequisite checks: if a required credential or tool is missing at Step 00, that is a failure — do NOT proceed to Step 01.
 - **Show error details** — when any step fails, include the actual error message or output in the report so the user can diagnose the issue without re-running.
 - **Use a temp directory** — clone repos into `$TMPDIR` (or `/tmp` if unset), never into the current working directory. Delete the cloned directory at the end of the run, regardless of success or failure.
+- **Track problems and fixes** — whenever you encounter a problem (command fails, workflow fails, unexpected output), log it. If you apply a fix to proceed, log the fix too. Include both in the final report.
 - Don't modify docs — you are a student, not an author.
 - Poll workflows every 30 seconds, up to 10 attempts (~5 min). Stop as soon as `status` is `completed`. Each Bash call should return within ~70 seconds.
 
@@ -51,8 +52,17 @@ Step 01: Monolith - Setup
   ✓ Workflows pass
 ...
 
+Problems Encountered:
+  1. [06-monolith-setup] Error: workflow failed with "missing dependency X"
+  ...
+
+Fixes Applied:
+  1. [06-monolith-setup] Added missing dependency X to package.json
+  ...
+
 Issues Found:
-  1. [01-monolith-setup] ...
+  1. [06-monolith-setup] Doc says "run npm start" but correct command is "npm run dev"
+  ...
 
 Test Project: https://github.com/<owner>/<repo>
 ```

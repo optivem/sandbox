@@ -1,4 +1,4 @@
-# Production Stage
+# Monolith - Production Stage
 
 For a working example, see the [Greeter](https://github.com/optivem/greeter) template.
 

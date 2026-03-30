@@ -16,6 +16,12 @@ base-image-urls: |
   ghcr.io/${{ github.repository_owner }}/eshop-backend/backend
 ```
 
+Commit and push (CLI):
+
+```bash
+git add -A && git commit -m "Update QA stage for multi-repo" && git push
+```
+
 Trigger the QA Stage (CLI):
 
 ```bash
@@ -25,6 +31,15 @@ gh run watch --repo <owner>/<repo>
 
 Verify that the QA Stage passes.
 
+Trigger QA Signoff (CLI):
+
+```bash
+gh workflow run qa-signoff.yml --repo <owner>/<repo> -f version=<rc-version> -f result=approved
+gh run watch --repo <owner>/<repo>
+```
+
+Verify that QA Signoff passes.
+
 > **Note:** After updating the QA Stage, the Production Stage may still fail because it still references the old image URLs. This is expected — you will update it in the Production Stage multi-repo section. For now, only verify that the QA Stage passes.
 
 ## Checklist
@@ -32,3 +47,4 @@ Verify that the QA Stage passes.
 1. QA Stage references correct image URLs from component repositories
 2. Cross-repository tagging works with `DOCKER_REGISTRY_TOKEN`
 3. `qa-stage` workflow completes successfully
+4. `qa-signoff` workflow completes successfully

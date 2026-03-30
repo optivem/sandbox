@@ -1,4 +1,4 @@
-# Setup
+# Monolith - Setup
 
 ## Starter Templates
 
@@ -21,16 +21,19 @@
    cp -f /tmp/greeter-template/VERSION . 2>/dev/null || true
    ```
    - Also copy the top part of `README.md` (the status badges section) from the template.
-3. Replace `optivem/greeter-{language}` with `<your_repo_owner>/<your_repo_name>` in the whole project (CLI):
+3. Replace `optivem/greeter-{language}` with `<your_repo_owner>/<your_repo_name>` in the whole project (CLI).
+   > **macOS note:** The `sed -i` commands below use Linux syntax. On macOS, use `sed -i ''` instead of `sed -i` (add an empty string argument after `-i`).
    ```bash
-   grep -rl "optivem/greeter-{language}" . --include="*.yml" --include="*.yaml" --include="*.md" --include="*.gradle" --include="*.gradle.kts" | xargs sed -i 's|optivem/greeter-{language}|<owner>/<repo>|g'
+   grep -rl "optivem/greeter-{language}" . --include="*.yml" --include="*.yaml" --include="*.md" --include="*.gradle" --include="*.gradle.kts" --include="*.csproj" --include="*.sln" --include="*.cshtml" --include="*.json" --include="Dockerfile" | xargs sed -i 's|optivem/greeter-{language}|<owner>/<repo>|g'
    ```
    Also replace the underscore variant (used by SonarCloud config) and standalone `optivem` org reference (CLI):
    ```bash
-   grep -rl "optivem_greeter-{language}" . --include="*.yml" --include="*.yaml" --include="*.gradle" --include="*.gradle.kts" | xargs sed -i 's|optivem_greeter-{language}|<owner>_<repo>|g'
-   grep -rl "sonar.organization.*optivem\|/o:\"optivem\"\|/o:.*optivem" . --include="*.yml" --include="*.yaml" --include="*.gradle" --include="*.gradle.kts" | xargs sed -i "s|optivem|<owner>|g"
+   grep -rl "optivem_greeter-{language}" . --include="*.yml" --include="*.yaml" --include="*.gradle" --include="*.gradle.kts" --include="*.csproj" --include="*.sln" | xargs sed -i 's|optivem_greeter-{language}|<owner>_<repo>|g'
+   grep -rl "sonar.organization.*optivem\|/o:\"optivem\"\|/o:.*optivem" . --include="*.yml" --include="*.yaml" --include="*.gradle" --include="*.gradle.kts" --include="*.csproj" | xargs sed -i -e "s|sonar.organization=optivem|sonar.organization=<owner>|g" -e 's|/o:"optivem"|/o:"<owner>"|g' -e "s|/o:optivem|/o:<owner>|g"
    ```
-   This covers `.yml` files (including `docker-compose.yml` and workflow files), `.md` files, and `.gradle`/`.gradle.kts` files (including SonarCloud config):
+   > **Warning:** After running the SonarCloud org replacement, verify that `optivem/actions` references in `.github/workflows/*.yml` are still intact. If any were changed to `<owner>/actions`, revert them — those must remain as `optivem/actions`.
+
+   This covers `.yml` files (including `docker-compose.yml` and workflow files), `.md` files, `.gradle`/`.gradle.kts` files (including SonarCloud config), and .NET files (`.csproj`, `.sln`, `.cshtml`, `.json`, `Dockerfile`):
    - In the README file, so that the status badges point to your workflows (not the template workflows)
    - In `system-test/docker-compose.yml`, to reference your Docker Image (not the template image)
    - In SonarCloud config (`sonar.projectKey` and `sonar.organization`), so analysis runs under your organization
@@ -45,7 +48,9 @@
    ```bash
    git add -A && git commit -m "Apply pipeline template" && git push
    ```
-7. Trigger `commit-stage-monolith` and wait for it to finish (CLI):
+7. > **Note:** If SonarCloud analysis is enabled in the template workflow, the commit stage will fail unless the SonarCloud project already exists. Either complete [SonarCloud Setup](07a-monolith-sonarcloud-setup.md) before this step, or expect the first commit stage to fail on code analysis and re-run after setup.
+
+   Trigger `commit-stage-monolith` and wait for it to finish (CLI):
    ```bash
    gh workflow run commit-stage-monolith.yml --repo <owner>/<repo>
    gh run watch --repo <owner>/<repo>
