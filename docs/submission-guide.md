@@ -2,11 +2,10 @@
 
 ## How to Submit Your Work
 
-1. Go to [**Submit a Review Request**](https://github.com/optivem/atdd-bootcamp/issues/new/choose)
-2. Select your project
-3. Select the module
-4. Submit the issue
-5. When you're ready for review, add a comment on the issue with:
+1. Go to the [**Sandbox Dashboard**](https://optivem.github.io/sandbox/)
+2. Find the row for your module and click **+** in your project's column
+3. This opens a pre-filled issue — click **Create** to submit it (do not change the title or body)
+4. When you're ready for review, add a comment on the issue with:
    - A link to your repository
    - For each item in the Review Checklist, confirm how you satisfied it
 
