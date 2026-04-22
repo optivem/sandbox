@@ -1,4 +1,4 @@
-Run all hub sync scripts to regenerate data derived from the courses repo.
+Run all hub sync scripts (or a subset via `--only`) to regenerate data derived from the courses repo.
 
 Execute the following from the hub repo root:
 
@@ -7,10 +7,17 @@ cd "$(git rev-parse --show-toplevel)" && node scripts/sync.mjs
 ```
 
 This runs:
-1. `sync-course-structure.mjs` → `config/courses/*.json` (modules + milestones)
-2. `sync-checklists.mjs` → `checklists/{courseId}/{NN}.md`
-3. `sync-issue-template.mjs` → `.github/ISSUE_TEMPLATE/review-request.yml`
-4. `sync-student-urls.mjs` → `config/courses/*.json` url fields (from `courses/generated/student-urls.json`, if present)
+1. `sync-course-structure.mjs` → `config/courses/*.json` (modules + milestones) — step key: `structure`
+2. `sync-checklists.mjs` → `checklists/{courseId}/{NN}.md` — step key: `checklists`
+3. `sync-issue-template.mjs` → `.github/ISSUE_TEMPLATE/review-request.yml` — step key: `issue-template`
+4. `sync-student-urls.mjs` → `config/courses/*.json` url fields (from `courses/generated/student-urls.json`, if present) — step key: `urls`
+
+To run only a subset, pass `--only <keys>` (comma-separated). Examples:
+
+```bash
+node scripts/sync.mjs --only checklists
+node scripts/sync.mjs --only structure,urls
+```
 
 The dashboard (`docs/index.html`) is built and deployed in CI by `.github/workflows/dashboard.yml` — it is not regenerated locally.
 

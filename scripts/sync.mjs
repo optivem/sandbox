@@ -18,7 +18,12 @@
  * The dashboard (docs/index.html) is built and deployed in CI by
  * .github/workflows/dashboard.yml — it is not regenerated here.
  *
- * Usage: node scripts/sync.mjs
+ * Usage:
+ *   node scripts/sync.mjs                         # run all steps
+ *   node scripts/sync.mjs --only checklists       # run one step
+ *   node scripts/sync.mjs --only structure,urls   # run multiple steps (comma-separated)
+ *
+ * Step names: structure, checklists, issue-template, urls
  */
 
 import { dirname, join } from "node:path";
@@ -26,12 +31,38 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-async function run(label, moduleFile) {
-  console.log(`\n── ${label} ──`);
-  await import(pathToFileURL(join(__dirname, moduleFile)).href);
+const STEPS = [
+  { key: "structure",      label: "Course structure",  file: "./sync-course-structure.mjs" },
+  { key: "checklists",     label: "Review checklists", file: "./sync-checklists.mjs" },
+  { key: "issue-template", label: "Issue template",    file: "./sync-issue-template.mjs" },
+  { key: "urls",           label: "Student URLs",      file: "./sync-student-urls.mjs" },
+];
+
+function extractOnly() {
+  // Strip --only <value> from process.argv so sub-scripts see a clean argv
+  // (they read process.argv[2] as the courses-root override).
+  const idx = process.argv.indexOf("--only");
+  if (idx === -1) return null;
+  const value = process.argv[idx + 1];
+  if (!value) {
+    console.error("--only requires a value (comma-separated step names)");
+    process.exit(1);
+  }
+  process.argv.splice(idx, 2);
+  const requested = value.split(",").map(s => s.trim()).filter(Boolean);
+  const valid = new Set(STEPS.map(s => s.key));
+  const unknown = requested.filter(s => !valid.has(s));
+  if (unknown.length) {
+    console.error(`Unknown step(s): ${unknown.join(", ")}. Valid: ${[...valid].join(", ")}`);
+    process.exit(1);
+  }
+  return new Set(requested);
 }
 
-await run("Course structure",   "./sync-course-structure.mjs");
-await run("Review checklists",  "./sync-checklists.mjs");
-await run("Issue template",     "./sync-issue-template.mjs");
-await run("Student URLs",       "./sync-student-urls.mjs");
+const only = extractOnly();
+const selected = only ? STEPS.filter(s => only.has(s.key)) : STEPS;
+
+for (const step of selected) {
+  console.log(`\n── ${step.label} ──`);
+  await import(pathToFileURL(join(__dirname, step.file)).href);
+}
