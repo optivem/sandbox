@@ -9,4 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Log deleted issue
-        run: echo "Issue #${{ github.event.issue.number }} (${{ github.event.issue.title }}) deleted by @${{ github.event.sender.login }}. Dashboard will refresh via workflow_run."
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          SENDER: ${{ github.event.sender.login }}
+        run: echo "Issue #$ISSUE_NUMBER ($ISSUE_TITLE) deleted by @$SENDER. Dashboard will refresh via workflow_run."
