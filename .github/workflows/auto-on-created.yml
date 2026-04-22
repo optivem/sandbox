@@ -38,8 +38,9 @@ jobs:
     outputs:
       is-duplicate: ${{ steps.duplicate.outputs.is-duplicate }}
       original-number: ${{ steps.duplicate.outputs.original-number }}
-      allowed: ${{ steps.prereqs.outputs.allowed }}
-      incomplete-module: ${{ steps.prereqs.outputs.incomplete-module }}
+      # TODO: Re-enable prerequisite outputs alongside the prereqs step below.
+      # allowed: ${{ steps.prereqs.outputs.allowed }}
+      # incomplete-module: ${{ steps.prereqs.outputs.incomplete-module }}
     steps:
       - uses: actions/checkout@v6
 
@@ -52,15 +53,16 @@ jobs:
           course-id: ${{ needs.validate.outputs.course-id }}
           module-label: ${{ needs.validate.outputs.module-label }}
 
-      - name: Check module prerequisites
-        id: prereqs
-        if: steps.duplicate.outputs.is-duplicate != 'true'
-        uses: ./.github/actions/check-prerequisites
-        with:
-          project-key: ${{ needs.validate.outputs.project-key }}
-          course-id: ${{ needs.validate.outputs.course-id }}
-          module-num: ${{ needs.validate.outputs.module-num }}
-          github-token: ${{ secrets.PROJECT_TOKEN }}
+      # TODO: Re-enable prerequisite check — currently disabled so tickets can be created out of module order.
+      # - name: Check module prerequisites
+      #   id: prereqs
+      #   if: steps.duplicate.outputs.is-duplicate != 'true'
+      #   uses: ./.github/actions/check-prerequisites
+      #   with:
+      #     project-key: ${{ needs.validate.outputs.project-key }}
+      #     course-id: ${{ needs.validate.outputs.course-id }}
+      #     module-num: ${{ needs.validate.outputs.module-num }}
+      #     github-token: ${{ secrets.PROJECT_TOKEN }}
 
   close-invalid:
     runs-on: ubuntu-latest
@@ -103,30 +105,32 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           labels: "closed-duplicate"
 
-  close-blocked:
-    runs-on: ubuntu-latest
-    needs: [validate, check-gates]
-    if: needs.check-gates.outputs.is-duplicate != 'true' && needs.check-gates.outputs.allowed == 'false'
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Close issue if prerequisites not met
-        uses: ./.github/actions/close-issue
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          title: "BLOCKED | ${{ github.event.issue.title }}"
-          body: "> [!CAUTION]\n> ## ❌ Prerequisites Not Met\n> You must complete the previous module before starting this one.\n>\n> **Incomplete module:** ${{ needs.check-gates.outputs.incomplete-module }}\n>\n> Please complete that module first, then re-create this ticket.\n>\n> **This issue has been closed automatically.**"
-
-      - name: Label blocked issue
-        uses: ./.github/actions/add-labels
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          labels: "closed-blocked"
+  # TODO: Re-enable close-blocked job alongside the prereqs step above.
+  # close-blocked:
+  #   runs-on: ubuntu-latest
+  #   needs: [validate, check-gates]
+  #   if: needs.check-gates.outputs.is-duplicate != 'true' && needs.check-gates.outputs.allowed == 'false'
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #
+  #     - name: Close issue if prerequisites not met
+  #       uses: ./.github/actions/close-issue
+  #       with:
+  #         issue-number: ${{ github.event.issue.number }}
+  #         title: "BLOCKED | ${{ github.event.issue.title }}"
+  #         body: "> [!CAUTION]\n> ## ❌ Prerequisites Not Met\n> You must complete the previous module before starting this one.\n>\n> **Incomplete module:** ${{ needs.check-gates.outputs.incomplete-module }}\n>\n> Please complete that module first, then re-create this ticket.\n>\n> **This issue has been closed automatically.**"
+  #
+  #     - name: Label blocked issue
+  #       uses: ./.github/actions/add-labels
+  #       with:
+  #         issue-number: ${{ github.event.issue.number }}
+  #         labels: "closed-blocked"
 
   process:
     runs-on: ubuntu-latest
     needs: [validate, check-gates]
-    if: needs.check-gates.outputs.is-duplicate != 'true' && needs.check-gates.outputs.allowed != 'false'
+    # TODO: Restore the prereq clause when re-enabling the prereqs step: && needs.check-gates.outputs.allowed != 'false'
+    if: needs.check-gates.outputs.is-duplicate != 'true'
     steps:
       - uses: actions/checkout@v6
 
