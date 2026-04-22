@@ -1,16 +1,16 @@
-# Optivem Reviews
+# Optivem Hub
 
-**[Reviews Dashboard](https://optivem.github.io/reviews/)**
+**[Dashboard](https://optivem.github.io/hub/)**
 
-[![dashboard](https://github.com/optivem/reviews/actions/workflows/dashboard.yml/badge.svg)](https://github.com/optivem/reviews/actions/workflows/dashboard.yml)
+[![dashboard](https://github.com/optivem/hub/actions/workflows/dashboard.yml/badge.svg)](https://github.com/optivem/hub/actions/workflows/dashboard.yml)
 
-Optivem Academy — Sandbox Project Reviews
+Optivem Academy — project submissions, reviews, and discussions
 
-[Submit a Review Request](https://github.com/optivem/reviews/issues/new/choose)
+[Submit a Review Request](https://github.com/optivem/hub/issues/new/choose)
 
 ## How to submit your project for review
 
-1. Click [**Submit a Review Request**](https://github.com/optivem/reviews/issues/new/choose)
+1. Click [**Submit a Review Request**](https://github.com/optivem/hub/issues/new/choose)
 2. Select your project
 3. Select the module
 4. Submit the issue
@@ -68,4 +68,4 @@ When you've addressed feedback, add a comment on your issue describing what you 
 
 ## Refresh
 
-[Refresh Dashboard](https://github.com/optivem/reviews/actions/workflows/dashboard.yml)
+[Refresh Dashboard](https://github.com/optivem/hub/actions/workflows/dashboard.yml)

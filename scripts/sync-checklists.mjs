@@ -6,13 +6,13 @@
  * section.
  *
  * Input  (source of truth): sandbox-project.md files in ../courses/{NN-courseId}/accelerator/course/{NN-module}/
- * Output (derived data)   : sandbox/checklists/{courseId}/{NN}.md
+ * Output (derived data)   : hub/checklists/{courseId}/{NN}.md
  *
  * Transformation: bullet lines starting with "- " become "- [ ]" checkboxes.
  * Other content (blank lines, **bold** section headers) is passed through.
  *
  * Usage: node scripts/sync-checklists.mjs [courses-root]
- *   courses-root defaults to ../courses (relative to sandbox repo root)
+ *   courses-root defaults to ../courses (relative to hub repo root)
  */
 
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdirSync, unlinkSync } from "fs";

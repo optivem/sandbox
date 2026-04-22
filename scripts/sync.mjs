@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Sync all sandbox data derived from the courses repo.
+ * Sync all hub data derived from the courses repo.
  * Runs the local sync scripts in order:
  *
  *   1. sync-course-structure.mjs  → config/courses/*.json (modules + milestones)
@@ -13,7 +13,7 @@
  * (`courses/tools/scrape-student-urls.ts`) because it needs Playwright
  * + interactive login. Run that script separately when URLs change; its
  * output is committed as `courses/generated/student-urls.json` and this
- * orchestrator applies it to the sandbox configs.
+ * orchestrator applies it to the hub configs.
  *
  * The dashboard (docs/index.html) is built and deployed in CI by
  * .github/workflows/dashboard.yml — it is not regenerated here.

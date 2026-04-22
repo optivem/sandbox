@@ -10,7 +10,7 @@
  * sandbox-project.md are excluded from the config.
  *
  * Usage: node scripts/sync-course-structure.mjs [courses-root]
- *   courses-root defaults to ../courses (relative to sandbox repo root)
+ *   courses-root defaults to ../courses (relative to hub repo root)
  */
 
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "fs";

@@ -8,7 +8,7 @@
  * Input:  ../courses/generated/student-urls.json
  * Output: config/courses/*.json (url fields)
  *
- * Courses publishes the raw scrape; sandbox does the mapping into its
+ * Courses publishes the raw scrape; hub does the mapping into its
  * own config schema. No cross-repo writes.
  *
  * Usage: node scripts/sync-student-urls.mjs [student-urls-json]

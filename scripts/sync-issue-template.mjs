@@ -29,7 +29,7 @@ const moduleOptions = config.courses.flatMap(c =>
 ).join("\n");
 
 const yaml = `name: "Module Review"
-description: "Submit your sandbox project for review"
+description: "Submit your project for review"
 title: ""
 body:
   - type: dropdown

@@ -81,7 +81,7 @@ esac
 
 if [ -z "$REPO" ]; then
   if [ "$TEST_MODE" = true ]; then
-    REPO="sandbox-test-$(date +%Y%m%d-%H%M%S)"
+    REPO="hub-test-$(date +%Y%m%d-%H%M%S)"
   else
     fatal "Missing --repo"
   fi
