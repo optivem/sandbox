@@ -7,10 +7,14 @@
  *   1. sync-course-structure.mjs  → config/courses/*.json (modules + milestones)
  *   2. sync-checklists.mjs        → checklists/{courseId}/{NN}.md
  *   3. sync-issue-template.mjs    → .github/ISSUE_TEMPLATE/review-request.yml
- *   4. generate-dashboard.mjs     → docs/index.html (requires GITHUB_TOKEN/OWNER/REPO)
+ *   4. sync-student-urls.mjs      → config/courses/*.json (url fields, from courses/generated/student-urls.json)
+ *   5. generate-dashboard.mjs     → docs/index.html (requires GITHUB_TOKEN/OWNER/REPO)
  *
- * Thinkific URL scraping (courses/tools/sync-sandbox-urls.ts) is separate —
- * it needs Playwright and lives in the courses repo.
+ * Student-view URL *scraping* lives in the courses repo
+ * (`courses/tools/scrape-student-urls.ts`) because it needs Playwright
+ * + interactive login. Run that script separately when URLs change; its
+ * output is committed as `courses/generated/student-urls.json` and this
+ * orchestrator applies it to the sandbox configs.
  *
  * Usage: node scripts/sync.mjs
  */
@@ -28,6 +32,7 @@ async function run(label, moduleFile) {
 await run("Course structure",   "./sync-course-structure.mjs");
 await run("Review checklists",  "./sync-checklists.mjs");
 await run("Issue template",     "./sync-issue-template.mjs");
+await run("Student URLs",       "./sync-student-urls.mjs");
 
 if (process.env.GITHUB_TOKEN && process.env.GITHUB_OWNER && process.env.GITHUB_REPO) {
   await run("Dashboard",        "./generate-dashboard.mjs");
