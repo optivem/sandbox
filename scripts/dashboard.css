@@ -21,7 +21,6 @@
     .module-name { text-align: left; font-weight: 600; background: #f9fafb; white-space: nowrap; width: 320px; min-width: 320px; max-width: 320px; }
     .module-name a { color: #1d4ed8; text-decoration: none; }
     .module-name a:hover { text-decoration: underline; }
-    .week-badge { display: inline-block; font-size: 0.65rem; font-weight: 600; color: #6b7280; background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 4px; padding: 1px 5px; margin-right: 6px; vertical-align: middle; }
     .project-header { width: 80px; min-width: 80px; max-width: 80px; }
     .project-header a { color: #1d4ed8; text-decoration: none; }
     .project-header a:hover { text-decoration: underline; }

@@ -23,7 +23,7 @@ Run from the sandbox repo root:
 node scripts/sync-course-structure.mjs
 ```
 
-This scans sandbox-project.md files in each module and updates `config/courses/*.json` with module and milestone metadata (number, label, name). It preserves existing URLs and week values. No browser needed.
+This scans sandbox-project.md files in each module and updates `config/courses/*.json` with module and milestone metadata (number, label, name). It preserves existing URLs. No browser needed.
 
 ### Step 2: Sync URLs (optional)
 

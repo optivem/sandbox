@@ -261,8 +261,6 @@ function renderDesktopTable(course, scored, totalModules) {
         ? `<a href="${escapeHtml(m.url)}" target="_blank" rel="noopener">${escapeHtml(moduleName)}</a>`
         : escapeHtml(moduleName);
 
-      const weekBadge = m.week ? `<span class="week-badge">W${m.week}</span>` : "";
-
       const cells = scored
         .map(({ proj, data }) => {
           const entry = data[m.number];
@@ -274,7 +272,7 @@ function renderDesktopTable(course, scored, totalModules) {
         .join("\n              ");
 
       return `          <tr>
-            <td class="module-name">${weekBadge}${label}</td>
+            <td class="module-name">${label}</td>
               ${cells}
           </tr>`;
     })
@@ -323,16 +321,15 @@ function renderMobileCards(course, scored, totalModules) {
       const moduleItems = modules
         .map((m) => {
           const moduleName = `${m.number} - ${m.name}`;
-          const weekBadge = m.week ? `<span class="week-badge">W${m.week}</span>` : "";
           const entry = data[m.number];
           if (!entry) {
             const url = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(moduleName)}&body=${encodeURIComponent(newIssueBody(course.name, proj.name, moduleName))}`;
             const moduleLabel = m.url ? `<a href="${escapeHtml(m.url)}" target="_blank" rel="noopener">${escapeHtml(moduleName)}</a>` : escapeHtml(moduleName);
-            return `<li class="card-module-item">${weekBadge}<span class="card-module-name">${moduleLabel}</span><span class="card-module-status card-status-missing"><a href="${url}" target="_blank" rel="noopener">+</a></span></li>`;
+            return `<li class="card-module-item"><span class="card-module-name">${moduleLabel}</span><span class="card-module-status card-status-missing"><a href="${url}" target="_blank" rel="noopener">+</a></span></li>`;
           }
           const cls = "card-status-" + entry.status.toLowerCase().replace(/\s+/g, "-");
           const moduleLabel = m.url ? `<a href="${escapeHtml(m.url)}" target="_blank" rel="noopener">${escapeHtml(moduleName)}</a>` : escapeHtml(moduleName);
-          return `<li class="card-module-item">${weekBadge}<span class="card-module-name">${moduleLabel}</span><span class="card-module-status ${cls}"><a href="${entry.url}" target="_blank" rel="noopener">${entry.status}</a></span></li>`;
+          return `<li class="card-module-item"><span class="card-module-name">${moduleLabel}</span><span class="card-module-status ${cls}"><a href="${entry.url}" target="_blank" rel="noopener">${entry.status}</a></span></li>`;
         })
         .join("\n");
 

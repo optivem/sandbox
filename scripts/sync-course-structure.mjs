@@ -102,7 +102,7 @@ for (const { id: courseId, configFile, coursePath } of COURSES) {
   const course = JSON.parse(readFileSync(configPath, "utf-8"));
   const scanned = scanModules(coursePath);
 
-  // Build lookup of existing data to preserve URLs and week values
+  // Build lookup of existing data to preserve URLs
   const existing = new Map();
   for (const m of course.modules || []) {
     const milestones = new Map();
@@ -115,7 +115,6 @@ for (const { id: courseId, configFile, coursePath } of COURSES) {
   course.modules = scanned.map(m => {
     const prev = existing.get(m.number) || {};
     const mod = { number: m.number, label: m.label, name: m.name, url: prev.url || "" };
-    if (prev.week) mod.week = prev.week;
 
     const prevMilestones = prev._milestones || new Map();
     mod.milestones = m.milestones.map(t => {

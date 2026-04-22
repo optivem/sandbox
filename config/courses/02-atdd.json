@@ -182,7 +182,6 @@
       "label": "10-acceptance-tests",
       "name": "Acceptance Tests",
       "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73297464-overview",
-      "week": 15,
       "milestones": [
         {
           "number": "01",
@@ -209,7 +208,6 @@
       "label": "11-external-system-contract-tests",
       "name": "External System Contract Tests",
       "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73597850-overview",
-      "week": 17,
       "milestones": [
         {
           "number": "01",
@@ -230,7 +228,6 @@
       "label": "12-atdd-acceptance-criteria",
       "name": "ATDD - Acceptance Criteria",
       "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73487319-overview",
-      "week": 18,
       "milestones": [
         {
           "number": "01",
@@ -245,7 +242,6 @@
       "label": "13-atdd-acceptance-tests",
       "name": "ATDD - Acceptance Tests",
       "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73653973-overview",
-      "week": 19,
       "milestones": [
         {
           "number": "01",
@@ -272,7 +268,6 @@
       "label": "14-atdd-external-system-contract-tests",
       "name": "ATDD - External System Contract Tests",
       "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673756-overview",
-      "week": 20,
       "milestones": [
         {
           "number": "01",
@@ -299,7 +294,6 @@
       "label": "15-structural-changes",
       "name": "Structural Changes",
       "url": "https://optivem.thinkific.com/courses/take/atdd/texts/73673769-overview",
-      "week": 21,
       "milestones": [
         {
           "number": "01",
