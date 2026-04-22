@@ -1,17 +1,14 @@
 name: dashboard
 
 on:
-  # Disabled: bursts of issue events (e.g. rapid ticket creation) trigger a
-  # workflow_run storm, and with cancel-in-progress: true most deploys get
-  # cancelled mid-flight, leaving Pages stale. Scheduled refresh covers it.
-  # workflow_run:
-  #   workflows:
-  #     - auto-on-created
-  #     - auto-on-closed
-  #     - auto-on-comment
-  #     - auto-on-edited
-  #     - auto-on-reopened
-  #   types: [completed]
+  workflow_run:
+    workflows:
+      - auto-on-created
+      - auto-on-closed
+      - auto-on-comment
+      - auto-on-edited
+      - auto-on-reopened
+    types: [completed]
   push:
     branches: [main]
   schedule:
@@ -23,9 +20,12 @@ permissions:
   pages: write
   id-token: write
 
+# Serialize runs but do NOT cancel in-flight ones: bursts of ticket events
+# must each complete their deploy so Pages converges to the latest state.
+# Runs are cheap (~20s), so queueing is preferable to mid-flight cancellation.
 concurrency:
   group: dashboard
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
