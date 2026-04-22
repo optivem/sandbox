@@ -15,18 +15,19 @@ Enumerated via grep across the full workspace. Totals:
 |---|---|---|
 | `sandbox/README.md` | 5 lines | Title + 4 URLs pointing at nonexistent `optivem/atdd-bootcamp` |
 | `sandbox/docs/submission-guide.md` | 1 line | Dashboard URL |
-| `sandbox/docs/index.html` | ~100+ lines | **Generated file** — fix the generator, regenerate |
 | `sandbox/.github/workflows/auto-on-closed.yml` | 1 line | Dashboard URL in issue comment |
 | `sandbox/.github/ISSUE_TEMPLATE/review-request.yml` | 1 line | Description mentions "sandbox project" — keep (student projects ARE sandboxes) |
 | `sandbox/.github/actions/validate-issue/action.yml` | 1 line | Description mentions "sandbox project board" — keep |
-| `courses/docs/plans/submission-pattern.md` | 4 lines | Doc references |
-| `courses/02-atdd/accelerator/course/*/0*-sandbox-project.md` | 17 files, 1 link each | Student submission links |
+| `sandbox/.claude/agents/sandbox-admin.md` | 4 lines (9, 24, 25, 33) | Hardcoded `optivem/sandbox` URLs; also consider renaming the agent itself |
+| `courses/docs/plans/submission-pattern.md` | 5 lines (57, 61, 113, 137, 166) | Doc references |
+| `courses/02-atdd/accelerator/course/*/0*-sandbox-project.md` | 15 files, 1 link each | Student submission links |
 | `courses/01-pipeline/accelerator/course/*/0*-sandbox-project.md` | 5 files, 1 link each | Student submission links |
 | `courses/.claude/agents/course-tester.md` | 1 line (178) | References `optivem/sandbox` URL pattern + local path `../../sandbox/docs/...` |
-| `courses/tools/sync-sandbox.ts` | 1 line (188) | Default path `"../atdd-bootcamp"` — currently broken |
-| `courses/tools/sync-bootcamp.ts` | 1 line (218) | Default path `"../atdd-bootcamp"` — currently broken |
+| `courses/tools/sync-bootcamp.ts` | 1 line (218) | Default path `"../atdd-bootcamp"` — targets a *different* repo (atdd-bootcamp), not sandbox/reviews; out of scope for this rename |
 | `academy.code-workspace` | 1 line (16) | `"path": "sandbox"` |
 | Claude harness `additionalWorkingDirectories` | (settings) | Contains `c:\GitHub\optivem\academy\sandbox` |
+
+`sandbox/docs/index.html` is no longer tracked (gitignored; built and deployed by `dashboard.yml` via GitHub Pages Actions). After rename, the workflow will pass `reviews` as `GITHUB_REPO` and issue URLs will resolve correctly — no generator edits needed.
 
 **Note on domain vocabulary**: the word "sandbox" as a student-project term stays everywhere. Only the `optivem/sandbox` repo slug and directory name change. E.g. "sandbox project" issue-template text, "04-sandbox-project.md" lesson filenames, `config/sandbox.json` config file — all remain.
 
@@ -76,11 +77,10 @@ Phases are sequenced so no reference is broken for more than a moment and GitHub
 
 - [ ] Line 32: `https://optivem.github.io/sandbox/` → `https://optivem.github.io/reviews/`.
 
-**`docs/index.html`** (generated):
+**`.claude/agents/sandbox-admin.md`**:
 
-- [ ] **Do NOT edit by hand.** Fix the generator: `scripts/generate-dashboard.mjs` — search for `optivem/sandbox` URL templates and replace with `optivem/reviews`.
-- [ ] Regenerate: run `dashboard.yml` workflow manually, or run the script locally.
-- [ ] Verify all ~100 issue links in regenerated `docs/index.html` point at `optivem/reviews`.
+- [ ] Replace `optivem/sandbox` → `optivem/reviews` on lines 9, 24, 25, 33.
+- [ ] Decide on agent rename: `sandbox-admin` → `reviews-admin`? Recommended: **rename**, to match the new repo. If renaming, also update the `name:` frontmatter field and move/rename the file.
 
 **Issue templates / actions** (no change needed):
 
@@ -89,7 +89,7 @@ Phases are sequenced so no reference is broken for more than a moment and GitHub
 
 ### Phase 5 — Cross-repo updates (`courses/` repo)
 
-**Submission links in lesson files** (22 files total):
+**Submission links in lesson files** (20 files total):
 
 - [ ] Replace `https://github.com/optivem/sandbox/blob/main/docs/submission-guide.md` with `https://github.com/optivem/reviews/blob/main/docs/submission-guide.md` across:
   - `02-atdd/accelerator/course/01-getting-started/04-sandbox-project.md`
@@ -115,14 +115,12 @@ Phases are sequenced so no reference is broken for more than a moment and GitHub
 
 **Doc references**:
 
-- [ ] `docs/plans/submission-pattern.md` — 4 occurrences of `optivem/sandbox` → `optivem/reviews` (lines 57, 61, 113, 137, 166).
+- [ ] `docs/plans/submission-pattern.md` — 5 occurrences of `optivem/sandbox` → `optivem/reviews` (lines 57, 61, 113, 137, 166).
 - [ ] `.claude/agents/course-tester.md` line 178 — update URL pattern reference `optivem/sandbox` → `optivem/reviews`, and local path `../../sandbox/docs/...` → `../../reviews/docs/...`.
 
 **Tooling**:
 
-- [ ] `tools/sync-sandbox.ts` line 188: default `"../atdd-bootcamp"` → `"../reviews"`.
-- [ ] `tools/sync-bootcamp.ts` line 218: default `"../atdd-bootcamp"` → `"../reviews"`.
-- [ ] Consider whether `sync-sandbox.ts` and `sync-bootcamp.ts` scripts should themselves be renamed. Decision: **leave filenames as-is for this rename** — they refer to the internal "sync" action, not the target repo name. Separate decision for later if there's appetite.
+- [ ] `tools/sync-bootcamp.ts` line 218: default `"../atdd-bootcamp"` — this targets a *different* repo (`atdd-bootcamp`), not sandbox/reviews, so it is **out of scope for the rename**. Separate decision required: is `atdd-bootcamp` still a valid target, or is `sync-bootcamp.ts` orphaned dead code?
 
 ### Phase 6 — GitHub Pages verification
 
@@ -135,7 +133,7 @@ Phases are sequenced so no reference is broken for more than a moment and GitHub
 - [ ] Trigger `dashboard.yml` workflow manually in the renamed repo; confirm success.
 - [ ] Create a test review-request issue; confirm auto-labeling workflows fire and the dashboard picks it up.
 - [ ] Open a `sandbox-project.md` lesson in the courses repo; click the submission link; confirm it lands on the correct repo (`optivem/reviews`).
-- [ ] Run `sync-sandbox.ts` / `sync-bootcamp.ts` against `../reviews`; confirm they complete without the "directory not found" error they were silently hitting before.
+- [ ] Run `/sync-sandbox` (from the renamed `reviews/` repo); confirm it completes cleanly.
 
 ### Phase 8 — Commit & cleanup
 

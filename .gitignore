@@ -12,3 +12,6 @@ Thumbs.db
 
 # Scratch
 .tmp/
+
+# Generated dashboard (built + deployed by dashboard.yml)
+docs/index.html

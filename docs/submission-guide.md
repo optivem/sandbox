@@ -2,7 +2,7 @@
 
 ## How to Submit Your Work
 
-1. Go to the [**Sandbox Dashboard**](https://optivem.github.io/sandbox/)
+1. Go to the [**Reviews Dashboard**](https://optivem.github.io/reviews/)
 2. Find the row for your module and click **+** in your project's column
 3. This opens a pre-filled issue — click **Create** to submit it (do not change the title or body)
 4. When you're ready for review, add a comment on the issue with:
