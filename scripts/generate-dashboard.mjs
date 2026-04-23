@@ -477,9 +477,11 @@ async function main() {
 
   const template = readFileSync(join(__dirname, "dashboard-template.html"), "utf-8");
   const css = readFileSync(join(__dirname, "dashboard.css"), "utf-8");
+  const version = Date.now().toString();
   const html = template
     .replace("{{DASHBOARD_CSS}}", css)
     .replace("{{LAST_UPDATED}}", new Date().toUTCString())
+    .replace("{{VERSION}}", version)
     .replace("{{SUMMARY_TABLE}}", generateSummaryTable(courses, matrices, sortedProjects))
     .replace("{{COURSE_SECTIONS}}", sections.join("\n"))
     .replace("{{COURSE_CARDS}}", cards.join("\n"))
@@ -491,7 +493,9 @@ async function main() {
   const docsDir = join(ROOT, "docs");
   mkdirSync(docsDir, { recursive: true });
   writeFileSync(join(docsDir, "index.html"), html, "utf-8");
+  writeFileSync(join(docsDir, "version.json"), JSON.stringify({ version }) + "\n", "utf-8");
   console.log("Dashboard written to docs/index.html");
+  console.log(`Version ${version} written to docs/version.json`);
 }
 
 main();
