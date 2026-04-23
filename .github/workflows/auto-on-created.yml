@@ -74,12 +74,6 @@ jobs:
           title: "INVALID | ${{ github.event.issue.title }}"
           body: "> [!CAUTION]\n> ## ❌ Issue Rejected\n> Hi @${{ github.event.issue.user.login }}, you are not a member of the selected project.\n>\n> If you believe this is an error, please contact [Valentina Jemuović](https://github.com/valentinajemuovic).\n>\n> **This issue has been closed automatically.**"
 
-      - name: Label unauthorized issue
-        uses: ./.github/actions/add-labels
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          labels: "closed-invalid"
-
   close-duplicate:
     runs-on: ubuntu-latest
     needs: [validate, check-gates]
@@ -95,12 +89,6 @@ jobs:
           body: "Duplicate of #${{ needs.check-gates.outputs.original-number }}\n\n> [!CAUTION]\n> ## ❌ Duplicate Issue\n> A ticket for this project and module already exists: #${{ needs.check-gates.outputs.original-number }}\n>\n> **This issue has been closed automatically as a duplicate.**"
           state-reason: "duplicate"
 
-      - name: Label duplicate issue
-        uses: ./.github/actions/add-labels
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          labels: "closed-duplicate"
-
   # TODO: Re-enable close-blocked job alongside the prereqs step above.
   # close-blocked:
   #   runs-on: ubuntu-latest
@@ -115,12 +103,6 @@ jobs:
   #         issue-number: ${{ github.event.issue.number }}
   #         title: "BLOCKED | ${{ github.event.issue.title }}"
   #         body: "> [!CAUTION]\n> ## ❌ Prerequisites Not Met\n> You must complete the previous module before starting this one.\n>\n> **Incomplete module:** ${{ needs.check-gates.outputs.incomplete-module }}\n>\n> Please complete that module first, then re-create this ticket.\n>\n> **This issue has been closed automatically.**"
-  #
-  #     - name: Label blocked issue
-  #       uses: ./.github/actions/add-labels
-  #       with:
-  #         issue-number: ${{ github.event.issue.number }}
-  #         labels: "closed-blocked"
 
   process:
     runs-on: ubuntu-latest

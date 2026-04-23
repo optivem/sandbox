@@ -8,13 +8,11 @@
  *   2. sync-checklists.mjs        → checklists/{courseId}/{NN}.md
  *   3. sync-issue-template.mjs    → .github/ISSUE_TEMPLATE/review-request.yml
  *   4. sync-student-urls.mjs      → config/courses/*.json (url fields, from courses/generated/student-urls.json)
- *   5. sync-labels.mjs        (DRY-RUN) → label drift on GitHub vs config
- *   6. sync-project.mjs       (DRY-RUN) → project field schema drift
+ *   5. sync-project.mjs       (DRY-RUN) → project field schema drift
  *
- * The last two steps are DRY-RUN inside this orchestrator because they
- * mutate GitHub remote state (not local files). To apply changes, run
- * the underlying script directly with the appropriate flag:
- *   node scripts/sync-labels.mjs --add | --update | --delete
+ * The last step is DRY-RUN inside this orchestrator because it mutates
+ * GitHub remote state (not local files). To apply changes, run it
+ * directly:
  *   node scripts/sync-project.mjs --add
  *
  * Student-view URL *scraping* lives in the courses repo
@@ -31,7 +29,7 @@
  *   node scripts/sync.mjs --only checklists       # run one step
  *   node scripts/sync.mjs --only structure,urls   # run multiple steps (comma-separated)
  *
- * Step names: structure, checklists, issue-template, urls, labels, project-schema
+ * Step names: structure, checklists, issue-template, urls, project-schema
  */
 
 import { dirname, join } from "node:path";
@@ -44,7 +42,6 @@ const STEPS = [
   { key: "checklists",     label: "Review checklists",       file: "./sync-checklists.mjs" },
   { key: "issue-template", label: "Issue template",          file: "./sync-issue-template.mjs" },
   { key: "urls",           label: "Student URLs",            file: "./sync-student-urls.mjs" },
-  { key: "labels",         label: "Labels (dry-run)",        file: "./sync-labels.mjs" },
   { key: "project-schema", label: "Project schema (dry-run)", file: "./sync-project.mjs" },
 ];
 
@@ -73,8 +70,7 @@ const only = extractOnly();
 const selected = only ? STEPS.filter(s => only.has(s.key)) : STEPS;
 
 // Orchestrator always runs mutating syncs in dry-run mode.
-// (To apply schema changes, invoke sync-labels.mjs or sync-project.mjs directly
-// with --add / --update / --delete as appropriate.)
+// (To apply schema changes, invoke sync-project.mjs directly with --add.)
 // Strip these flags so sub-scripts that read argv[2] as courses-root don't misread them.
 for (const flag of ["--apply", "--add", "--update", "--delete"]) {
   const idx = process.argv.indexOf(flag);
