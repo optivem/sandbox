@@ -16,39 +16,24 @@
       <p class="subtitle">Last updated: {{LAST_UPDATED}}</p>
     </div>
     <nav class="nav-tabs">
-      <span class="nav-tab active">Dashboard</span>
+      <span class="nav-tab active">Home</span>
+      <a class="nav-tab" href="https://github.com/optivem/hub/discussions" target="_blank" rel="noopener">Discussions</a>
       <a class="nav-tab" href="https://optivem.thinkific.com/enrollments" target="_blank" rel="noopener">Courses</a>
-      <a class="nav-tab" href="https://github.com/orgs/optivem/projects/18" target="_blank" rel="noopener">Board</a>
-      <a class="nav-tab" href="https://github.com/optivem/hub/discussions" target="_blank" rel="noopener">Community</a>
     </nav>
   </div>
-  <div class="filter-bar">
-    <span class="filter-icon">&#128269;</span>
-    <input type="text" class="filter-input" id="projectFilter" placeholder="Filter by code, project, lead, or member…" autocomplete="off">
+  <div class="desktop-content">
+{{COURSE_SECTIONS}}
+{{SUMMARY_TABLE}}
+  </div>
+  <div class="cards">
+{{COURSE_CARDS}}
   </div>
   <div class="legend">
     <div class="legend-item"><div class="legend-swatch" style="background:#dbeafe"></div> In Review</div>
     <div class="legend-item"><div class="legend-swatch" style="background:#fef9c3"></div> In Progress</div>
     <div class="legend-item"><div class="legend-swatch" style="background:#dcfce7"></div> ✅ Done</div>
   </div>
-  <div class="desktop-content">
-{{SUMMARY_TABLE}}
-{{COURSE_SECTIONS}}
-  </div>
-  <div class="cards">
-{{COURSE_CARDS}}
-  </div>
   <script>
-    document.getElementById('projectFilter').addEventListener('input', function() {
-      const q = this.value.toLowerCase().trim();
-      document.querySelectorAll('tbody tr[data-filter]').forEach(function(row) {
-        row.style.display = !q || row.dataset.filter.includes(q) ? '' : 'none';
-      });
-      document.querySelectorAll('.card[data-filter]').forEach(function(card) {
-        card.style.display = !q || card.dataset.filter.includes(q) ? '' : 'none';
-      });
-    });
-
     const CURRENT_VERSION = "{{VERSION}}";
     async function checkVersion() {
       try {

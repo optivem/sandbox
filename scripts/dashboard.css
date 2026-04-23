@@ -50,11 +50,6 @@
     .disclaimer { margin-top: 16px; padding: 10px 14px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; font-size: 0.8rem; color: #92400e; line-height: 1.5; }
     .disclaimer a { color: #92400e; font-weight: 600; text-decoration: underline; }
     .disclaimer a:hover { color: #78350f; }
-    .filter-bar { margin-bottom: 16px; position: relative; max-width: 360px; }
-    .filter-input { width: 100%; padding: 8px 12px 8px 34px; font-size: 0.85rem; font-family: inherit; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; color: #111827; outline: none; }
-    .filter-input:focus { border-color: #1d4ed8; box-shadow: 0 0 0 2px rgba(29,78,216,0.15); }
-    .filter-input::placeholder { color: #9ca3af; }
-    .filter-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none; font-size: 0.85rem; }
     .teacher-links { margin-top: 16px; font-size: 0.8rem; color: #6b7280; }
     .teacher-links span { font-weight: 600; margin-right: 8px; }
     .teacher-links a { color: #6b7280; text-decoration: none; margin-right: 12px; }
