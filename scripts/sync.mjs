@@ -10,14 +10,12 @@
  *   4. sync-student-urls.mjs      → config/courses/*.json (url fields, from courses/generated/student-urls.json)
  *   5. sync-labels.mjs        (DRY-RUN) → label drift on GitHub vs config
  *   6. sync-project.mjs       (DRY-RUN) → project field schema drift
- *   7. sync-project-items.mjs (DRY-RUN) → project item drift (adds + field values)
  *
- * The last three steps are DRY-RUN inside this orchestrator because they
+ * The last two steps are DRY-RUN inside this orchestrator because they
  * mutate GitHub remote state (not local files). To apply changes, run
  * the underlying script directly with the appropriate flag:
  *   node scripts/sync-labels.mjs --add | --update | --delete
  *   node scripts/sync-project.mjs --add
- *   node scripts/sync-project-items.mjs --add
  *
  * Student-view URL *scraping* lives in the courses repo
  * (`courses/tools/scrape-student-urls.ts`) because it needs Playwright
@@ -33,7 +31,7 @@
  *   node scripts/sync.mjs --only checklists       # run one step
  *   node scripts/sync.mjs --only structure,urls   # run multiple steps (comma-separated)
  *
- * Step names: structure, checklists, issue-template, urls, labels, project-schema, project-items
+ * Step names: structure, checklists, issue-template, urls, labels, project-schema
  */
 
 import { dirname, join } from "node:path";
@@ -48,7 +46,6 @@ const STEPS = [
   { key: "urls",           label: "Student URLs",            file: "./sync-student-urls.mjs" },
   { key: "labels",         label: "Labels (dry-run)",        file: "./sync-labels.mjs" },
   { key: "project-schema", label: "Project schema (dry-run)", file: "./sync-project.mjs" },
-  { key: "project-items",  label: "Project items (dry-run)",  file: "./sync-project-items.mjs" },
 ];
 
 function extractOnly() {

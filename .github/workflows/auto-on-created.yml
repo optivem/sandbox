@@ -15,7 +15,6 @@ jobs:
       repo-url: ${{ steps.validate.outputs.repo-url }}
       course-id: ${{ steps.validate.outputs.course-id }}
       module-num: ${{ steps.validate.outputs.module-num }}
-      module-label: ${{ steps.validate.outputs.module-label }}
       module: ${{ steps.validate.outputs.module }}
     steps:
       - uses: actions/checkout@v6

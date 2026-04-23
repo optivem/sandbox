@@ -4,14 +4,14 @@
  * Sync custom-field schema on the hub GitHub Project board (config.board).
  *
  * Reconciles these fields on the board:
- *   - Student Project — options from config.projects (key — name)
+ *   - Sandbox Project — options from config.projects (key — name)
  *   - Module          — options from the modules of every course in board.courses
  *   - Status          — options from config.statuses (names only; option IDs
  *                       are project-specific and looked up at runtime)
  *   - Course          — added only when the board covers more than one course
  *
- * This script only touches field *schema* (fields and their options). It does
- * NOT set field values on items — that lives in sync-project-items.mjs.
+ * This script only touches field *schema* (fields and their options). Field
+ * values on items are set per-issue by `.github/actions/set-project-fields`.
  *
  * Safety:
  *   - Dry-run by default; pass --add to create missing fields/options.

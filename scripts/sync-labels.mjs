@@ -17,9 +17,6 @@ const config = loadConfig(ROOT);
 
 // Label colors by type
 const COLORS = {
-  course: "5319e7",    // purple
-  project: "0075ca",   // blue
-  module: "e4e669",    // yellow
   closed: "d73a4a",    // red
 };
 

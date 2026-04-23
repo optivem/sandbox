@@ -34,9 +34,6 @@ outputs:
   module-num:
     description: The module number (e.g. "02").
     value: ${{ steps.validate.outputs.module_num }}
-  module-label:
-    description: The module label from the course folder name (e.g. "01-introduction").
-    value: ${{ steps.validate.outputs.module_label }}
   assignees:
     description: Comma-separated list of team member GitHub usernames.
     value: ${{ steps.validate.outputs.assignees }}
@@ -125,16 +122,3 @@ runs:
           core.setOutput('module_num', moduleNum);
           core.setOutput('assignees', team.members.join(','));
           core.setOutput('course_id', courseId);
-
-          // Look up module label from config
-          let moduleLabel = '';
-          if (courseId) {
-            const course = data.courses.find(c => c.id === courseId);
-            if (course) {
-              const mod = course.modules.find(m => m.number === moduleNum);
-              if (mod) {
-                moduleLabel = mod.label || '';
-              }
-            }
-          }
-          core.setOutput('module_label', moduleLabel);
