@@ -1,18 +1,21 @@
 name: Check Duplicate Issue
-description: Searches for an existing open issue with the same project and module labels. Outputs the duplicate issue number if found.
+description: Searches the project board for an existing item with the same Course, Sandbox Project, and Module field values. Outputs the duplicate issue number if found.
 
 inputs:
   issue-number:
     description: The current issue number (to exclude from search).
     required: true
   project-key:
-    description: The project key (e.g. "eshp").
+    description: The sandbox project key (e.g. "BDOK").
     required: true
   course-id:
     description: The course id (e.g. "atdd", "pipeline").
     required: true
-  module-label:
-    description: The module label from the course folder name (e.g. "01-introduction").
+  module-num:
+    description: The module number (e.g. "02").
+    required: true
+  github-token:
+    description: Token with project read access.
     required: true
 
 outputs:
@@ -29,34 +32,74 @@ outputs:
 runs:
   using: composite
   steps:
-    - name: Search for duplicates
+    - name: Search for duplicates on board
       id: check
       uses: actions/github-script@v8
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
       with:
+        github-token: ${{ inputs.github-token }}
         script: |
+          const { loadConfig } = require('./scripts/load-config.cjs');
+          const config = loadConfig('.');
+          const projectId = config.board.id;
+          const checkCourseField = (config.board.courses?.length || 0) > 1;
+          const courseFieldValue = '${{ inputs.course-id }}'.toUpperCase();
+          const projectKey = '${{ inputs.project-key }}'.toUpperCase();
+          const moduleNum = '${{ inputs.module-num }}';
           const currentNumber = ${{ inputs.issue-number }};
-          const projectLabel = 'project-${{ inputs.project-key }}';
-          const courseLabel = 'course-${{ inputs.course-id }}';
-          const moduleLabel = 'module-${{ inputs.module-label }}';
 
-          const labelList = [projectLabel, courseLabel, moduleLabel].filter(l => !l.endsWith('-')).join(',');
+          let cursor = null;
+          let earliest = null;
+          while (true) {
+            const data = await github.graphql(`
+              query($projectId: ID!, $after: String) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    items(first: 100, after: $after) {
+                      pageInfo { hasNextPage endCursor }
+                      nodes {
+                        content {
+                          ... on Issue { number url }
+                        }
+                        course: fieldValueByName(name: "Course") {
+                          ... on ProjectV2ItemFieldSingleSelectValue { name }
+                        }
+                        sandboxProject: fieldValueByName(name: "Sandbox Project") {
+                          ... on ProjectV2ItemFieldSingleSelectValue { name }
+                        }
+                        module: fieldValueByName(name: "Module") {
+                          ... on ProjectV2ItemFieldSingleSelectValue { name }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `, { projectId, after: cursor });
+            const page = data.node.items;
+            for (const item of page.nodes) {
+              const issue = item.content;
+              if (!issue?.number) continue;
+              if (issue.number === currentNumber) continue;
+              if (checkCourseField && item.course?.name !== courseFieldValue) continue;
+              const sp = item.sandboxProject?.name;
+              const mod = item.module?.name;
+              if (!sp || !mod) continue;
+              if (sp.split(' — ')[0].toUpperCase() !== projectKey) continue;
+              if (mod.split(' - ')[0] !== moduleNum) continue;
+              if (!earliest || issue.number < earliest.number) {
+                earliest = { number: issue.number, url: issue.url };
+              }
+            }
+            if (!page.pageInfo.hasNextPage) break;
+            cursor = page.pageInfo.endCursor;
+          }
 
-          const issues = await github.rest.issues.listForRepo({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: labelList,
-            state: 'all',
-            per_page: 100
-          });
-
-          const original = issues.data
-            .filter(i => i.number !== currentNumber)
-            .sort((a, b) => a.number - b.number)[0];
-
-          if (original) {
+          if (earliest) {
             core.setOutput('is_duplicate', 'true');
-            core.setOutput('original_number', original.number);
-            core.setOutput('original_url', original.html_url);
+            core.setOutput('original_number', earliest.number);
+            core.setOutput('original_url', earliest.url);
           } else {
             core.setOutput('is_duplicate', 'false');
           }

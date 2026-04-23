@@ -47,7 +47,8 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           project-key: ${{ needs.validate.outputs.project-key }}
           course-id: ${{ needs.validate.outputs.course-id }}
-          module-label: ${{ needs.validate.outputs.module-label }}
+          module-num: ${{ needs.validate.outputs.module-num }}
+          github-token: ${{ secrets.PROJECT_TOKEN }}
 
       # TODO: Re-enable prerequisite check — currently disabled so tickets can be created out of module order.
       # - name: Check module prerequisites
@@ -168,12 +169,6 @@ jobs:
           repo-url: ${{ needs.validate.outputs.repo-url }}
           course-id: ${{ needs.validate.outputs.course-id }}
           module: ${{ needs.validate.outputs.module }}
-
-      - name: Add project, course, and module labels
-        uses: ./.github/actions/add-labels
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          labels: "project-${{ needs.validate.outputs.project-key }}, course-${{ needs.validate.outputs.course-id }}, module-${{ needs.validate.outputs.module-label }}"
 
       - name: Set issue type to Task
         uses: ./.github/actions/set-issue-type

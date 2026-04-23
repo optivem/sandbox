@@ -1,15 +1,15 @@
 name: Check Module Prerequisites
-description: Verifies that the previous module is "Done" before allowing a new ticket.
+description: Verifies that the previous module is "Done" before allowing a new ticket. Reads project board fields (Course, Sandbox Project, Module, Status).
 
 inputs:
   project-key:
-    description: The project key (e.g. "eshp").
+    description: The sandbox project key (e.g. "BDOK").
     required: true
   course-id:
     description: The course id (e.g. "atdd", "pipeline").
     required: true
   module-num:
-    description: The module number (e.g. "2").
+    description: The module number (e.g. "02").
     required: true
   github-token:
     description: Token with project read access.
@@ -36,10 +36,12 @@ runs:
         script: |
           const { loadConfig } = require('./scripts/load-config.cjs');
           const config = loadConfig('.');
-          const projectKey = '${{ inputs.project-key }}'.toLowerCase();
-          const courseId = '${{ inputs.course-id }}';
-          const moduleNum = '${{ inputs.module-num }}';
           const projectId = config.board.id;
+          const checkCourseField = (config.board.courses?.length || 0) > 1;
+          const courseId = '${{ inputs.course-id }}';
+          const courseFieldValue = courseId.toUpperCase();
+          const projectKey = '${{ inputs.project-key }}'.toUpperCase();
+          const moduleNum = '${{ inputs.module-num }}';
 
           const course = config.courses.find(c => c.id === courseId);
           if (!course) {
@@ -48,7 +50,6 @@ runs:
             return;
           }
 
-          // Find current module index
           const moduleIndex = course.modules.findIndex(m => m.number === moduleNum);
           if (moduleIndex <= 0) {
             // First module or not found — no prerequisites
@@ -58,52 +59,52 @@ runs:
           }
 
           const prevModule = course.modules[moduleIndex - 1];
-
-          // Find the issue for the previous module + this project
-          const projectLabel = `project-${projectKey}`;
-          const courseLabel = `course-${courseId}`;
-          const moduleLabel = `module-${prevModule.label || prevModule.number}`;
-
-          const issues = await github.rest.issues.listForRepo({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            labels: `${projectLabel},${courseLabel},${moduleLabel}`,
-            state: 'all',
-            per_page: 100
-          });
-
           const prevModuleName = `${prevModule.number} - ${prevModule.name}`;
 
-          if (issues.data.length === 0) {
-            core.setOutput('allowed', 'false');
-            core.setOutput('incomplete_module', prevModuleName);
-            return;
-          }
-
-          // Check the status of the first matching issue on the project board
-          const issue = issues.data[0];
-          const result = await github.graphql(`
-            query($issueId: ID!) {
-              node(id: $issueId) {
-                ... on Issue {
-                  projectItems(first: 10) {
-                    nodes {
-                      project { id }
-                      fieldValueByName(name: "Status") {
-                        ... on ProjectV2ItemFieldSingleSelectValue {
-                          name
+          let cursor = null;
+          let prevStatus = null;
+          outer: while (true) {
+            const data = await github.graphql(`
+              query($projectId: ID!, $after: String) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    items(first: 100, after: $after) {
+                      pageInfo { hasNextPage endCursor }
+                      nodes {
+                        course: fieldValueByName(name: "Course") {
+                          ... on ProjectV2ItemFieldSingleSelectValue { name }
+                        }
+                        sandboxProject: fieldValueByName(name: "Sandbox Project") {
+                          ... on ProjectV2ItemFieldSingleSelectValue { name }
+                        }
+                        module: fieldValueByName(name: "Module") {
+                          ... on ProjectV2ItemFieldSingleSelectValue { name }
+                        }
+                        status: fieldValueByName(name: "Status") {
+                          ... on ProjectV2ItemFieldSingleSelectValue { name }
                         }
                       }
                     }
                   }
                 }
               }
+            `, { projectId, after: cursor });
+            const page = data.node.items;
+            for (const item of page.nodes) {
+              if (checkCourseField && item.course?.name !== courseFieldValue) continue;
+              const sp = item.sandboxProject?.name;
+              const mod = item.module?.name;
+              if (!sp || !mod) continue;
+              if (sp.split(' — ')[0].toUpperCase() !== projectKey) continue;
+              if (mod.split(' - ')[0] !== prevModule.number) continue;
+              prevStatus = item.status?.name || '';
+              break outer;
             }
-          `, { issueId: issue.node_id });
+            if (!page.pageInfo.hasNextPage) break;
+            cursor = page.pageInfo.endCursor;
+          }
 
-          const item = result.node.projectItems.nodes.find(n => n.project.id === projectId);
-          const status = item?.fieldValueByName?.name || '';
-          if (status === 'Done') {
+          if (prevStatus === 'Done') {
             core.setOutput('allowed', 'true');
             core.setOutput('incomplete_module', '');
           } else {
