@@ -302,12 +302,11 @@ function renderDesktopTable(course, scored, totalModules) {
 
   return `
   <div class="course-section" id="course-${escapeHtml(course.id)}">
-    <h2 class="course-title">${escapeHtml(course.name)}</h2>
     <div class="table-wrapper">
       <table>
         <thead>
           <tr>
-            <th class="module-name">Module</th>
+            <th class="module-name course-title-cell">${escapeHtml(course.name)}</th>
             ${headers}
           </tr>
           <tr class="progress-row">
@@ -317,10 +316,6 @@ function renderDesktopTable(course, scored, totalModules) {
         </thead>
         <tbody>
 ${bodyRows}
-          <tr class="progress-row">
-            <td class="module-name"><strong>Progress</strong></td>
-              ${progressRow}
-          </tr>
         </tbody>
       </table>
     </div>
