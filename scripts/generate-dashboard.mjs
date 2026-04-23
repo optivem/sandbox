@@ -90,8 +90,6 @@ function countModules(modules) {
   return modules.length;
 }
 
-const ISSUE_NOTICE = `> **\u26a0\ufe0f This ticket is auto-generated. Please do not change the title or contents below. Just click the "Create" button below. After a few minutes, the ticket will be automatically assigned to a reviewer \u2014 no further action needed. You can add comments after the ticket is created.**`;
-
 // ── Shared HTML fragments ──
 
 function projectHeaderHtml(proj, done, total) {
@@ -115,13 +113,19 @@ function statusCellHtml(entry, proj) {
   return `<td class="cell cell-${cls}"><a href="${entry.url}" target="_blank" rel="noopener" title="${escapeHtml(proj.key)}: ${status}">${text}</a></td>`;
 }
 
-function newIssueCellHtml(proj, fullName, issueBody) {
-  const url = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(fullName)}&body=${encodeURIComponent(issueBody)}`;
-  return `<td class="cell cell-missing"><a href="${url}" target="_blank" rel="noopener" title="Create ticket for ${escapeHtml(proj.key)} - ${escapeHtml(fullName)}">+</a></td>`;
+function newIssueUrl(proj, course, moduleName) {
+  const params = new URLSearchParams({
+    template: `${course.id}-sandbox-review.yml`,
+    project: `${proj.key} — ${proj.name}`,
+    course: course.name,
+    module: moduleName,
+  });
+  return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new?${params.toString()}`;
 }
 
-function newIssueBody(courseName, projName, moduleName) {
-  return `${ISSUE_NOTICE}\n\n### Course\n\n${courseName}\n\n### Project\n\n${projName}\n\n### Module\n\n${moduleName}\n\n${ISSUE_NOTICE}`;
+function newIssueCellHtml(proj, course, moduleName) {
+  const url = newIssueUrl(proj, course, moduleName);
+  return `<td class="cell cell-missing"><a href="${url}" target="_blank" rel="noopener" title="Create ticket for ${escapeHtml(proj.key)} - ${escapeHtml(moduleName)}">+</a></td>`;
 }
 
 // ── Scoring ──
@@ -275,7 +279,7 @@ function renderDesktopTable(course, scored, totalModules) {
         .map(({ proj, data }) => {
           const entry = data[m.number];
           if (!entry) {
-            return newIssueCellHtml(proj, moduleName, newIssueBody(course.name, proj.name, moduleName));
+            return newIssueCellHtml(proj, course, moduleName);
           }
           return statusCellHtml(entry, proj);
         })
@@ -333,7 +337,7 @@ function renderMobileCards(course, scored, totalModules) {
           const moduleName = `${m.number} - ${m.name}`;
           const entry = data[m.number];
           if (!entry) {
-            const url = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new?title=${encodeURIComponent(moduleName)}&body=${encodeURIComponent(newIssueBody(course.name, proj.name, moduleName))}`;
+            const url = newIssueUrl(proj, course, moduleName);
             const moduleLabel = m.url ? `<a href="${escapeHtml(m.url)}" target="_blank" rel="noopener">${escapeHtml(moduleName)}</a>` : escapeHtml(moduleName);
             return `<li class="card-module-item"><span class="card-module-name">${moduleLabel}</span><span class="card-module-status card-status-missing"><a href="${url}" target="_blank" rel="noopener">+</a></span></li>`;
           }

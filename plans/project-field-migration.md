@@ -20,9 +20,6 @@ APPPROVED
 - [ ] Discussions setup on `optivem/hub`
   - Categories: `Pipeline Q&A` (Q&A), `ATDD Q&A` (Q&A), `Announcements` (Announcement), `General` (Open-ended)
   - Align with the parked hub-privacy plan (activates 2026-07-02 per memory)
-- [ ] Parent issues per (sandbox × course) with modules as sub-issues
-  - Originally proposed for per-project rollups
-  - Probably unnecessary once the 8 per-project views exist — revisit only if native view filtering proves insufficient
 
 
 WAIT
