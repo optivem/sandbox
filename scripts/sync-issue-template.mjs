@@ -1,19 +1,28 @@
 #!/usr/bin/env node
 
 /**
- * Sync the review-request issue template: generate
- * .github/ISSUE_TEMPLATE/review-request.yml from config/projects.json
- * and config/courses/*.json.
+ * Sync per-course sandbox-review issue templates:
+ * generates .github/ISSUE_TEMPLATE/<courseId>-sandbox-review.yml for each
+ * course in config/courses/*.json.
+ *
+ * Each template includes:
+ *   - Project dropdown (all projects from config/projects.json)
+ *   - Course dropdown, pre-selected to this course's name (single option)
+ *   - Module dropdown scoped to this course's modules only
+ *   - Review Checklist markdown placeholder (auto-filled post-submission)
+ *
+ * Course is hardcoded per template so validate-issue reads it from the body
+ * (### Course) without needing labels or file-name conventions.
  *
  * Source of truth: config/ JSON files.
- * Output:          .github/ISSUE_TEMPLATE/review-request.yml
+ * Output:          .github/ISSUE_TEMPLATE/<courseId>-sandbox-review.yml
  *
  * Usage: node scripts/sync-issue-template.mjs
  */
 
-import { writeFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+import { writeFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadConfig } from "./load-config.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -22,14 +31,20 @@ const ROOT = join(__dirname, "..");
 const config = loadConfig(ROOT);
 
 const projectOptions = config.projects.map(p => `        - ${p.name}`).join("\n");
-const courseOptions = config.courses.map(c => `        - ${c.name}`).join("\n");
 
-const moduleOptions = config.courses.flatMap(c =>
-  c.modules.map(m => `        - ${m.number} - ${m.name}`)
-).join("\n");
+function shortName(courseName) {
+  return courseName.split(" ")[0];
+}
 
-const yaml = `name: "Module Review"
-description: "Submit your sandbox project for review"
+function renderTemplate(course) {
+  const moduleOptions = course.modules
+    .map(m => `        - ${m.number} - ${m.name}`)
+    .join("\n");
+
+  const short = shortName(course.name);
+
+  return `name: "${short} Sandbox Review"
+description: "Submit your ${short} sandbox project for review"
 body:
   - type: dropdown
     id: project
@@ -44,9 +59,10 @@ ${projectOptions}
     id: course
     attributes:
       label: Course
-      description: Select the course you are submitting for.
+      description: Course this submission is for.
       options:
-${courseOptions}
+        - ${course.name}
+      default: 0
     validations:
       required: true
   - type: dropdown
@@ -64,7 +80,10 @@ ${moduleOptions}
         ## Review Checklist
         *This section will be auto-generated after submission.*
 `;
+}
 
-const outPath = join(ROOT, ".github", "ISSUE_TEMPLATE", "review-request.yml");
-writeFileSync(outPath, yaml, "utf-8");
-console.log(`Wrote ${outPath}: ${config.projects.length} projects, ${config.courses.length} courses, ${config.courses.reduce((s, c) => s + c.modules.length, 0)} modules.`);
+for (const course of config.courses) {
+  const outPath = join(ROOT, ".github", "ISSUE_TEMPLATE", `${course.id}-sandbox-review.yml`);
+  writeFileSync(outPath, renderTemplate(course), "utf-8");
+  console.log(`Wrote ${outPath}: ${course.modules.length} modules.`);
+}

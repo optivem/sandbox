@@ -1,5 +1,5 @@
-name: "Module Review"
-description: "Submit your sandbox project for review"
+name: "ATDD Sandbox Review"
+description: "Submit your ATDD sandbox project for review"
 body:
   - type: dropdown
     id: project
@@ -21,10 +21,10 @@ body:
     id: course
     attributes:
       label: Course
-      description: Select the course you are submitting for.
+      description: Course this submission is for.
       options:
-        - Pipeline Accelerator
         - ATDD Accelerator
+      default: 0
     validations:
       required: true
   - type: dropdown
@@ -33,11 +33,6 @@ body:
       label: Module
       description: Select the module you are submitting for review.
       options:
-        - 01 - Introduction
-        - 02 - Commit Stage
-        - 03 - Acceptance Stage
-        - 04 - QA Stage
-        - 05 - Production Stage
         - 01 - Getting Started
         - 02 - Smoke Tests
         - 03 - E2E Tests
