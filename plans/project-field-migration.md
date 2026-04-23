@@ -11,6 +11,8 @@ Processing rule: remove each item from this file as it is executed; delete the f
 
 Composite action `.github/actions/set-project-fields` and the wiring in `auto-on-created.yml` are in place. This item is the live-fire verification.
 
+APPPROVED
+
 ---
 
 ## Phase 3 — Deferred / optional
