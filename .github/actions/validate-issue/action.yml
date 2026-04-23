@@ -57,6 +57,11 @@ runs:
           const creator = process.env.INPUT_USERNAME;
           const body = process.env.INPUT_BODY || '';
 
+          // Reject anything that looks like a placeholder: empty, _No response_,
+          // or the "— Select a ... —" sentinel emitted by scripts/sync-issue-template.mjs.
+          const SENTINEL_RE = /^— Select a .* —$/;
+          const isBlank = v => !v || v === '_No response_' || SENTINEL_RE.test(v);
+
           const moduleMatch = body.match(/### Module\s*\n\s*(.+)/);
           const selectedModule = moduleMatch ? moduleMatch[1].trim() : '';
           core.setOutput('module', selectedModule);
@@ -64,7 +69,7 @@ runs:
           const projectMatch = body.match(/### Project\s*\n\s*(.+)/);
           const selectedProject = projectMatch ? projectMatch[1].trim() : '';
 
-          if (!selectedProject) {
+          if (isBlank(selectedProject) || isBlank(selectedModule)) {
             core.setOutput('is_valid', 'false');
             return;
           }

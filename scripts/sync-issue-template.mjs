@@ -30,19 +30,29 @@ const ROOT = join(__dirname, "..");
 
 const config = loadConfig(ROOT);
 
-const projectOptions = [...config.projects]
-  .sort((a, b) => a.key.localeCompare(b.key))
-  .map(p => `        - ${p.key} — ${p.name}`)
-  .join("\n");
+// Sentinel first option + default: 0 forces the user to actively pick
+// something other than this placeholder. validate-issue rejects the
+// sentinel. Keep the exact string in sync with SENTINEL_RE in
+// .github/actions/validate-issue/action.yml.
+const PROJECT_PLACEHOLDER = '        - "— Select a project —"';
+const MODULE_PLACEHOLDER  = '        - "— Select a module —"';
+
+const projectOptions = [
+  PROJECT_PLACEHOLDER,
+  ...[...config.projects]
+    .sort((a, b) => a.key.localeCompare(b.key))
+    .map(p => `        - ${p.key} — ${p.name}`),
+].join("\n");
 
 function shortName(courseName) {
   return courseName.split(" ")[0];
 }
 
 function renderTemplate(course) {
-  const moduleOptions = course.modules
-    .map(m => `        - ${m.number} - ${m.name}`)
-    .join("\n");
+  const moduleOptions = [
+    MODULE_PLACEHOLDER,
+    ...course.modules.map(m => `        - ${m.number} - ${m.name}`),
+  ].join("\n");
 
   const short = shortName(course.name);
 
@@ -56,6 +66,7 @@ body:
       description: Select your project.
       options:
 ${projectOptions}
+      default: 0
     validations:
       required: true
   - type: dropdown
@@ -75,6 +86,7 @@ ${projectOptions}
       description: Select the module you are submitting for review.
       options:
 ${moduleOptions}
+      default: 0
     validations:
       required: true
   - type: markdown

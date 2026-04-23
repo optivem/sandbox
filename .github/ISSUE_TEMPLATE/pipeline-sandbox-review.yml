@@ -7,6 +7,7 @@ body:
       label: Project
       description: Select your project.
       options:
+        - "— Select a project —"
         - BDOK — Budget OK
         - CCRS — Car Charging Reservation System
         - CTF — CTF
@@ -15,6 +16,7 @@ body:
         - GHBL — Ghibli Encyclopedia
         - PWRH — Project Powerhouse
         - VGFN — Veg Finder
+      default: 0
     validations:
       required: true
   - type: dropdown
@@ -33,11 +35,13 @@ body:
       label: Module
       description: Select the module you are submitting for review.
       options:
+        - "— Select a module —"
         - 01 - Introduction
         - 02 - Commit Stage
         - 03 - Acceptance Stage
         - 04 - QA Stage
         - 05 - Production Stage
+      default: 0
     validations:
       required: true
   - type: markdown
