@@ -1,6 +1,5 @@
 name: "Module Review"
 description: "Submit your sandbox project for review"
-title: ""
 body:
   - type: dropdown
     id: project
@@ -8,7 +7,6 @@ body:
       label: Project
       description: Select your project.
       options:
-        - Shop
         - Car Charging Reservation System
         - Budget OK
         - CTF

@@ -3,25 +3,6 @@
 Follow-up work after migrating `optivem/hub` Project 18 from label-based to field-based structure. Fields `Course`, `Sandbox Project`, `Module`, `Status` exist and are populated on all 45 current items.
 
 Processing rule: remove each item from this file as it is executed; delete the file when empty; delete the `plans/` directory when empty.
-
----
-
-## Phase 1 — UI cleanup (manual, Project 18 web UI)
-
-- [ ] Reorder fields (Settings → Fields drag-and-drop): `Course → Sandbox Project → Module → Status`
-- [ ] Create per-project views (one per student project, 8 total):
-  - [ ] `BDOK` — filter `Sandbox Project = "BDOK — Budget OK"`, group by `Course`, sort by `Module` asc
-  - [ ] `CCRS` — same pattern
-  - [ ] `CTF` — same pattern
-  - [ ] `ESLA` — same pattern
-  - [ ] `FRS` — same pattern
-  - [ ] `GHBL` — same pattern
-  - [ ] `PWRH` — same pattern
-  - [ ] `VGFN` — same pattern
-- [ ] Optional: create coach-facing views
-  - [ ] `Review Queue` — filter `Status = In Review`, sort by created asc
-  - [ ] `Per-Course Progress` — table grouped by `Course`, then `Sandbox Project`, sort by `Module`
-
 ---
 
 ## Phase 2 — Auto-populate fields on new issues
