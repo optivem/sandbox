@@ -1,0 +1,115 @@
+name: nudge-unanswered-discussions
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # daily at 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  discussions: write
+  contents: read
+
+jobs:
+  nudge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Nudge stale unanswered discussions
+        uses: actions/github-script@v9
+        env:
+          QUIET_DAYS: '7'
+          MARKER: '<!-- nudge-unanswered -->'
+        with:
+          script: |
+            const QUIET_DAYS = parseInt(process.env.QUIET_DAYS, 10);
+            const MARKER = process.env.MARKER;
+            const cutoff = Date.now() - QUIET_DAYS * 24 * 60 * 60 * 1000;
+
+            const query = `
+              query($owner: String!, $repo: String!, $cursor: String) {
+                repository(owner: $owner, name: $repo) {
+                  discussions(first: 50, after: $cursor, orderBy: {field: UPDATED_AT, direction: DESC}) {
+                    pageInfo { hasNextPage endCursor }
+                    nodes {
+                      id
+                      number
+                      title
+                      isAnswered
+                      locked
+                      updatedAt
+                      author { login }
+                      category { isAnswerable }
+                      comments(last: 50) {
+                        nodes {
+                          createdAt
+                          author { login }
+                          body
+                          isMinimized
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
+
+            const mutation = `
+              mutation($discussionId: ID!, $body: String!) {
+                addDiscussionComment(input: {discussionId: $discussionId, body: $body}) {
+                  comment { id }
+                }
+              }
+            `;
+
+            let cursor = null;
+            let scanned = 0;
+            let nudged = 0;
+            let pages = 0;
+            const MAX_PAGES = 20;
+
+            while (pages < MAX_PAGES) {
+              pages++;
+              const resp = await github.graphql(query, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                cursor,
+              });
+              const page = resp.repository.discussions;
+
+              for (const d of page.nodes) {
+                scanned++;
+                if (d.locked || d.isAnswered) continue;
+                if (!d.category?.isAnswerable) continue;
+                if (!d.author?.login) continue;
+                if (new Date(d.updatedAt).getTime() > cutoff) continue;
+
+                const replies = d.comments.nodes.filter(c =>
+                  !c.isMinimized &&
+                  c.author?.login &&
+                  c.author.login !== d.author.login
+                );
+                if (replies.length === 0) continue;
+
+                const lastReply = replies[replies.length - 1];
+                if (new Date(lastReply.createdAt).getTime() > cutoff) continue;
+
+                const alreadyNudged = d.comments.nodes.some(c =>
+                  c.body && c.body.includes(MARKER)
+                );
+                if (alreadyNudged) continue;
+
+                const body = `${MARKER}\n@${d.author.login} — this discussion has a reply but hasn't been marked as answered. If one of the replies resolved your question, please click **Mark as answer** on it so others can find the solution. If you still need help, just follow up here.`;
+
+                try {
+                  await github.graphql(mutation, { discussionId: d.id, body });
+                  console.log(`Nudged #${d.number}: ${d.title}`);
+                  nudged++;
+                } catch (err) {
+                  console.error(`Failed to nudge #${d.number}: ${err.message}`);
+                }
+              }
+
+              if (!page.pageInfo.hasNextPage) break;
+              cursor = page.pageInfo.endCursor;
+            }
+
+            console.log(`Scanned: ${scanned}, Nudged: ${nudged}`);
