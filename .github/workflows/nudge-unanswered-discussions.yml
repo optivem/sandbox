@@ -4,10 +4,36 @@ on:
   schedule:
     - cron: '0 9 * * *'  # daily at 09:00 UTC
   workflow_dispatch:
+    inputs:
+      quiet-days:
+        description: 'Days of inactivity before nudging (overrides default)'
+        required: false
+        default: ''
+      max-pages:
+        description: 'Max pages of discussions to scan, 50 per page (overrides default)'
+        required: false
+        default: ''
+      dry-run:
+        description: 'Log what would be nudged without posting comments'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   discussions: write
   contents: read
+
+# ----------------------------------------------------------------------
+# Tunable defaults. Edit these to change behavior for scheduled runs.
+# For one-off overrides, use the "Run workflow" inputs above instead.
+# {{author}} in COMMENT_TEMPLATE is replaced with the discussion author.
+# ----------------------------------------------------------------------
+env:
+  QUIET_DAYS: '7'
+  MAX_PAGES: '20'
+  MARKER: '<!-- nudge-unanswered -->'
+  COMMENT_TEMPLATE: |
+    @{{author}} — this discussion has a reply but hasn't been marked as answered. If one of the replies resolved your question, please click **Mark as answer** on it so others can find the solution. If you still need help, just follow up here.
 
 jobs:
   nudge:
@@ -16,13 +42,20 @@ jobs:
       - name: Nudge stale unanswered discussions
         uses: actions/github-script@v9
         env:
-          QUIET_DAYS: '7'
-          MARKER: '<!-- nudge-unanswered -->'
+          QUIET_DAYS: ${{ inputs.quiet-days || env.QUIET_DAYS }}
+          MAX_PAGES: ${{ inputs.max-pages || env.MAX_PAGES }}
+          DRY_RUN: ${{ inputs.dry-run || 'false' }}
+          MARKER: ${{ env.MARKER }}
+          COMMENT_TEMPLATE: ${{ env.COMMENT_TEMPLATE }}
         with:
           script: |
             const QUIET_DAYS = parseInt(process.env.QUIET_DAYS, 10);
+            const MAX_PAGES = parseInt(process.env.MAX_PAGES, 10);
+            const DRY_RUN = process.env.DRY_RUN === 'true';
             const MARKER = process.env.MARKER;
+            const COMMENT_TEMPLATE = (process.env.COMMENT_TEMPLATE || '').trim();
             const cutoff = Date.now() - QUIET_DAYS * 24 * 60 * 60 * 1000;
+            console.log(`Config: QUIET_DAYS=${QUIET_DAYS}, MAX_PAGES=${MAX_PAGES}, DRY_RUN=${DRY_RUN}`);
 
             const query = `
               query($owner: String!, $repo: String!, $cursor: String) {
@@ -33,6 +66,7 @@ jobs:
                       id
                       number
                       title
+                      url
                       isAnswered
                       locked
                       updatedAt
@@ -62,9 +96,8 @@ jobs:
 
             let cursor = null;
             let scanned = 0;
-            let nudged = 0;
             let pages = 0;
-            const MAX_PAGES = 20;
+            const results = [];
 
             while (pages < MAX_PAGES) {
               pages++;
@@ -97,14 +130,21 @@ jobs:
                 );
                 if (alreadyNudged) continue;
 
-                const body = `${MARKER}\n@${d.author.login} — this discussion has a reply but hasn't been marked as answered. If one of the replies resolved your question, please click **Mark as answer** on it so others can find the solution. If you still need help, just follow up here.`;
+                const body = `${MARKER}\n${COMMENT_TEMPLATE.replace(/\{\{author\}\}/g, d.author.login)}`;
+
+                if (DRY_RUN) {
+                  console.log(`[dry-run] Would nudge #${d.number}: ${d.title}`);
+                  results.push({ number: d.number, title: d.title, url: d.url, status: 'dry-run' });
+                  continue;
+                }
 
                 try {
                   await github.graphql(mutation, { discussionId: d.id, body });
                   console.log(`Nudged #${d.number}: ${d.title}`);
-                  nudged++;
+                  results.push({ number: d.number, title: d.title, url: d.url, status: 'success' });
                 } catch (err) {
                   console.error(`Failed to nudge #${d.number}: ${err.message}`);
+                  results.push({ number: d.number, title: d.title, url: d.url, status: 'failure', error: err.message });
                 }
               }
 
@@ -112,4 +152,37 @@ jobs:
               cursor = page.pageInfo.endCursor;
             }
 
-            console.log(`Scanned: ${scanned}, Nudged: ${nudged}`);
+            const succeeded = results.filter(r => r.status === 'success').length;
+            const failed = results.filter(r => r.status === 'failure').length;
+            const dryRun = results.filter(r => r.status === 'dry-run').length;
+            console.log(`Scanned: ${scanned}, Succeeded: ${succeeded}, Failed: ${failed}, Dry-run: ${dryRun}`);
+
+            await core.summary
+              .addHeading('Nudge Unanswered Discussions', 2)
+              .addRaw(`Scanned **${scanned}** discussions. Succeeded: **${succeeded}**, Failed: **${failed}**, Dry-run: **${dryRun}**.`)
+              .addBreak();
+
+            if (results.length > 0) {
+              const rows = [
+                [
+                  { data: 'Discussion', header: true },
+                  { data: 'Title', header: true },
+                  { data: 'Status', header: true },
+                  { data: 'Error', header: true },
+                ],
+                ...results.map(r => [
+                  `<a href="${r.url}">#${r.number}</a>`,
+                  r.title,
+                  r.status,
+                  r.error || '',
+                ]),
+              ];
+              await core.summary.addTable(rows);
+            } else {
+              await core.summary.addRaw('No discussions matched the criteria.');
+            }
+            await core.summary.write();
+
+            if (failed > 0) {
+              core.setFailed(`${failed} discussion(s) failed to be nudged. See summary for details.`);
+            }
